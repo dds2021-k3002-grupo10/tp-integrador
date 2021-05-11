@@ -29,6 +29,9 @@ public class CriterioClaveDebil implements CriterioValidacionClave{
     }
 
     public Boolean esClaveValida(String clave){
+
+        this.levantarContrasenasDebiles();
+
         return !clavesInvalidas.contains(clave.toLowerCase());
     }
 }

@@ -22,6 +22,9 @@ public class CriterioRegex implements CriterioValidacionClave{
     }
 
     public Boolean esClaveValida(String clave){
+
+        this.criteriosRegex();
+
         PasswordValidator validador = new PasswordValidator(this.listaDeReglas);
 
         PasswordData claveAVerificar = new PasswordData(new Password(clave));
