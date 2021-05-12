@@ -14,7 +14,23 @@ public class Prueba {
         Scanner contrasenia = new Scanner(System.in);
         String contraseniaNueva = contrasenia.nextLine();
 
+        ValidadorDeClave validador = new ValidadorDeClave();
 
+        while(!validador.esClaveValida(contraseniaNueva)){
+            System.out.println("Su contraseña no cumple con los requisitos, vuelva a ingresarla");
+            System.out.println("Ingrese contraseña (Debe ser mayor a 8 caracteres y " +
+                    "contener una mayuscula, una minuscula y un numero)");
+            contrasenia = new Scanner(System.in);
+            contraseniaNueva = contrasenia.nextLine();
+
+
+        }
+
+        if(validador.esClaveValida(contraseniaNueva)){
+            Usuario user1 = new Usuario(usuarioNuevo, contraseniaNueva);
+            System.out.println("Su usuario fue creado");
+        }
+/**
         CriterioRegex validador = new CriterioRegex();
         CriterioClaveDebil listaDeClavesDebiles = new CriterioClaveDebil();
 
@@ -41,6 +57,6 @@ public class Prueba {
             Usuario user1 = new Usuario(usuarioNuevo, contraseniaNueva);
             System.out.println("Su usuario fue creado");
         }
-
+**/
     }
  }
