@@ -1,12 +1,13 @@
-package security;
+package views;
 
 import domain.usuario.Usuario;
 import security.services.ValidadorDeClave;
 
 import java.util.Scanner;
 
-public class EjemploDeValidador {
-    public static void main(String[] args) {
+
+public class ViewNuevoUsuario {
+    public void ejecutar(){
         System.out.println("Ingrese usuario:");
         Scanner usuario = new Scanner(System.in);
         String usuarioNuevo = usuario.nextLine();
@@ -33,6 +34,4 @@ public class EjemploDeValidador {
             System.out.println("Su usuario fue creado");
         }
     }
-
 }
-
