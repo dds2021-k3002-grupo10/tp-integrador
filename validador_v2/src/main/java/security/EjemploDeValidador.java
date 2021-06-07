@@ -1,10 +1,8 @@
-package domain.services;
+package security;
 
-import domain.CriterioClaveDebil;
-import domain.Usuario;
-import domain.services.criterios.CriterioRegex;
+import domain.usuario.Usuario;
+import security.services.ValidadorDeClave;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class EjemploDeValidador {

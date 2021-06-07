@@ -1,6 +1,6 @@
 package domain;
 
-import domain.services.criterios.CriterioValidacionClave;
+import security.criterios.CriterioValidacionClave;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

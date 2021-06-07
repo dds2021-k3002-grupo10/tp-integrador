@@ -1,4 +1,4 @@
-package domain.services.criterios;
+package security.criterios;
 
 import org.passay.AllowedRegexRule;
 import org.passay.PasswordData;

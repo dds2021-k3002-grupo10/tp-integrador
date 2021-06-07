@@ -1,8 +1,8 @@
-package domain.services;
+package security.services;
 
 import domain.CriterioClaveDebil;
-import domain.services.criterios.CriterioRegex;
-import domain.services.criterios.CriterioValidacionClave;
+import security.criterios.CriterioRegex;
+import security.criterios.CriterioValidacionClave;
 
 import java.util.ArrayList;
 import java.util.List;

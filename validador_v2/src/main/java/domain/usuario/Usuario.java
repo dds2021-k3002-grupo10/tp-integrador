@@ -1,8 +1,12 @@
-package domain;
+package domain.usuario;
+
+import domain.DetallePersona;
 
 public class Usuario {
     private String usuario;
     private String clave;
+    private Rol rol;
+    private DetallePersona detallePersona;
 
     public Usuario(String usuario, String clave) {
         this.usuario = usuario;
