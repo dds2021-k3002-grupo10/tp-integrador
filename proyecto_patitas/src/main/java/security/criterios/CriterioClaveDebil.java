@@ -1,4 +1,4 @@
-package domain;
+package security.criterios;
 
 import security.criterios.CriterioValidacionClave;
 
