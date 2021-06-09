@@ -14,6 +14,7 @@ public class main {
        Caracteristica colorDeOjos = new Caracteristica("Color de ojos");
        Caracteristica castrado = new Caracteristica("Castrado");
        Caracteristica colorPrincipal = new Caracteristica("Color principal");
+
        TipoDeMascota perro = new TipoDeMascota();
        Mascota perro1 = new Mascota(perro, "Gino", 5, Sexo.MACHO);
        perro1.agregarCaracteristica(colorDeOjos, "marron");
