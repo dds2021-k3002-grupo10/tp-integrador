@@ -17,5 +17,13 @@ public class Contacto {
         this.medioDeNotificacion = medioDeNotificacion;
     }
 
+    public String getTelefono() { return this.telefono; }
 
+    public String getEmail() { return this.email; }
+
+    public MedioDeNotificacion getMedioDeNotificacion() { return this.medioDeNotificacion; }
+
+    public void notificar(){
+        this.medioDeNotificacion.notificar(this);
+    }
 }

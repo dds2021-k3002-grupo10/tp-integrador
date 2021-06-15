@@ -19,5 +19,17 @@
             <artifactId>passay</artifactId>
             <version>1.6.0</version>
         </dependency>
+        <!-- LIBRERIA TWILIO PARA ENVIAR SMS Y WHATSAPP-->
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>8.14.0</version>
+        </dependency>
+        <!-- LIBRERIA SENDGRID PARA ENVIAR EMAIL -->
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.7.2</version>
+        </dependency>
     </dependencies>
 </project>

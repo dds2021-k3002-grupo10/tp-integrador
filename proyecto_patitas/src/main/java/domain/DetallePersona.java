@@ -14,4 +14,8 @@ public class DetallePersona {
     private List<Mascota> mascotas;
     //todo implementar codigoQR
     private MedioDeNotificacion medioDeNotificacion;
+
+    public void notificar(){
+        contactos.stream().forEach(contacto -> contacto.notificar());
+    }
 }
