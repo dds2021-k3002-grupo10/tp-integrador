@@ -1,5 +1,7 @@
 package domain;
 
+import domain.notificacion.MedioDeNotificacion;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +10,8 @@ public class DetallePersona {
     private Date fechaDeNacimiento;
     private Documento documento;
     private String nroDocumento;
-    //todo implementar contactos
+    private List<Contacto> contactos;
     private List<Mascota> mascotas;
     //todo implementar codigoQR
-    //todo implementar medioDeNotificacion
+    private MedioDeNotificacion medioDeNotificacion;
 }
