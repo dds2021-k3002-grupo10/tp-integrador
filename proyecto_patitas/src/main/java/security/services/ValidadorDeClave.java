@@ -1,6 +1,7 @@
 package security.services;
 
-import domain.CriterioClaveDebil;
+
+import security.criterios.CriterioClaveDebil;
 import security.criterios.CriterioRegex;
 import security.criterios.CriterioValidacionClave;
 
