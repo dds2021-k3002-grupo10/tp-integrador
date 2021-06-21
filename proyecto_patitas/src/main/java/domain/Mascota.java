@@ -1,9 +1,5 @@
 package domain;
 
-import domain.mascota.Caracteristica;
-import domain.mascota.Sexo;
-import domain.mascota.TipoDeMascota;
-
 import java.util.HashMap;
 
 public class Mascota {
