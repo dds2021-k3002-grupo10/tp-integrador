@@ -2,17 +2,19 @@ package domain.usuario.roles;
 
 import domain.usuario.Rol;
 
-public class Estandar implements Rol {
+public class Voluntario implements Rol {
     private String descripcion;
 
     @Override
-    public Boolean permisoEdicion() { return false; }
+    public Boolean permisoEdicion() {
+        return false;
+    }
 
     @Override
-    public Boolean permisoAprobacion() { return false; }
+    public Boolean permisoAprobacion() { return true; }
 
     @Override
-    public String descripcion() {
+    public String descripcion(){
         return this.descripcion;
     }
 
