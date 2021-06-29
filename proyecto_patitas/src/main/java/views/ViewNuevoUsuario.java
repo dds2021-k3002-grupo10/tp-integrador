@@ -1,6 +1,7 @@
 package views;
 
 import domain.usuario.Usuario;
+import domain.usuario.roles.Estandar;
 import security.services.ValidadorDeClave;
 
 import java.util.Scanner;
@@ -30,7 +31,8 @@ public class ViewNuevoUsuario {
         }
 
         if(validador.esClaveValida(contraseniaNueva)){
-            Usuario user1 = new Usuario(usuarioNuevo, contraseniaNueva);
+            Estandar rolEstandar = new Estandar();
+            Usuario user1 = new Usuario(usuarioNuevo, contraseniaNueva, rolEstandar);
             System.out.println("Su usuario fue creado");
         }
     }
