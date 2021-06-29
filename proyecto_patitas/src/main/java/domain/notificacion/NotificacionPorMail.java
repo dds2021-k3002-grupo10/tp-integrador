@@ -8,7 +8,6 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import domain.Contacto;
-import domain.DetallePersona;
 
 import java.io.IOException;
 

@@ -3,7 +3,6 @@ package domain.notificacion;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import domain.Contacto;
-import domain.DetallePersona;
 
 public class NotificacionPorWhatsapp implements MedioDeNotificacion{
     @Override

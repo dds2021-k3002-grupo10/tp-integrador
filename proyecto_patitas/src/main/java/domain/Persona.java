@@ -5,7 +5,7 @@ import domain.notificacion.MedioDeNotificacion;
 import java.util.Date;
 import java.util.List;
 
-public class DetallePersona {
+public class Persona {
     private String nombre;
     private Date fechaDeNacimiento;
     private Documento documento;

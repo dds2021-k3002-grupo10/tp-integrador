@@ -3,7 +3,6 @@ package domain.notificacion;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import domain.Contacto;
-import domain.DetallePersona;
 
 public class NotificacionPorSms implements MedioDeNotificacion{
 
@@ -14,7 +13,7 @@ public class NotificacionPorSms implements MedioDeNotificacion{
 
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber(contacto.getTelefono()),
-                new com.twilio.type.PhoneNumber("+5491112345678"),
+                new com.twilio.type.PhoneNumber("+19039103018"),
                 "Se encontro una mascota perdida")
                 .create();
     }

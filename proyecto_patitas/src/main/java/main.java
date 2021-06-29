@@ -1,3 +1,5 @@
+import domain.Contacto;
+import domain.notificacion.NotificacionPorSms;
 import services.refugiosApi.ServicioRefugios;
 import services.refugiosApi.entities.Hogar;
 import views.OrganizacionView;
@@ -16,14 +18,21 @@ public class main {
 
 
        /* caracteristicas */
-//       OrganizacionView organizacionView = new OrganizacionView();
+      /*
+       OrganizacionView organizacionView = new OrganizacionView();
 
-      // organizacionView.agregarCaracteristicas();
+       organizacionView.agregarCaracteristicas();
 
-//       organizacionView.mostrarCaracteristicas();
+       organizacionView.mostrarCaracteristicas();
+      */
 
 
+      /*
+      NotificacionPorSms sms = new NotificacionPorSms();
+      Contacto contacto1 = new Contacto("Guillermo", "Barnes", "guillebarnes@gmail.com", "+5491166742669", sms);
 
+      contacto1.notificar();
+      */
    }
 }
 
