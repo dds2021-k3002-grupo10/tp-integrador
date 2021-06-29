@@ -4,7 +4,7 @@ package services;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import domain.entities.caracteristicas.Caracteristicas;
-import domain.entities.caracteristicas.Comportamiento;
+import domain.entities.caracteristicas.TipoSeleccion;
 
 import java.io.*;
 import java.util.List;
@@ -17,7 +17,7 @@ public class CaracteristicaValorService {
     public void setCaracteristicaValor() throws IOException {
 
         Caracteristicas caracteristicas = new Caracteristicas();
-        Comportamiento comportamiento = new Comportamiento();
+        TipoSeleccion tipoSeleccion = new TipoSeleccion();
         // List<Valores> valores = (List<Valores>) new Valores();
 
         //pregunta
@@ -30,11 +30,11 @@ public class CaracteristicaValorService {
         System.out.println("INGRESE Comportamiento como CHECK O RBUTTON: ");
         String scComportamientoEntrado = scComportamiento.nextLine();
         if ("RBUTTON".equals(scComportamientoEntrado)) {
-            comportamiento.setId(1L);
-            comportamiento.setDescripcion(scComportamientoEntrado);
+            tipoSeleccion.setId(1L);
+            tipoSeleccion.setDescripcion(scComportamientoEntrado);
         } else {
-            comportamiento.setId(2L);
-            comportamiento.setDescripcion(scComportamientoEntrado);
+            tipoSeleccion.setId(2L);
+            tipoSeleccion.setDescripcion(scComportamientoEntrado);
         }
 
         //valores
@@ -45,7 +45,7 @@ public class CaracteristicaValorService {
 
         caracteristicas.setId(1L);
         caracteristicas.setDescripcionFaq(preguntaFaqEntrado);
-        caracteristicas.setComportamiento(comportamiento);
+        caracteristicas.setComportamiento(tipoSeleccion);
         caracteristicas.setIdOrganizacion(1L);
         //caracteristicas.setValores(valores);
 

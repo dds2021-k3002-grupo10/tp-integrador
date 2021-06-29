@@ -5,7 +5,7 @@ import java.util.List;
 public class Caracteristicas {
     private Long id;
     private String descripcionFaq;
-    private Comportamiento comportamiento;
+    private TipoSeleccion tipoSeleccion;
     private List<Valores> valores;
     private int orden;
     private Long idOrganizacion;
@@ -13,10 +13,10 @@ public class Caracteristicas {
     public Caracteristicas() {
     }
 
-    public Caracteristicas(Long id, String descripcionFaq, Comportamiento comportamiento, List<Valores> valores, int orden, Long idOrganizacion) {
+    public Caracteristicas(Long id, String descripcionFaq, TipoSeleccion tipoSeleccion, List<Valores> valores, int orden, Long idOrganizacion) {
         this.id = id;
         this.descripcionFaq = descripcionFaq;
-        this.comportamiento = comportamiento;
+        this.tipoSeleccion = tipoSeleccion;
         this.valores = valores;
         this.orden = orden;
         this.idOrganizacion = idOrganizacion;
@@ -38,12 +38,12 @@ public class Caracteristicas {
         this.descripcionFaq = descripcionFaq;
     }
 
-    public Comportamiento getComportamiento() {
-        return comportamiento;
+    public TipoSeleccion getComportamiento() {
+        return tipoSeleccion;
     }
 
-    public void setComportamiento(Comportamiento comportamiento) {
-        this.comportamiento = comportamiento;
+    public void setComportamiento(TipoSeleccion tipoSeleccion) {
+        this.tipoSeleccion = tipoSeleccion;
     }
 
     public List<Valores> getValores() {

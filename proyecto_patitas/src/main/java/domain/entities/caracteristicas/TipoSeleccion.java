@@ -1,15 +1,15 @@
 package domain.entities.caracteristicas;
 
-public class Comportamiento {
+public class TipoSeleccion {
 
 
     private Long id;
     private String descripcion;
 
-    public Comportamiento() {
+    public TipoSeleccion() {
     }
 
-    public Comportamiento(Long id, String descripcion) {
+    public TipoSeleccion(Long id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
