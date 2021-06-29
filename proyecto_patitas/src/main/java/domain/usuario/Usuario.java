@@ -8,9 +8,10 @@ public class Usuario {
     private Rol rol;
     private Persona persona;
 
-    public Usuario(String usuario, String clave) {
+    public Usuario(String usuario, String clave, Rol rol) {
         this.usuario = usuario;
         this.clave = clave;
+        this.rol = rol;
     }
 
     public String getUsuario() {
@@ -28,4 +29,6 @@ public class Usuario {
     public void setClave(String clave) {
         this.clave = clave;
     }
+
+
 }
