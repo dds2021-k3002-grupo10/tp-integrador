@@ -11,10 +11,7 @@ public class Persona {
     private Documento documento;
     private String nroDocumento;
     private List<Contacto> contactos;
-    private List<Mascota> mascotas;
-    //todo implementar codigoQR
-    private MedioDeNotificacion medioDeNotificacion;
-
+    
     public void notificar(){
         contactos.stream().forEach(contacto -> contacto.notificar());
     }
