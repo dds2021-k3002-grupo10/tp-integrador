@@ -28,4 +28,11 @@ public class TestApi {
         List<Hogar> hogares = apiRefugios.listadoDeRefugios(1).hogares;
         Assert.assertEquals(true, hogares.get(0).admisiones.isGato());
     }
+    @Test
+    public void laPrimerCaracteristicaDelPrimerHogarEsTranquilo() throws IOException {
+        ServicioRefugios apiRefugios = ServicioRefugios.getInstancia();
+        List<Hogar> hogares = apiRefugios.listadoDeRefugios(1).hogares;
+        List<String> caracteristicas = hogares.get(0).caracteristicas;
+        Assert.assertEquals("Tranquilo", caracteristicas.get(0));
+    }
 }

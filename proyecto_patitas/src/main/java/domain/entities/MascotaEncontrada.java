@@ -2,13 +2,14 @@ package domain.entities;
 
 import domain.Persona;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MascotaEncontrada {
     private Persona rescatista;
     private String tipoDeMascota;
     private String tamaño;
-    private List<String> caracteristicas;
+    private List<String> caracteristicas = new ArrayList<>();
     private Boolean tieneChapita;
     //private Ubicacion ubicacionEncontrada;
     //private List<Foto> fotos;

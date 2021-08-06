@@ -11,15 +11,27 @@ import java.util.stream.Collectors;
 
 public class FiltroHogares {
 
-    public List<Hogar> filtrarPorTipoMascota(MascotaEncontrada mascota) throws IOException {
+    public List<Hogar> filtrarPorDisponibilidad() throws IOException {
         List<Hogar> hogaresDisponibles = this.getHogares();
-        List<Hogar> posiblesHogares = hogaresDisponibles.stream().filter(hogar -> hogar.seAceptaMascota(mascota)).collect(Collectors.toList());
+        List<Hogar> posiblesHogares = hogaresDisponibles.stream().filter(hogar -> hogar.tieneLugarDisponible()).collect(Collectors.toList());
+        return posiblesHogares;
+    }
+
+    public List<Hogar> filtrarPorTipoMascota(MascotaEncontrada mascota) throws IOException {
+        List<Hogar> hogaresFiltrados = this.filtrarPorDisponibilidad();
+        List<Hogar> posiblesHogares = hogaresFiltrados.stream().filter(hogar -> hogar.seAceptaMascota(mascota)).collect(Collectors.toList());
+
         return posiblesHogares;
     }
 
     public List<Hogar> filtarPorTamaño(MascotaEncontrada mascota) throws IOException {
         List<Hogar> hogaresFiltrados = this.filtrarPorTipoMascota(mascota);
         List<Hogar> posiblesHogares = hogaresFiltrados.stream().filter(hogar -> hogar.seAceptaTamaño(mascota)).collect(Collectors.toList());
+        return posiblesHogares;
+    }
+    public List<Hogar> filtrarPorCaracteristicas(MascotaEncontrada mascota) throws IOException {
+        List<Hogar> hogaresFiltrados = this.filtarPorTamaño(mascota);
+        List<Hogar> posiblesHogares = hogaresFiltrados.stream().filter(hogar -> hogar.coincidenCaracteristicas(mascota)).collect(Collectors.toList());
         return posiblesHogares;
     }
 
