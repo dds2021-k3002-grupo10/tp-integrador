@@ -1,6 +1,14 @@
 package services.refugiosApi.entities;
 
 public class Admision {
-    private boolean perro;
-    private boolean gato;
+    private boolean perros;
+    private boolean gatos;
+
+    public boolean isPerro() {
+        return perros;
+    }
+
+    public boolean isGato() {
+        return gatos;
+    }
 }

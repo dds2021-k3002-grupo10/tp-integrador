@@ -1,5 +1,7 @@
 import domain.Contacto;
+import domain.entities.MascotaEncontrada;
 import domain.notificacion.NotificacionPorSms;
+import domain.services.FiltroHogares;
 import services.refugiosApi.ServicioRefugios;
 import services.refugiosApi.entities.Hogar;
 import views.OrganizacionView;

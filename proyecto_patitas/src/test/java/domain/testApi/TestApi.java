@@ -22,4 +22,10 @@ public class TestApi {
         hogares = apiRefugios.listadoDeRefugios(1).hogares;
         Assert.assertEquals("Pensionado de mascotas \"Como en casa\"", hogares.get(0).nombre);
     }
+    @Test
+    public void elPrimerHogarSoloAceptaGatos() throws IOException {
+        ServicioRefugios apiRefugios = ServicioRefugios.getInstancia();
+        List<Hogar> hogares = apiRefugios.listadoDeRefugios(1).hogares;
+        Assert.assertEquals(true, hogares.get(0).admisiones.isGato());
+    }
 }
