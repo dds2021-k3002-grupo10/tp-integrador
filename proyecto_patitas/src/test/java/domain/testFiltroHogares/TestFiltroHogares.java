@@ -14,9 +14,8 @@ import java.util.List;
 public class TestFiltroHogares {
     @Test
     public void son8HogaresQueAceptanPerros() throws IOException {
-        MascotaEncontrada perroEncontrado = new MascotaEncontrada();
-        perroEncontrado.setTipoDeMascota("perro");
-        perroEncontrado.setTamaño("grande");
+        List<String> caraceteristicas  = new ArrayList<>();
+        MascotaEncontrada perroEncontrado = new MascotaEncontrada(null, "perro", "grande", caraceteristicas, null);
         perroEncontrado.agregarCaracteristica("Lindo");
         FiltroHogares filtroHogares = new FiltroHogares();
         List<Hogar> posiblesHogares = filtroHogares.filtrarPorCaracteristicas(perroEncontrado);
