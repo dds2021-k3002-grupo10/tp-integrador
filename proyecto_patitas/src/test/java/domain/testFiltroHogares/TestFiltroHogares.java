@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TestFiltroHogares {
     @Test
-    public void son8HogaresQueAceptanPerros() throws IOException {
+    public void son7HogaresQueAceptanPerros() throws IOException {
         List<String> caraceteristicas  = new ArrayList<>();
         MascotaEncontrada perroEncontrado = new MascotaEncontrada(null, "perro", "grande", caraceteristicas, null);
         perroEncontrado.agregarCaracteristica("Lindo");
