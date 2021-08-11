@@ -25,6 +25,26 @@ public class MascotaEncontrada {
 
     public void agregarCaracteristica(String carac){ caracteristicas.add(carac); }
 
+    public Persona getRescatista() {
+        return rescatista;
+    }
+
+    public void setRescatista(Persona rescatista) {
+        this.rescatista = rescatista;
+    }
+
+    public void setCaracteristicas(List<String> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public Boolean getTieneChapita() {
+        return tieneChapita;
+    }
+
+    public void setTieneChapita(Boolean tieneChapita) {
+        this.tieneChapita = tieneChapita;
+    }
+
     public void setTipoDeMascota(String tipoMascota) { this.tipoDeMascota = tipoMascota; }
 
     public void setTamaño(String tamaño) { this.tamaño = tamaño; }
