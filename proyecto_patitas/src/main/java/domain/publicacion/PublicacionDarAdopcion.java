@@ -16,7 +16,8 @@ public class PublicacionDarAdopcion extends Publicacion {
     @Override
     public void contactar() {
         //TODO: Magia
-        //Persona duenio = mascota.getDuenio();
+        Persona duenio = mascota.getDuenio();
+        duenio.notificar();
 
     }
 
