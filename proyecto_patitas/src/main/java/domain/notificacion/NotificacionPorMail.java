@@ -13,11 +13,11 @@ import java.io.IOException;
 
 public class NotificacionPorMail implements MedioDeNotificacion{
     @Override
-    public void notificar(Contacto contacto) {
+    public void notificar(Contacto contacto, String mensaje) {
         Email emailOrganizacion = new Email("org@ejemplo.com");
-        String asunto = "Se ha encontrado una mascota perdida";
+        String asunto = "Nos contactamos con usted desde la organización de mascotas";
         Email emailDelContacto = new Email(contacto.getEmail());
-        Content contenido = new Content("text/plain", "Se encontro una mascota perdida y se notifica a la persona para ponerse en contacto con el correspondiente.");
+        Content contenido = new Content("text/plain", mensaje);
         Mail mail = new Mail(emailOrganizacion, asunto, emailDelContacto, contenido);
 
         SendGrid sg = new SendGrid(System.getenv("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")); //token de sendgrid

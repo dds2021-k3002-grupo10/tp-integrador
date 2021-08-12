@@ -12,7 +12,7 @@ public class Persona {
     private String nroDocumento;
     private List<Contacto> contactos;
     
-    public void notificar(){
-        contactos.stream().forEach(contacto -> contacto.notificar());
+    public void notificar(String mensaje){
+        contactos.stream().forEach(contacto -> contacto.notificar(mensaje));
     }
 }
