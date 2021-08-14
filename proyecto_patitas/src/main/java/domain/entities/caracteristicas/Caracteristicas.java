@@ -9,6 +9,7 @@ public class Caracteristicas {
     private List<Valores> valores;
     private int orden;
     private Long idOrganizacion;
+    private String tipo;
 
     public Caracteristicas() {
     }

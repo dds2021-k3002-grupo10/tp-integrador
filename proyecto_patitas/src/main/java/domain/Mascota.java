@@ -1,29 +1,32 @@
 package domain;
 
-import java.util.HashMap;
+import domain.entities.caracteristicas.Caracteristicas;
+import domain.entities.caracteristicas.Sexo;
+import domain.entities.caracteristicas.TipoDeMascota;
+
+import java.util.List;
 
 public class Mascota {
-    //private TipoDeMascota tipoDeMascota;
+    private TipoDeMascota tipoDeMascota;
     private String nombre;
     private String apodo;
     private int edad;
-    //private Sexo sexo;
+    private Sexo sexo;
     private String descripcionFisica;
     //todo Lista de fotos
-    //private HashMap<Caracteristica, String> caracteristicas = new HashMap<>();
+    private List<Caracteristicas> caracteristicas;
 
-    /*public Mascota(TipoDeMascota tipoDeMascota, String nombre, int edad, Sexo sexo) {
+    public Mascota(TipoDeMascota tipoDeMascota, String nombre, int edad, Sexo sexo) {
         this.tipoDeMascota = tipoDeMascota;
         this.nombre = nombre;
         this.apodo = apodo;
         this.edad = edad;
         this.sexo = sexo;
-    }*/
+    }
+
+    public Mascota() {
+    }
+
     public void setApodo(String apodo){ this.apodo = apodo; }
 
-   /* public void agregarCaracteristica(Caracteristica caracteristica, String valor){
-        this.caracteristicas.put(caracteristica, valor);
-    }*/
-
-    /*public HashMap<Caracteristica, String> getCaracteristicas() { return this.caracteristicas; }*/
 }
