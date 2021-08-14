@@ -36,4 +36,12 @@ public class MascotaEncontrada {
     public List<String> getCaracteristicas() {
         return caracteristicas;
     }
+
+    public void notificar(){
+        if(this.tieneChapita){
+            //Se debería notificar al dueño de la mascota, conocida por el codigo QR
+        }
+        else
+            rescatista.notificar("Se ha encontrado un posible dueño de la mascota encontrada");
+    }
 }
