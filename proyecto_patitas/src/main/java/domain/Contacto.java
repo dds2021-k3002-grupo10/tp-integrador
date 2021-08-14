@@ -23,7 +23,7 @@ public class Contacto {
 
     public MedioDeNotificacion getMedioDeNotificacion() { return this.medioDeNotificacion; }
 
-    public void notificar(){
-        this.medioDeNotificacion.notificar(this);
+    public void notificar(String mensaje){
+        this.medioDeNotificacion.notificar(this, mensaje);
     }
 }

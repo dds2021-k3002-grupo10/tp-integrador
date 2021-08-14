@@ -6,12 +6,12 @@ import domain.Contacto;
 
 public class NotificacionPorWhatsapp implements MedioDeNotificacion{
     @Override
-    public void notificar(Contacto contacto) {
+    public void notificar(Contacto contacto, String mensaje) {
         Twilio.init(account_sid, auth_token);
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:" + contacto.getTelefono()),
                 new com.twilio.type.PhoneNumber("whatsapp:+5491112345678"),
-                "Se encontro una mascota perdida")
+                mensaje)
                 .create();
     }
 }
