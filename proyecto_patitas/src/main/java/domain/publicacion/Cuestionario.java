@@ -8,6 +8,9 @@ public class Cuestionario {
 
     //Constructor
 
+    public Cuestionario() {
+        this.preguntas = new ArrayList<>();
+    }
 
     public Cuestionario(List<EntradaCuestionario> preguntas) {
         this.preguntas = preguntas;
@@ -23,6 +26,14 @@ public class Cuestionario {
     }
 
     //Funcionalidad
+    public void agregarEntrada(EntradaCuestionario entradaCuestionario) {
+        this.preguntas.add(entradaCuestionario);
+    }
+
+    public void quitarEntrada(EntradaCuestionario entradaCuestionario) {
+        this.preguntas.remove(entradaCuestionario);
+    }
+
     public Cuestionario clonar() {
         List<EntradaCuestionario> preguntasClon = new ArrayList<>();
 

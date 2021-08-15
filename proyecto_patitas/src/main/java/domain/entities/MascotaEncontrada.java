@@ -1,6 +1,8 @@
 package domain.entities;
 
+import domain.Foto;
 import domain.Persona;
+import services.refugiosApi.entities.Ubicacion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +13,18 @@ public class MascotaEncontrada {
     private String tamaño;
     private List<String> caracteristicas = new ArrayList<>();
     private Boolean tieneChapita;
-    //private Ubicacion ubicacionEncontrada;
-    //private List<Foto> fotos;
+    private Ubicacion ubicacionEncontrada;
+    private List<Foto> fotos;
 
+    public MascotaEncontrada(Persona rescatista, String tipoDeMascota, String tamaño, List<String> caracteristicas, Boolean tieneChapita, Ubicacion ubicacionEncontrada, List<Foto> fotos) {
+        this.rescatista = rescatista;
+        this.tipoDeMascota = tipoDeMascota;
+        this.tamaño = tamaño;
+        this.caracteristicas = caracteristicas;
+        this.tieneChapita = tieneChapita;
+        this.ubicacionEncontrada = ubicacionEncontrada;
+        this.fotos = fotos;
+    }
 
     public MascotaEncontrada(Persona rescatista, String tipoDeMascota, String tamaño, List<String> caracteristicas, Boolean tieneChapita) {
         this.rescatista = rescatista;

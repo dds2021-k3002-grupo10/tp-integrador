@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,13 +11,14 @@ public class Persona {
     private String nroDocumento;
     private List<Contacto> contactos;
 
-    public Persona(String nombre, Date fechaDeNacimiento, Documento documento, String nroDocumento, List<Contacto> contactos) {
+    public Persona(String nombre, Date fechaDeNacimiento, Documento documento, String nroDocumento) {
         this.nombre = nombre;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.documento = documento;
         this.nroDocumento = nroDocumento;
-        this.contactos = contactos;
+        this.contactos = new ArrayList<>();
     }
+
 
     //Accessors
     public String getNombre() {
@@ -62,6 +64,14 @@ public class Persona {
     //Funcionalidad
     public void notificar(String mensaje) {
         contactos.stream().forEach(contacto -> contacto.notificar(mensaje));
+    }
+
+    public void agregarContacto(Contacto contacto) {
+        this.contactos.add(contacto);
+    }
+
+    public void quitarContacto(Contacto contacto) {
+        this.contactos.remove(contacto);
     }
 
 

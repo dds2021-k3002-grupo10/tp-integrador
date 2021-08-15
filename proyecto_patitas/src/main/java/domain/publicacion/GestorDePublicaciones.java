@@ -3,29 +3,26 @@ package domain.publicacion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorDePublicaciones {
-    private Cuestionario cuestionarioBasicoDeAdopcion;
+public class GestorDePublicaciones extends GestorBasico {
     private Cuestionario cuestionarioOrganizacionDeAdopcion;
     private Cuestionario cuestionarioParaDarDeAdopcion;
     private List<Publicacion> publicaciones;
 
     //Constructor
-    public GestorDePublicaciones(Cuestionario cuestionarioBasicoDeAdopcion, Cuestionario cuestionarioOrganizacionDeAdopcion, Cuestionario cuestionarioParaDarDeAdopcion) {
-        this.cuestionarioBasicoDeAdopcion = cuestionarioBasicoDeAdopcion;
-        this.cuestionarioOrganizacionDeAdopcion = cuestionarioOrganizacionDeAdopcion;
+    public GestorDePublicaciones() {
+        /*TODO:Hardcode*/
+        this.cuestionarioOrganizacionDeAdopcion = new Cuestionario();
+        this.cuestionarioParaDarDeAdopcion = new Cuestionario();
+        this.publicaciones = new ArrayList<>();
+    }
+
+    public GestorDePublicaciones(Cuestionario cuestionarioOrganizacionDeAdopcion, Cuestionario cuestionarioParaDarDeAdopcion) {
+        this.cuestionarioOrganizacionDeAdopcion = this.getInstancia().getCuestionarioBasico().clonar();
         this.cuestionarioParaDarDeAdopcion = cuestionarioParaDarDeAdopcion;
         this.publicaciones = new ArrayList<>();
     }
 
     //Accessors
-    public Cuestionario getCuestionarioBasicoDeAdopcion() {
-        return cuestionarioBasicoDeAdopcion;
-    }
-
-    public void setCuestionarioBasicoDeAdopcion(Cuestionario cuestionarioBasicoDeAdopcion) {
-        this.cuestionarioBasicoDeAdopcion = cuestionarioBasicoDeAdopcion;
-    }
-
     public Cuestionario getCuestionarioOrganizacionDeAdopcion() {
         return cuestionarioOrganizacionDeAdopcion;
     }
