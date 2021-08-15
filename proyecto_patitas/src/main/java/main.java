@@ -2,6 +2,9 @@ import domain.Contacto;
 import domain.entities.MascotaEncontrada;
 import domain.notificacion.NotificacionPorSms;
 import domain.services.FiltroHogares;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.impl.StdSchedulerFactory;
 import services.refugiosApi.ServicioRefugios;
 import services.refugiosApi.entities.Hogar;
 import views.OrganizacionView;
@@ -12,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class main {
-   public static void main(String[] args) throws IOException {
+   public static void main(String[] args) throws IOException, SchedulerException {
+
+
 
 //       ViewNuevoUsuario ingresarUsuario = new ViewNuevoUsuario();
 
