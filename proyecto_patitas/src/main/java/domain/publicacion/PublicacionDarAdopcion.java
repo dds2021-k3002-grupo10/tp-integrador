@@ -3,26 +3,18 @@ package domain.publicacion;
 import domain.Mascota;
 import domain.Persona;
 
-public class PublicacionDarAdopcion extends Publicacion {
-    /*TODO: Preguntas*/
-    //private List<Preguntas> preguntas
+public class PublicacionDarAdopcion extends PublicacionAdopcion {
+
     private Mascota mascota;
 
-
-    public void realizarAdopcion(Persona duenioNuevo){
-        this.contactar();
+    //Constructors
+    public PublicacionDarAdopcion(Persona creadoPor, Cuestionario cuestionario, Mascota mascota) {
+        super(creadoPor, cuestionario);
+        this.mascota = mascota;
     }
 
-    @Override
-    public void contactar() {
-        //TODO: Magia
-        Persona duenio = mascota.getDuenio();
-        duenio.notificar();
-
-    }
-
-    @Override
-    public Persona creadoPor() {
-        return null;
+    //funcionalidad
+    public void realizarAdopcion(Persona nuevoDuenio) {
+        this.mascota.setDuenio(nuevoDuenio);
     }
 }

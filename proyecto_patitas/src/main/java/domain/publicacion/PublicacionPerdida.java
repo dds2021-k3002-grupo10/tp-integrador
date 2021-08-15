@@ -4,16 +4,28 @@ import domain.Persona;
 import domain.entities.MascotaEncontrada;
 import services.refugiosApi.entities.Hogar;
 
-public class PublicacionPerdida extends Publicacion{
-
+public class PublicacionPerdida extends Publicacion {
+    private Estado estado;
     private MascotaEncontrada mascota;
     private Hogar hogar;
 
-    public PublicacionPerdida(MascotaEncontrada mascota, Hogar hogar) {
+    public PublicacionPerdida(Persona creadoPor, Estado estado, MascotaEncontrada mascota, Hogar hogar) {
+        super(creadoPor);
+        this.estado = estado;
         this.mascota = mascota;
         this.hogar = hogar;
     }
-    //Accessors
+
+//Accessors
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
     public MascotaEncontrada getMascota() {
         return mascota;
     }
@@ -31,17 +43,11 @@ public class PublicacionPerdida extends Publicacion{
     }
 
     //Funcionalidad
-    @Override
-    public void contactar() {
-        /*TODO:
-           - Mensaje notificacion-> Potencia String---> "Se encontro al dueño"
-       */
-        Persona rescatista = mascota.getRescatista();
-        rescatista.notificar();
+    public void aprobar() {
+        this.estado = Estado.APROBADO;
     }
 
-    @Override
-    public Persona creadoPor() {
-        return mascota.getRescatista();
+    public void rechazar() {
+        this.estado = Estado.APROBADO;
     }
 }

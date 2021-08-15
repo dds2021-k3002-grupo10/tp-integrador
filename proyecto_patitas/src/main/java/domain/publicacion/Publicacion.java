@@ -5,21 +5,32 @@ import domain.Persona;
 import java.time.LocalDate;
 
 public abstract class Publicacion {
-    protected Estado estado;
     protected LocalDate fecha;
+    protected Persona autor;
+    protected long id;    //TODO: ---> Posible AtomicInteger
 
-    protected Publicacion() {
-        this.estado = Estado.PENDIENTE;
+    //Constructor
+    protected Publicacion(Persona creadoPor) {
         this.fecha = LocalDate.now();
+        this.autor = creadoPor;
+        this.id = 0;//TODO: -> Revisar para hacerlo atomico
     }
 
     //Accessors
-    public Estado getEstado() {
-        return estado;
+    public long getId() {
+        return id;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Persona getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Persona autor) {
+        this.autor = autor;
     }
 
     public LocalDate getFecha() {
@@ -31,16 +42,8 @@ public abstract class Publicacion {
     }
 
     //Funcionalidad
-    public abstract void contactar();
-
-    public void aprobar() {
-        this.estado = Estado.APROBADO;
+    public void contactar(Persona solicitante) {
+        String mensaje = "Hola " + autor.getNombre() + "! Te contamos que" + solicitante.getNombre() + "quiere contactarte por la publicacion " + id;
+        autor.notificar(mensaje);
     }
-
-    public void rechazar() {
-        this.estado = Estado.RECHAZADO;
-    }
-
-
-    public abstract Persona creadoPor();
 }

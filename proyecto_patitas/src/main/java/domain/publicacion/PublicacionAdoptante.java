@@ -2,13 +2,26 @@ package domain.publicacion;
 
 import domain.Persona;
 
-public class PublicacionAdoptante extends Publicacion {
+public class PublicacionAdoptante extends PublicacionAdopcion {
     private Persona adoptante;
-    //private preguntas:List<Preguntas>
+    private Boolean esVisible;
 
+//Constructors
 
-    public PublicacionAdoptante(Persona adoptante) {
+    public PublicacionAdoptante(Persona creadoPor, Cuestionario cuestionario, Persona adoptante, Boolean esVisible) {
+        super(creadoPor, cuestionario);
         this.adoptante = adoptante;
+        this.esVisible = esVisible;
+    }
+
+    //Accessors
+
+    public Boolean getEsVisible() {
+        return esVisible;
+    }
+
+    public void setEsVisible(Boolean esVisible) {
+        this.esVisible = esVisible;
     }
 
     public Persona getAdoptante() {
@@ -19,13 +32,16 @@ public class PublicacionAdoptante extends Publicacion {
         this.adoptante = adoptante;
     }
 
-    @Override
-    public void contactar() {
-
+    //Funcionalidad
+    public void darDeBaja() {
+        this.esVisible = false;
     }
 
-    @Override
-    public Persona creadoPor() {
-        return adoptante;
+    public String generarLink() {
+        //TODO: Link base del dominio <- Potencial archivo Config
+        String base = "https://dominio.com/ruta/baja/";
+        base += getId();
+        return base;
     }
+    /*Todo: Dar de baja + links*/
 }
