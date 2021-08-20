@@ -1,3 +1,4 @@
+import conectar.Conectar;
 import domain.Contacto;
 import domain.entities.MascotaEncontrada;
 import domain.notificacion.NotificacionPorSms;
@@ -11,6 +12,7 @@ import views.OrganizacionView;
 import views.ViewNuevoUsuario;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,11 @@ public class main {
    public static void main(String[] args) throws IOException, SchedulerException {
 
 
+//prueba de conexion
+      Conectar conectar = new Conectar();
+      Connection reg = conectar.getConnection();
+//aca se hace todo con la base y luego serramos coneccion
+      conectar.desconectar();
 
 //       ViewNuevoUsuario ingresarUsuario = new ViewNuevoUsuario();
 

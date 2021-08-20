@@ -15,6 +15,6 @@ public class PublicacionDarAdopcion extends PublicacionAdopcion {
 
     //funcionalidad
     public void realizarAdopcion(Persona nuevoDuenio) {
-        this.mascota.setDuenio(nuevoDuenio);
+       // this.mascota.setDuenio(nuevoDuenio);
     }
 }
