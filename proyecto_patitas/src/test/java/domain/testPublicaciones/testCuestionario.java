@@ -16,7 +16,7 @@ public class testCuestionario {
 
         gestorDePublicaciones1.getCuestionarioOrganizacionDeAdopcion().agregarEntrada(entradaCuestionario);
 
-        gestorDePublicaciones2.getCuestionarioOrganizacionDeAdopcion().agregarEntrada(entradaCuestionario2);
+        gestorDePublicaciones2.getCuestionarioOrganizacionDeAdopcion().agregarEntrada(entradaCuestionario);
 
 
         Assert.assertNotSame(gestorDePublicaciones1.getCuestionarioOrganizacionDeAdopcion().getPreguntas(), gestorDePublicaciones2.getCuestionarioOrganizacionDeAdopcion().getPreguntas());

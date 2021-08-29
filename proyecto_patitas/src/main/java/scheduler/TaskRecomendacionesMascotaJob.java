@@ -1,11 +1,9 @@
 package scheduler;
 
-import domain.Persona;
-import jdk.nashorn.internal.objects.NativeArray;
-import org.quartz.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.quartz.Job;
+import org.quartz.JobDetail;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 
 public class TaskRecomendacionesMascotaJob implements Job {
     private static final org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(TaskRecomendacionesMascotaJob.class);
@@ -15,7 +13,7 @@ public class TaskRecomendacionesMascotaJob implements Job {
         // JobDetail
         JobDetail jobDetail = jobExecutionContext.getJobDetail();
         //System.out.println("hola Guille - Dani ");
-       // accionEviarRecomendacion(nuevaListaPersonasAdoptante());
+        // accionEviarRecomendacion(nuevaListaPersonasAdoptante());
 
     }
 

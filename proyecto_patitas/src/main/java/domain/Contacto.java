@@ -17,13 +17,47 @@ public class Contacto {
         this.medioDeNotificacion = medioDeNotificacion;
     }
 
-    public String getTelefono() { return this.telefono; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getEmail() { return this.email; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public MedioDeNotificacion getMedioDeNotificacion() { return this.medioDeNotificacion; }
+    public String getApellido() {
+        return apellido;
+    }
 
-    public void notificar(String mensaje){
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getTelefono() {
+        return this.telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public MedioDeNotificacion getMedioDeNotificacion() {
+        return this.medioDeNotificacion;
+    }
+
+    public void setMedioDeNotificacion(MedioDeNotificacion medioDeNotificacion) {
+        this.medioDeNotificacion = medioDeNotificacion;
+    }
+
+    public void notificar(String mensaje) {
         this.medioDeNotificacion.notificar(this, mensaje);
     }
 }
