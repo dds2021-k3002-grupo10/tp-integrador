@@ -1,0 +1,8 @@
+PERSONA:
+
+por GET
+http://localhost:8080/personas/getLista
+
+por GET
+http://localhost:8080/personas/{id}
+http://localhost:8080/personas/1

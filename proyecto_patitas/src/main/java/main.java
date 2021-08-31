@@ -32,13 +32,13 @@ public class main {
 
 
        /* caracteristicas */
-      /*
+
        OrganizacionView organizacionView = new OrganizacionView();
 
        organizacionView.agregarCaracteristicas();
 
        organizacionView.mostrarCaracteristicas();
-      */
+
 
 
       /*
