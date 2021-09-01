@@ -1,7 +1,6 @@
 package com.disenio.services;
 
-import com.disenio.models.personas.Persona;
-import org.springframework.stereotype.Component;
+import com.disenio.entities.personas.Persona;
 
 import java.util.List;
 import java.util.Optional;

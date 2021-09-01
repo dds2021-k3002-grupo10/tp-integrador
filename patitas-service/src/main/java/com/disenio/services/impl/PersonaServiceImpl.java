@@ -1,11 +1,10 @@
 package com.disenio.services.impl;
 
 import com.disenio.dao.PersonaDAO;
-import com.disenio.models.personas.Persona;
+import com.disenio.entities.personas.Persona;
 import com.disenio.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

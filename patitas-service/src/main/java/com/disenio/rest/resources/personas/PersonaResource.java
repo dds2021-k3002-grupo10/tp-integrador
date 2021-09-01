@@ -1,6 +1,6 @@
 package com.disenio.rest.resources.personas;
 
-import com.disenio.models.personas.Persona;
+import com.disenio.entities.personas.Persona;
 import com.disenio.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
