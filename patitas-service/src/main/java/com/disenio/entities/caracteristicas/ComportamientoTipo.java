@@ -2,6 +2,9 @@ package com.disenio.entities.caracteristicas;
 // Generated 01/09/2021 19:13:39 by Hibernate Tools 4.3.1
 
 
+import com.disenio.entities.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -22,9 +25,11 @@ import javax.persistence.Table;
 )
 public class ComportamientoTipo  implements java.io.Serializable {
 
-
+    @JsonView(Views.External.class)
      private Integer idComportamientoTipo;
+    @JsonView(Views.External.class)
      private String descripcion;
+    @JsonView(Views.Internal.class)
      private Set caracteristicas = new HashSet(0);
 
     public ComportamientoTipo() {

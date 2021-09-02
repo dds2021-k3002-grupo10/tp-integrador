@@ -1,7 +1,7 @@
 package com.disenio.rest.resources.personas;
 
 import com.disenio.entities.personas.Persona;
-import com.disenio.services.PersonaService;
+import com.disenio.services.personas.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,6 @@ public class PersonaResource {
 
 
     @Autowired
-    @Qualifier("PersonaService")
     private PersonaService personaService;
 
 

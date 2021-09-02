@@ -2,6 +2,9 @@ package com.disenio.entities.caracteristicas;
 // Generated 01/09/2021 19:13:39 by Hibernate Tools 4.3.1
 
 
+import com.disenio.entities.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,10 +23,11 @@ import javax.persistence.Table;
     ,catalog="patitas"
 )
 public class CaracteristicaValor  implements java.io.Serializable {
-
-
+    @JsonView(Views.External.class)
      private Integer idCaracteristicaValor;
+    @JsonView(Views.Internal.class)
      private Caracteristica caracteristica;
+    @JsonView(Views.External.class)
      private Valor valor;
 
     public CaracteristicaValor() {

@@ -29,7 +29,7 @@ public class CaracteristicaDetalleValor  implements java.io.Serializable {
      private CaracteristicaDetalle caracteristicaDetalle;
      private Valor valor;
      private char estado;
-     private Set caracteristicaDetalles = new HashSet(0);
+     private Set<CaracteristicaDetalle> caracteristicaDetalles = new HashSet(0);
 
     public CaracteristicaDetalleValor() {
     }

@@ -1,8 +1,8 @@
-package com.disenio.services.impl;
+package com.disenio.services.personas.impl;
 
 import com.disenio.dao.PersonaDAO;
 import com.disenio.entities.personas.Persona;
-import com.disenio.services.PersonaService;
+import com.disenio.services.personas.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service("PersonaService")
+@Service()
 public class PersonaServiceImpl implements PersonaService {
 
     @Autowired

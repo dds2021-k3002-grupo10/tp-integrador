@@ -1,40 +1,26 @@
-[
-	{
-		"id":"1",
-		"descripcionFaq":"Color Principal",
-		"comportamiento":{
-			"id":"1",
-			"descripcion":"RBUTTON"
+
+{
+		"descripcionFaq":"COLOR PRINCIPAL",
+		"comportamientoTipo":{
+			"idComportamientoTipo":"1"
 		},
-		"valores":[{"id":"1", "descripcion":"BLANCO"},
-					{"id":"2", "descripcion":"NEGRO"},
-					{"id":"3", "descripcion":"GRIS"}],
-		"orden":"1",
-		"idOrganizacion":"1"
-	},
-	{
-		"id":"2",
-		"descripcionFaq":"Color Segundario",
-		"comportamiento":{
-			"id":"1",
-			"descripcion":"RBUTTON"
-		},
-		"valores":[{"id":"4", "descripcion":"AMARILLO"},
-					{"id":"5", "descripcion":"MARRON"},
-					{"id":"6", "descripcion":"ROJO"}],
-		"orden":"2",
-		"idOrganizacion":"1"
-	},
-	{
-		"id":"3",
-		"descripcionFaq":"Castrado/a",
-		"comportamiento":{
-			"id":"1",
-			"descripcion":"RBUTTON"
-		},
-		"valores":[{"id":"7","descripcion":"SI"},
-					{"id":"8","descripcion":"NO"}],
-		"orden":"3",
-		"idOrganizacion":"1"
+		"organizacion":{"idOrganizacion":"1"},
+		"caracteristicaValors":[{"valor":{"descripcion":"BLANCO"}},{"valor":{"descripcion":"NEGRO"}},{"valor":{"descripcion":"MARRON"}}],
+		"fechaAlta":"2021-09-01",
+		"fechaUltimaModificacion":"2021-09-01",
+		"estado":"A"
 	}
-]
+	
+	
+	
+{
+		"descripcionFaq":"COLOR DE PELO",
+		"comportamientoTipo":{
+			"idComportamientoTipo":"1"
+		},
+		"organizacion":{"idOrganizacion":"1"},
+		"caracteristicaValors":[{"valor":{"descripcion":"NEGRO"}},{"valor":{"descripcion":"BLANCO"}},{"valor":{"descripcion":"MARRON"}}],
+		"fechaAlta":"2021-09-01",
+		"fechaUltimaModificacion":"2021-09-01",
+		"estado":"A"
+	}	
