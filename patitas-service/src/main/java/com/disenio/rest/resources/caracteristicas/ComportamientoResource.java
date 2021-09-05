@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/comportamiento")
+@RequestMapping("/comportamiento-tipo")
 public class ComportamientoResource {
     @Autowired
     private ComportamientoTipoService comportamientoTipoService;
 
-    @RequestMapping(value = "/tipo", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<List<ComportamientoTipo>> getComportamientoTipoAll() {
         ResponseEntity<List<ComportamientoTipo>> response;
 

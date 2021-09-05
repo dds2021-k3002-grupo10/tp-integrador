@@ -12,6 +12,6 @@ public interface PersonaService {
 
     List<Persona> getListaAllPersona();
 
-    Optional<Persona> getPersonasById(Long id);
+    Optional<Persona> getPersonasById(Integer id);
 
 }

@@ -33,7 +33,7 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public Optional<Persona> getPersonasById(Long id) {
+    public Optional<Persona> getPersonasById(Integer id) {
         Optional<Persona> persona = personaDAO.findById(id);
 
         return persona;

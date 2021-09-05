@@ -1,7 +1,9 @@
 package com.disenio.rest.resources.personas;
 
+import com.disenio.entities.Views;
 import com.disenio.entities.personas.Persona;
 import com.disenio.services.personas.PersonaService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -28,8 +30,8 @@ public class PersonaResource {
 
         // response;
     }
-
-    @RequestMapping(value = "/getLista", method = RequestMethod.GET)
+    @JsonView(Views.External.class)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<List<Persona>> getPersonasAll() {
         ResponseEntity<List<Persona>> response;
 
@@ -42,10 +44,10 @@ public class PersonaResource {
         return response;
 
     }
+    @JsonView(Views.External.class)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Persona> getPersonasById(@PathVariable("id") Integer id) {
 
-    @RequestMapping(value = "/{id}")
-    public ResponseEntity<Persona> getPersonasById(@PathVariable("id") Long id) {
-        System.out.println(id);
         Optional<Persona> personas = personaService.getPersonasById(id);
         if (personas.isPresent()) {
             return ResponseEntity.ok(personas.get());
