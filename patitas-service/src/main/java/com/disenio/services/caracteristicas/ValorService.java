@@ -1,6 +1,5 @@
-package com.disenio.services.comportamiento;
+package com.disenio.services.caracteristicas;
 
-import com.disenio.entities.caracteristicas.Caracteristica;
 import com.disenio.entities.caracteristicas.Valor;
 
 public interface ValorService {

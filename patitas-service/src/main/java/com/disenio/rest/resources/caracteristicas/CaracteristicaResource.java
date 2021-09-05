@@ -2,7 +2,7 @@ package com.disenio.rest.resources.caracteristicas;
 
 import com.disenio.entities.Views;
 import com.disenio.entities.caracteristicas.Caracteristica;
-import com.disenio.services.comportamiento.CaracteristicaService;
+import com.disenio.services.caracteristicas.CaracteristicaService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

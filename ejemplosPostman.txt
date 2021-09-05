@@ -14,3 +14,5 @@ http://localhost:8080/comportamiento-tipo/all
 
 POST caracteristicas:
 http://localhost:8080/caracteristicas/guardar
+
+http://localhost:8080/caracteristicas/organizacion/{idOrganizacion}

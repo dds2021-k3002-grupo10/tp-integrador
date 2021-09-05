@@ -1,11 +1,10 @@
 package com.disenio.rest.resources.caracteristicas;
 
+import com.disenio.entities.Views;
 import com.disenio.entities.caracteristicas.ComportamientoTipo;
-import com.disenio.entities.personas.Persona;
-import com.disenio.services.comportamiento.ComportamientoTipoService;
-import com.disenio.services.personas.PersonaService;
+import com.disenio.services.caracteristicas.ComportamientoTipoService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +19,7 @@ public class ComportamientoResource {
     private ComportamientoTipoService comportamientoTipoService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @JsonView(Views.External.class)
     public ResponseEntity<List<ComportamientoTipo>> getComportamientoTipoAll() {
         ResponseEntity<List<ComportamientoTipo>> response;
 
