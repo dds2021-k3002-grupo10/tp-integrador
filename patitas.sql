@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-08-2021 a las 01:48:47
+-- Tiempo de generación: 05-09-2021 a las 17:02:37
 -- Versión del servidor: 10.4.13-MariaDB
 -- Versión de PHP: 7.4.8
 
@@ -79,6 +79,16 @@ CREATE TABLE `caracteristica` (
   `ID_COMPORTAMIENTO_TIPO` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `caracteristica`
+--
+
+INSERT INTO `caracteristica` (`ID_CARACTERISTICA`, `DESCRIPCION_FAQ`, `ID_ORGANIZACION`, `FECHA_ALTA`, `FECHA_ULTIMA_MODIFICACION`, `FECHA_BAJA`, `ESTADO`, `ID_COMPORTAMIENTO_TIPO`) VALUES
+(12, 'ESTA CASTRADO', 1, '2021-08-31', '2021-08-31', NULL, 'A', 1),
+(13, 'COLOR DE PELO', 1, '2021-08-31', '2021-08-31', NULL, 'A', 1),
+(14, 'ESTA ENFERMO', 1, '2021-08-31', '2021-08-31', NULL, 'A', 1),
+(15, 'INDIQUE TAMAÑO', 1, '2021-08-31', '2021-08-31', NULL, 'A', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +130,24 @@ CREATE TABLE `caracteristica_valor` (
   `ID_VALOR` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `caracteristica_valor`
+--
+
+INSERT INTO `caracteristica_valor` (`ID_CARACTERISTICA_VALOR`, `ID_CARACTERISTICA`, `ID_VALOR`) VALUES
+(17, 12, 17),
+(18, 12, 18),
+(19, 12, 19),
+(20, 13, 20),
+(21, 13, 21),
+(22, 13, 22),
+(23, 14, 23),
+(24, 14, 24),
+(25, 14, 25),
+(26, 15, 26),
+(27, 15, 27),
+(28, 15, 28);
+
 -- --------------------------------------------------------
 
 --
@@ -138,20 +166,6 @@ CREATE TABLE `comportamiento_tipo` (
 INSERT INTO `comportamiento_tipo` (`ID_COMPORTAMIENTO_TIPO`, `DESCRIPCION`) VALUES
 (1, 'RADIOBUTTON'),
 (2, 'CHECKBOX');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `contacto_medio_notificacion`
---
-
-CREATE TABLE `contacto_medio_notificacion` (
-  `ID_CONTACTO_NOTIFICACION` int(11) NOT NULL,
-  `ID_PERSONA_CONTACTO` int(11) NOT NULL,
-  `ID_MEDIO_NOTIFICACION` int(11) NOT NULL,
-  `ESTADO` char(1) NOT NULL DEFAULT 'A',
-  `PREFERIDO` char(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -322,6 +336,7 @@ CREATE TABLE `persona_contacto` (
   `EMAIL` varchar(50) NOT NULL,
   `TELEFONO` int(11) NOT NULL,
   `ID_PERSONA` int(11) NOT NULL,
+  `ID_MEDIO_NOTIFICACION` int(3) NOT NULL,
   `FECHA_ALTA` date NOT NULL,
   `FECHA_ULTIMA_MODIFICION` date NOT NULL,
   `FECHA_BAJA` date DEFAULT NULL,
@@ -543,6 +558,24 @@ CREATE TABLE `valor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Volcado de datos para la tabla `valor`
+--
+
+INSERT INTO `valor` (`ID_VALOR`, `DESCRIPCION`) VALUES
+(17, 'SI'),
+(18, 'NO'),
+(19, 'NO SABE'),
+(20, 'NEGRO'),
+(21, 'BLANCO'),
+(22, 'MARRON'),
+(23, 'SI'),
+(24, 'NO'),
+(25, 'NO SABE'),
+(26, 'CHICO'),
+(27, 'MEDIANO'),
+(28, 'GRANDE');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -596,14 +629,6 @@ ALTER TABLE `caracteristica_valor`
 --
 ALTER TABLE `comportamiento_tipo`
   ADD PRIMARY KEY (`ID_COMPORTAMIENTO_TIPO`);
-
---
--- Indices de la tabla `contacto_medio_notificacion`
---
-ALTER TABLE `contacto_medio_notificacion`
-  ADD PRIMARY KEY (`ID_CONTACTO_NOTIFICACION`),
-  ADD KEY `ID_PERSONA_CONTACTO` (`ID_PERSONA_CONTACTO`),
-  ADD KEY `ID_MEDIO_NOTIFICACION` (`ID_MEDIO_NOTIFICACION`);
 
 --
 -- Indices de la tabla `mascota`
@@ -668,7 +693,8 @@ ALTER TABLE `persona`
 --
 ALTER TABLE `persona_contacto`
   ADD PRIMARY KEY (`ID_PERSONA_CONTACTO`),
-  ADD KEY `ID_PERSONA` (`ID_PERSONA`);
+  ADD KEY `ID_PERSONA` (`ID_PERSONA`),
+  ADD KEY `ID_MEDIO_NOTIFICACION` (`ID_MEDIO_NOTIFICACION`);
 
 --
 -- Indices de la tabla `persona_direccion`
@@ -765,7 +791,7 @@ ALTER TABLE `aplicativo_rol`
 -- AUTO_INCREMENT de la tabla `caracteristica`
 --
 ALTER TABLE `caracteristica`
-  MODIFY `ID_CARACTERISTICA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CARACTERISTICA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `caracteristica_detalle`
@@ -783,19 +809,13 @@ ALTER TABLE `caracteristica_detalle_valor`
 -- AUTO_INCREMENT de la tabla `caracteristica_valor`
 --
 ALTER TABLE `caracteristica_valor`
-  MODIFY `ID_CARACTERISTICA_VALOR` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_CARACTERISTICA_VALOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `comportamiento_tipo`
 --
 ALTER TABLE `comportamiento_tipo`
   MODIFY `ID_COMPORTAMIENTO_TIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `contacto_medio_notificacion`
---
-ALTER TABLE `contacto_medio_notificacion`
-  MODIFY `ID_CONTACTO_NOTIFICACION` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
@@ -915,7 +935,7 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `valor`
 --
 ALTER TABLE `valor`
-  MODIFY `ID_VALOR` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_VALOR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas
@@ -956,13 +976,6 @@ ALTER TABLE `caracteristica_valor`
   ADD CONSTRAINT `caracteristica_valor_ibfk_2` FOREIGN KEY (`ID_VALOR`) REFERENCES `valor` (`ID_VALOR`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `contacto_medio_notificacion`
---
-ALTER TABLE `contacto_medio_notificacion`
-  ADD CONSTRAINT `contacto_medio_notificacion_ibfk_1` FOREIGN KEY (`ID_MEDIO_NOTIFICACION`) REFERENCES `medio_notificacion` (`ID_MEDIO_NOTIFICACION`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contacto_medio_notificacion_ibfk_2` FOREIGN KEY (`ID_PERSONA_CONTACTO`) REFERENCES `persona_contacto` (`ID_PERSONA_CONTACTO`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `mascota`
 --
 ALTER TABLE `mascota`
@@ -1001,7 +1014,8 @@ ALTER TABLE `normaliza_img`
 -- Filtros para la tabla `persona_contacto`
 --
 ALTER TABLE `persona_contacto`
-  ADD CONSTRAINT `persona_contacto_ibfk_1` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `persona_contacto_ibfk_1` FOREIGN KEY (`ID_PERSONA`) REFERENCES `persona` (`ID_PERSONA`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `persona_contacto_ibfk_2` FOREIGN KEY (`ID_MEDIO_NOTIFICACION`) REFERENCES `medio_notificacion` (`ID_MEDIO_NOTIFICACION`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `persona_direccion`

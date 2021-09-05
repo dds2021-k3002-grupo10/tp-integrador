@@ -34,6 +34,21 @@ public class CaracteristicaResource {
         return response;
     }
 
+    @RequestMapping(value = "/organizacion/{idOrganizacion}", method = RequestMethod.GET)
+    @JsonView(Views.External.class)
+    public ResponseEntity<List<Caracteristica>> getCaracteristicaAll(@PathVariable("idOrganizacion") Integer idOrganizacion ) {
+        ResponseEntity<List<Caracteristica>> response;
+
+        List<Caracteristica> caracteristicas = caracteristicaService.getCaracteristicaByOrganizacionId(idOrganizacion);
+        if (caracteristicas.isEmpty()) {
+            response = ResponseEntity.noContent().build();
+        } else {
+            response = ResponseEntity.ok(caracteristicas);
+        }
+        return response;
+
+    }
+
     @RequestMapping(value = "/lista", method = RequestMethod.GET)
     @JsonView(Views.External.class)
     public ResponseEntity<List<Caracteristica>> getCaracteristicaAll() {
@@ -48,5 +63,7 @@ public class CaracteristicaResource {
         return response;
 
     }
+
+
 
 }

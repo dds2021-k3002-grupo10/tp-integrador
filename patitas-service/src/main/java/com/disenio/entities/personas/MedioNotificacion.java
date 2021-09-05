@@ -18,56 +18,56 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="medio_notificacion"
-    ,catalog="patitas"
+        ,catalog="patitas"
 )
 public class MedioNotificacion  implements java.io.Serializable {
 
 
-     private Integer idMedioNotificacion;
-     private String descripcion;
-     private Set contactoMedioNotificacions = new HashSet(0);
+    private Integer idMedioNotificacion;
+    private String descripcion;
+    private Set personaContactos = new HashSet(0);
 
     public MedioNotificacion() {
     }
 
-	
+
     public MedioNotificacion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public MedioNotificacion(String descripcion, Set contactoMedioNotificacions) {
-       this.descripcion = descripcion;
-       this.contactoMedioNotificacions = contactoMedioNotificacions;
+    public MedioNotificacion(String descripcion, Set personaContactos) {
+        this.descripcion = descripcion;
+        this.personaContactos = personaContactos;
     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
+
+
     @Column(name="ID_MEDIO_NOTIFICACION", unique=true, nullable=false)
     public Integer getIdMedioNotificacion() {
         return this.idMedioNotificacion;
     }
-    
+
     public void setIdMedioNotificacion(Integer idMedioNotificacion) {
         this.idMedioNotificacion = idMedioNotificacion;
     }
 
-    
+
     @Column(name="DESCRIPCION", nullable=false, length=50)
     public String getDescripcion() {
         return this.descripcion;
     }
-    
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="medioNotificacion")
-    public Set<ContactoMedioNotificacion> getContactoMedioNotificacions() {
-        return this.contactoMedioNotificacions;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="medioNotificacion")
+    public Set<PersonaContacto> getPersonaContactos() {
+        return this.personaContactos;
     }
-    
-    public void setContactoMedioNotificacions(Set contactoMedioNotificacions) {
-        this.contactoMedioNotificacions = contactoMedioNotificacions;
+
+    public void setPersonaContactos(Set personaContactos) {
+        this.personaContactos = personaContactos;
     }
 
 

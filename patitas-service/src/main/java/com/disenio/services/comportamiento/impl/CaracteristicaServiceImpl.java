@@ -54,4 +54,9 @@ public class CaracteristicaServiceImpl implements CaracteristicaService {
     public List<Caracteristica> getCaracteristicaAll() {
         return caracteristicaDAO.findAll();
     }
+
+    @Override
+    public List<Caracteristica> getCaracteristicaByOrganizacionId(Integer idOrganizacion) {
+        return caracteristicaDAO.findByOrganizacion_IdOrganizacion(idOrganizacion);
+    }
 }

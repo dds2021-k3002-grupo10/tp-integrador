@@ -23,28 +23,29 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="persona_contacto"
-    ,catalog="patitas"
+        ,catalog="patitas"
 )
 public class PersonaContacto  implements java.io.Serializable {
 
 
-     private Integer idPersonaContacto;
-     private Persona persona;
-     private String nombre;
-     private String apellido;
-     private String email;
-     private int telefono;
-     private Date fechaAlta;
-     private Date fechaUltimaModificion;
-     private Date fechaBaja;
-     private char estado;
-     private Set contactoMedioNotificacions = new HashSet(0);
+    private Integer idPersonaContacto;
+    private MedioNotificacion medioNotificacion;
+    private Persona persona;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private int telefono;
+    private Date fechaAlta;
+    private Date fechaUltimaModificion;
+    private Date fechaBaja;
+    private char estado;
 
     public PersonaContacto() {
     }
 
-	
-    public PersonaContacto(Persona persona, String nombre, String apellido, String email, int telefono, Date fechaAlta, Date fechaUltimaModificion, char estado) {
+
+    public PersonaContacto(MedioNotificacion medioNotificacion, Persona persona, String nombre, String apellido, String email, int telefono, Date fechaAlta, Date fechaUltimaModificion, char estado) {
+        this.medioNotificacion = medioNotificacion;
         this.persona = persona;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -54,77 +55,87 @@ public class PersonaContacto  implements java.io.Serializable {
         this.fechaUltimaModificion = fechaUltimaModificion;
         this.estado = estado;
     }
-    public PersonaContacto(Persona persona, String nombre, String apellido, String email, int telefono, Date fechaAlta, Date fechaUltimaModificion, Date fechaBaja, char estado, Set contactoMedioNotificacions) {
-       this.persona = persona;
-       this.nombre = nombre;
-       this.apellido = apellido;
-       this.email = email;
-       this.telefono = telefono;
-       this.fechaAlta = fechaAlta;
-       this.fechaUltimaModificion = fechaUltimaModificion;
-       this.fechaBaja = fechaBaja;
-       this.estado = estado;
-       this.contactoMedioNotificacions = contactoMedioNotificacions;
+    public PersonaContacto(MedioNotificacion medioNotificacion, Persona persona, String nombre, String apellido, String email, int telefono, Date fechaAlta, Date fechaUltimaModificion, Date fechaBaja, char estado) {
+        this.medioNotificacion = medioNotificacion;
+        this.persona = persona;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        this.fechaAlta = fechaAlta;
+        this.fechaUltimaModificion = fechaUltimaModificion;
+        this.fechaBaja = fechaBaja;
+        this.estado = estado;
     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
+    @Id @GeneratedValue(strategy=IDENTITY)
+
+
     @Column(name="ID_PERSONA_CONTACTO", unique=true, nullable=false)
     public Integer getIdPersonaContacto() {
         return this.idPersonaContacto;
     }
-    
+
     public void setIdPersonaContacto(Integer idPersonaContacto) {
         this.idPersonaContacto = idPersonaContacto;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_MEDIO_NOTIFICACION", nullable=false)
+    public MedioNotificacion getMedioNotificacion() {
+        return this.medioNotificacion;
+    }
+
+    public void setMedioNotificacion(MedioNotificacion medioNotificacion) {
+        this.medioNotificacion = medioNotificacion;
+    }
+
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ID_PERSONA", nullable=false)
     public Persona getPersona() {
         return this.persona;
     }
-    
+
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
 
-    
+
     @Column(name="NOMBRE", nullable=false, length=50)
     public String getNombre() {
         return this.nombre;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    
+
     @Column(name="APELLIDO", nullable=false, length=50)
     public String getApellido() {
         return this.apellido;
     }
-    
+
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
-    
+
     @Column(name="EMAIL", nullable=false, length=50)
     public String getEmail() {
         return this.email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    
+
     @Column(name="TELEFONO", nullable=false)
     public int getTelefono() {
         return this.telefono;
     }
-    
+
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
@@ -134,7 +145,7 @@ public class PersonaContacto  implements java.io.Serializable {
     public Date getFechaAlta() {
         return this.fechaAlta;
     }
-    
+
     public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
@@ -144,7 +155,7 @@ public class PersonaContacto  implements java.io.Serializable {
     public Date getFechaUltimaModificion() {
         return this.fechaUltimaModificion;
     }
-    
+
     public void setFechaUltimaModificion(Date fechaUltimaModificion) {
         this.fechaUltimaModificion = fechaUltimaModificion;
     }
@@ -154,33 +165,25 @@ public class PersonaContacto  implements java.io.Serializable {
     public Date getFechaBaja() {
         return this.fechaBaja;
     }
-    
+
     public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
 
-    
+
     @Column(name="ESTADO", nullable=false, length=1)
     public char getEstado() {
         return this.estado;
     }
-    
+
     public void setEstado(char estado) {
         this.estado = estado;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="personaContacto")
-    public Set<ContactoMedioNotificacion> getContactoMedioNotificacions() {
-        return this.contactoMedioNotificacions;
-    }
-    
-    public void setContactoMedioNotificacions(Set contactoMedioNotificacions) {
-        this.contactoMedioNotificacions = contactoMedioNotificacions;
     }
 
 
 
 
 }
+
 
 
