@@ -1,7 +1,7 @@
 package com.disenio.services.caracteristicas.impl;
 
-import com.disenio.dao.ComportamientoTipoDAO;
-import com.disenio.entities.caracteristicas.ComportamientoTipo;
+import com.disenio.repositoryDAO.ComportamientoTipoDAO;
+import com.disenio.model.caracteristicas.ComportamientoTipo;
 import com.disenio.services.caracteristicas.ComportamientoTipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

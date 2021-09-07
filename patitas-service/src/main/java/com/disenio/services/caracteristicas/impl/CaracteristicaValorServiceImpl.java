@@ -1,7 +1,7 @@
 package com.disenio.services.caracteristicas.impl;
 
-import com.disenio.dao.CaracteristicaValorDAO;
-import com.disenio.entities.caracteristicas.CaracteristicaValor;
+import com.disenio.repositoryDAO.CaracteristicaValorDAO;
+import com.disenio.model.caracteristicas.CaracteristicaValor;
 import com.disenio.services.caracteristicas.CaracteristicaValorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

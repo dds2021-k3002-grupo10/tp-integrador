@@ -1,6 +1,6 @@
 package com.disenio.services.caracteristicas;
 
-import com.disenio.entities.caracteristicas.Caracteristica;
+import com.disenio.model.caracteristicas.Caracteristica;
 
 import java.util.List;
 

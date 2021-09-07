@@ -1,7 +1,7 @@
 package com.disenio.services.personas.impl;
 
-import com.disenio.dao.PersonaDAO;
-import com.disenio.entities.personas.Persona;
+import com.disenio.repositoryDAO.PersonaDAO;
+import com.disenio.model.personas.Persona;
 import com.disenio.services.personas.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

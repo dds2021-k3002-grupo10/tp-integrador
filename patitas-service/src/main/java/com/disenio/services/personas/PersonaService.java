@@ -1,6 +1,6 @@
 package com.disenio.services.personas;
 
-import com.disenio.entities.personas.Persona;
+import com.disenio.model.personas.Persona;
 
 import java.util.List;
 import java.util.Optional;

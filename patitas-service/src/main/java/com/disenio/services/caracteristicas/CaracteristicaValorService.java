@@ -1,6 +1,6 @@
 package com.disenio.services.caracteristicas;
 
-import com.disenio.entities.caracteristicas.CaracteristicaValor;
+import com.disenio.model.caracteristicas.CaracteristicaValor;
 
 public interface CaracteristicaValorService {
 
