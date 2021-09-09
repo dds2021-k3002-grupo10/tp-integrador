@@ -1,6 +1,6 @@
 package com.disenio.services.caracteristicas.impl;
 
-import com.disenio.repositoryDAO.CaracteristicaDAO;
+import com.disenio.dao.CaracteristicaDAO;
 import com.disenio.model.caracteristicas.Caracteristica;
 import com.disenio.model.caracteristicas.CaracteristicaValor;
 import com.disenio.model.caracteristicas.Valor;

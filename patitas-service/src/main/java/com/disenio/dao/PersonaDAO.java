@@ -1,4 +1,4 @@
-package com.disenio.repositoryDAO;
+package com.disenio.dao;
 
 import com.disenio.model.personas.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
 package com.disenio.services.caracteristicas.impl;
 
-import com.disenio.repositoryDAO.ComportamientoTipoDAO;
+import com.disenio.dao.ComportamientoTipoDAO;
 import com.disenio.model.caracteristicas.ComportamientoTipo;
 import com.disenio.services.caracteristicas.ComportamientoTipoService;
 import org.springframework.beans.factory.annotation.Autowired;

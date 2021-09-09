@@ -1,6 +1,6 @@
 package com.disenio.services.caracteristicas.impl;
 
-import com.disenio.repositoryDAO.ValorDAO;
+import com.disenio.dao.ValorDAO;
 import com.disenio.model.caracteristicas.Valor;
 import com.disenio.services.caracteristicas.ValorService;
 import org.springframework.beans.factory.annotation.Autowired;
