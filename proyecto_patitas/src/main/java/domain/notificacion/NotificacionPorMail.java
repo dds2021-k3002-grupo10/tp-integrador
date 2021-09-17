@@ -14,13 +14,17 @@ import java.io.IOException;
 public class NotificacionPorMail implements MedioDeNotificacion{
     @Override
     public void notificar(Contacto contacto, String mensaje) {
-        Email emailOrganizacion = new Email("org@ejemplo.com");
+        /*
+        El mail por el momento es un mail personal, pero solo bastaria con crear un mail nuevo
+        correspondiente a determinada organizacion y verificarlo por la página de sendgrid
+         */
+        Email emailOrganizacion = new Email("guillebarnes@gmail.com");
         String asunto = "Nos contactamos con usted desde la organización de mascotas";
         Email emailDelContacto = new Email(contacto.getEmail());
         Content contenido = new Content("text/plain", mensaje);
         Mail mail = new Mail(emailOrganizacion, asunto, emailDelContacto, contenido);
 
-        SendGrid sg = new SendGrid(System.getenv("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")); //token de sendgrid
+        SendGrid sg = new SendGrid(System.getenv("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")); //token de sendgrid
         Request request = new Request();
         try{
             request.setMethod(Method.POST);

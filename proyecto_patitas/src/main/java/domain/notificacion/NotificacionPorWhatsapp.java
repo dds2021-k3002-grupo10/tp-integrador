@@ -10,7 +10,7 @@ public class NotificacionPorWhatsapp implements MedioDeNotificacion{
         Twilio.init(account_sid, auth_token);
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("whatsapp:" + contacto.getTelefono()),
-                new com.twilio.type.PhoneNumber("whatsapp:+5491112345678"),
+                new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
                 mensaje)
                 .create();
     }
