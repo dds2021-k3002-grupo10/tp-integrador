@@ -17,11 +17,22 @@ public class TestFiltroHogares {
     public void son7HogaresQueAceptanPerros() throws IOException {
         List<String> caraceteristicas  = new ArrayList<>();
         MascotaEncontrada perroEncontrado = new MascotaEncontrada(null, "perro", "grande", caraceteristicas, null);
-        perroEncontrado.agregarCaracteristica("Lindo");
+        perroEncontrado.agregarCaracteristica("Agresivo");
         FiltroHogares filtroHogares = new FiltroHogares();
         List<Hogar> posiblesHogares = filtroHogares.filtrarPorCaracteristicas(perroEncontrado);
         Assert.assertEquals(7, posiblesHogares.size());
     }
+
+    @Test
+    public void casosDePruebaPerro() throws IOException {
+        List<String> caraceteristicas  = new ArrayList<>();
+        MascotaEncontrada perroEncontrado = new MascotaEncontrada(null, "perro", "chico", caraceteristicas, null);
+        perroEncontrado.agregarCaracteristica("Manso");
+        FiltroHogares filtroHogares = new FiltroHogares();
+        List<Hogar> posiblesHogares = filtroHogares.filtrarPorCaracteristicas(perroEncontrado);
+        Assert.assertEquals(8, posiblesHogares.size());
+    }
+
     @Test
     public void son7HogaresParaUnPerro() throws IOException {
         List<String> caraceteristicas  = new ArrayList<>();

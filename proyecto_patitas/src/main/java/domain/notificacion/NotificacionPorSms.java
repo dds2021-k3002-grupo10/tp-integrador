@@ -13,7 +13,7 @@ public class NotificacionPorSms implements MedioDeNotificacion{
 
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber(contacto.getTelefono()),
-                new com.twilio.type.PhoneNumber("+19039103018"),
+                new com.twilio.type.PhoneNumber("+12674227144"),
                 mensaje)
                 .create();
     }
