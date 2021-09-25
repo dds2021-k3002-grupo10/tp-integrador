@@ -15,8 +15,10 @@ import static javax.persistence.GenerationType.IDENTITY;
         , catalog = "patitas"
 )
 public class Cuestionario implements Cloneable {
+
     @JsonView(Views.External.class)
     private Integer idCuestionario;
+
     @JsonView(Views.External.class)
     private List<EntradaCuestionario> preguntas;
 

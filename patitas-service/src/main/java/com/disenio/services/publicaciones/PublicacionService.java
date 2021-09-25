@@ -4,11 +4,17 @@ import com.disenio.model.publicaciones.Publicacion;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
 import com.disenio.model.publicaciones.PublicacionPerdida;
-import com.disenio.services.RepositoryService;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface PublicacionService extends RepositoryService<Publicacion, Integer> {
+public interface PublicacionService {
+
+    public Publicacion alta(Publicacion o);
+
+    public List<Publicacion> listarTodas();
+
+    public Optional<Publicacion> getById(Integer id);
 
     public List<PublicacionPerdida> listarPerdidas();
 
