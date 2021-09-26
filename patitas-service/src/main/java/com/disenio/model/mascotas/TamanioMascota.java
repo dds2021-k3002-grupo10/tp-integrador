@@ -74,7 +74,7 @@ public class TamanioMascota  implements java.io.Serializable {
         this.estado = estado;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="tamanioMascota")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="tamanioMascota")
     public Set<MascotaRescatada> getMascotaRescatadas() {
         return this.mascotaRescatadas;
     }

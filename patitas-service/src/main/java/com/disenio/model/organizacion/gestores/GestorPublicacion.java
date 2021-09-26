@@ -1,14 +1,26 @@
 package com.disenio.model.organizacion.gestores;
 
+import com.disenio.model.Views;
 import com.disenio.model.cuestionario.Cuestionario;
 import com.disenio.model.publicaciones.Publicacion;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import javax.persistence.Embeddable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
+@Embeddable
 public class GestorPublicacion {
+
+    @JsonView(Views.External.class)
     private Cuestionario cuestionarioDeAdopcion;
+
+    @JsonView(Views.External.class)
     private Cuestionario cuestionarioParaDarAdopcion;
+
+    @JsonView(Views.External.class)
     private List<Publicacion> publicaciones;
 
     /*Constructor*/
@@ -20,6 +32,7 @@ public class GestorPublicacion {
 
     /*Accessors*/
 
+    @OneToOne//TODO CAMBIAR
     public Cuestionario getCuestionarioDeAdopcion() {
         return cuestionarioDeAdopcion;
     }
@@ -28,6 +41,7 @@ public class GestorPublicacion {
         this.cuestionarioDeAdopcion = cuestionarioDeAdopcion;
     }
 
+    @OneToOne//TODO CAMBIAR
     public Cuestionario getCuestionarioParaDarAdopcion() {
         return cuestionarioParaDarAdopcion;
     }
@@ -36,6 +50,8 @@ public class GestorPublicacion {
         this.cuestionarioParaDarAdopcion = cuestionarioParaDarAdopcion;
     }
 
+
+    @OneToMany
     public List<Publicacion> getPublicaciones() {
         return publicaciones;
     }
@@ -43,6 +59,8 @@ public class GestorPublicacion {
     public void setPublicaciones(List<Publicacion> publicaciones) {
         this.publicaciones = publicaciones;
     }
+
+
     /*Funcionalidad*/
 
     public void agregarPublicacion(Publicacion publicacion) {
