@@ -19,4 +19,9 @@ public class CaracteristicaValorServiceImpl implements CaracteristicaValorServic
 
         return caracteristicaValorDAO.save(caracteristicaValor);
     }
+
+    @Override
+    public CaracteristicaValor getByID(Integer id) {
+        return caracteristicaValorDAO.getById(id);
+    }
 }

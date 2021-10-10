@@ -34,6 +34,7 @@ public class CaracteristicaDetalleValor implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID_DETALLE_VALOR", unique = true, nullable = false)
     private Integer idDetalleValor;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_DETALLE", nullable = false)
     private CaracteristicaDetalle caracteristicaDetalle;

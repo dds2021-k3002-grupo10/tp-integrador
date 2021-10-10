@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service()
 public class CaracteristicaServiceImpl implements CaracteristicaService {
@@ -51,6 +52,11 @@ public class CaracteristicaServiceImpl implements CaracteristicaService {
     @Override
     public List<Caracteristica> getCaracteristicaAll() {
         return caracteristicaDAO.findAll();
+    }
+
+    @Override
+    public Optional<Caracteristica> getCaracteristicaByID(Integer id) {
+        return caracteristicaDAO.findById(id);
     }
 
     @Override

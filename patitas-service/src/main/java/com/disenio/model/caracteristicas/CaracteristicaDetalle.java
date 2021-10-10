@@ -3,6 +3,7 @@ package com.disenio.model.caracteristicas;
 
 
 import com.disenio.model.mascotas.Mascota;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -38,23 +39,31 @@ public class CaracteristicaDetalle implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID_DETALLE", unique = true, nullable = false)
     private Integer idDetalle;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CARACTERISTICA", nullable = false)
     private CaracteristicaDetalleValor caracteristicaDetalleValor;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_MASCOTA", nullable = false)
     private Mascota mascota;
-    @Temporal(TemporalType.DATE)
+
     @Column(name = "FECHA_ALTA", nullable = false, length = 0)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Date fechaAlta;
-    @Temporal(TemporalType.DATE)
+
+
     @Column(name = "FECHA_ULTIMA_MODIFICACION", nullable = false, length = 0)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Date fechaUltimaModificacion;
-    @Temporal(TemporalType.DATE)
+
     @Column(name = "FECHA_BAJA", length = 0)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Date fechaBaja;
+
     @Column(name = "ESTADO", nullable = false, length = 1)
     private char estado;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "caracteristicaDetalle")
     private List<CaracteristicaDetalleValor> caracteristicaDetalleValors;
 
