@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/personas")
+@RequestMapping("/persona")
 public class PersonaController {
 
 
@@ -22,10 +22,10 @@ public class PersonaController {
     private PersonaService personaService;
 
 
-    //@PostMapping("/guardar")
-    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
+    //@PostMapping("")
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Persona> guardar(HttpServletRequest request, @RequestBody Persona persona) {
-
+        Persona rtaPersona = personaService.alta(persona);
         return new ResponseEntity(personaService.alta(persona), HttpStatus.CREATED);
 
         // response;
