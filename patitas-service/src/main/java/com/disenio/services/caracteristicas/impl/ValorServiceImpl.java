@@ -20,4 +20,9 @@ public class ValorServiceImpl implements ValorService {
 
         return valorDAO.save(valor);
     }
+
+    @Override
+    public Valor getValorByID(Integer id) {
+        return valorDAO.getById(id);
+    }
 }

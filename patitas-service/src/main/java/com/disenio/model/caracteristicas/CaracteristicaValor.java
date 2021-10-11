@@ -32,10 +32,12 @@ public class CaracteristicaValor implements java.io.Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID_CARACTERISTICA_VALOR", unique = true, nullable = false)
     private Integer idCaracteristicaValor;
+
     @JsonView(Views.Internal.class)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CARACTERISTICA", nullable = false)
     private Caracteristica caracteristica;
+
     @JsonView(Views.External.class)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_VALOR", nullable = false)

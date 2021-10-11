@@ -1,0 +1,4 @@
+ALTER TABLE `caracteristica_detalle` DROP FOREIGN KEY `caracteristica_detalle_ibfk_1`; ALTER TABLE `caracteristica_detalle` ADD CONSTRAINT `caracteristica_detalle_ibfk_1` FOREIGN KEY (`ID_CARACTERISTICA`) REFERENCES `caracteristica`(`ID_CARACTERISTICA`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+ALTER TABLE `persona_contacto` CHANGE `FECHA_ULTIMA_MODIFICACION` `FECHA_ULTIMA_MODIFICACION` DATE NOT NULL;

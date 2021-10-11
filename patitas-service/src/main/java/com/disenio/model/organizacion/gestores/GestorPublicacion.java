@@ -23,16 +23,14 @@ public class GestorPublicacion {
     @JsonView(Views.External.class)
     private List<Publicacion> publicaciones;
 
-    /*Constructor*/
     public GestorPublicacion() {
         GestorGlobal gestor = GestorGlobal.getInstancia();
         this.cuestionarioParaDarAdopcion = gestor.getCuestionarioGlobal();
         this.publicaciones = new ArrayList<>();
     }
 
-    /*Accessors*/
 
-    @OneToOne//TODO CAMBIAR
+    @OneToOne
     public Cuestionario getCuestionarioDeAdopcion() {
         return cuestionarioDeAdopcion;
     }
@@ -41,7 +39,7 @@ public class GestorPublicacion {
         this.cuestionarioDeAdopcion = cuestionarioDeAdopcion;
     }
 
-    @OneToOne//TODO CAMBIAR
+    @OneToOne
     public Cuestionario getCuestionarioParaDarAdopcion() {
         return cuestionarioParaDarAdopcion;
     }
@@ -61,7 +59,6 @@ public class GestorPublicacion {
     }
 
 
-    /*Funcionalidad*/
 
     public void agregarPublicacion(Publicacion publicacion) {
         this.publicaciones.add(publicacion);

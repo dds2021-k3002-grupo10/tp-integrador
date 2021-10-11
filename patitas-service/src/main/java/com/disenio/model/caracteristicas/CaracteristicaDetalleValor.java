@@ -30,21 +30,61 @@ import javax.persistence.Table;
 )
 public class CaracteristicaDetalleValor implements java.io.Serializable {
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID_DETALLE_VALOR", unique = true, nullable = false)
     private Integer idDetalleValor;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_DETALLE", nullable = false)
     private CaracteristicaDetalle caracteristicaDetalle;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_VALOR", nullable = false)
     private Valor valor;
-    @Column(name = "ESTADO", nullable = false, length = 1)
     private char estado;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "caracteristicaDetalleValor")
-    private List<CaracteristicaDetalle> caracteristicaDetalles;
+
+    public CaracteristicaDetalleValor() {
+    }
+
+    public CaracteristicaDetalleValor(CaracteristicaDetalle caracteristicaDetalle, Valor valor, char estado) {
+        this.caracteristicaDetalle = caracteristicaDetalle;
+        this.valor = valor;
+        this.estado = estado;
+    }
+
+    @Id @GeneratedValue(strategy=IDENTITY)
+
+
+    @Column(name="ID_DETALLE_VALOR", unique=true, nullable=false)
+    public Integer getIdDetalleValor() {
+        return this.idDetalleValor;
+    }
+
+    public void setIdDetalleValor(Integer idDetalleValor) {
+        this.idDetalleValor = idDetalleValor;
+    }
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_DETALLE", nullable=false)
+    public CaracteristicaDetalle getCaracteristicaDetalle() {
+        return this.caracteristicaDetalle;
+    }
+
+    public void setCaracteristicaDetalle(CaracteristicaDetalle caracteristicaDetalle) {
+        this.caracteristicaDetalle = caracteristicaDetalle;
+    }
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ID_VALOR", nullable=false)
+    public Valor getValor() {
+        return this.valor;
+    }
+
+    public void setValor(Valor valor) {
+        this.valor = valor;
+    }
+
+
+    @Column(name="ESTADO", nullable=false, length=1)
+    public char getEstado() {
+        return this.estado;
+    }
+
+    public void setEstado(char estado) {
+        this.estado = estado;
+    }
 
 
 }

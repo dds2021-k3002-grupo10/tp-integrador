@@ -5,4 +5,6 @@ import com.disenio.model.caracteristicas.Valor;
 public interface ValorService {
 
     Valor alta(Valor valor);
+
+    Valor getValorByID(Integer id);
 }
