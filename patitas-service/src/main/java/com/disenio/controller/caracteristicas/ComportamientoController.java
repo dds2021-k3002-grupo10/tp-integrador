@@ -19,7 +19,6 @@ public class ComportamientoController {
     private ComportamientoTipoService comportamientoTipoService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @JsonView(Views.External.class)
     public ResponseEntity<List<ComportamientoTipo>> getComportamientoTipoAll() {
         ResponseEntity<List<ComportamientoTipo>> response;
 

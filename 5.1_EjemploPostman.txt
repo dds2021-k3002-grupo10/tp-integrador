@@ -1,0 +1,9 @@
+En esta ocasion agregamos Swagger para poder conocer los Resource
+Dejamos el 
+Link de Swagger para ver los Enpoint del proyecto:
+
+http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+
+
+
+

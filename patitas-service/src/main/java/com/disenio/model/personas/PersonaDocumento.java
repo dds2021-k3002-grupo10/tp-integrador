@@ -4,6 +4,7 @@ package com.disenio.model.personas;
 
 import com.disenio.model.Views;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
@@ -36,11 +37,12 @@ public class PersonaDocumento implements java.io.Serializable {
     @Column(name = "ID_DOCUMENTO", unique = true, nullable = false)
     private Integer idDocumento;
 
-    @JsonView(Views.Internal.class)
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PERSONA", nullable = false)
     private Persona persona;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_TIPO_DOC", nullable = false)
     private TipoDocumento tipoDocumento;

@@ -14,7 +14,7 @@ import java.util.List;
 @Embeddable
 public class GestorPublicacion {
 
-    @JsonView(Views.External.class)
+   /* @JsonView(Views.External.class)
     private Cuestionario cuestionarioDeAdopcion;
 
     @JsonView(Views.External.class)
@@ -67,7 +67,7 @@ public class GestorPublicacion {
     public void quitarPublicacion(Publicacion publicacion) {
         this.publicaciones.remove(publicacion);
     }
-
+*/
 
 }
 

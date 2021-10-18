@@ -1,6 +1,5 @@
 package com.disenio.services.personas.impl;
 
-import com.disenio.dao.persona.PersonaContactoDAO;
 import com.disenio.dao.persona.PersonaDireccionDAO;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.PersonaDireccion;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonaDireccionServiceImpl implements PersonaDireccionService {

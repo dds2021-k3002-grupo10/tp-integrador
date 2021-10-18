@@ -1,16 +1,15 @@
 package com.disenio.services.personas.impl;
 
 import com.disenio.dao.persona.PersonaContactoDAO;
-import com.disenio.dao.persona.PersonaDAO;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.PersonaContacto;
 import com.disenio.services.personas.PersonaContactoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonaContactoServiceImpl implements PersonaContactoService {

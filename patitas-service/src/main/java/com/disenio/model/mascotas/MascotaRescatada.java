@@ -4,6 +4,7 @@ package com.disenio.model.mascotas;
 
 import com.disenio.model.Views;
 import com.disenio.model.personas.Persona;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.Date;
@@ -88,7 +89,7 @@ public class MascotaRescatada implements java.io.Serializable {
         this.idMascotaRescatada = idMascotaRescatada;
     }
 
-    @JsonView(Views.Internal.class)
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PERSONA", nullable = false)
     public Persona getPersona() {

@@ -34,18 +34,18 @@ public class PersonaController {
     public ResponseEntity<Persona> guardar(HttpServletRequest request, @RequestBody Persona persona) {
         ResponseEntity response;
         try {
-          personaService.alta(persona);
+            personaService.alta(persona);
 
             //response= new ResponseEntity(rtaPersona, HttpStatus.CREATED);
             response = new ResponseEntity(HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
-            response = new ResponseEntity(e,HttpStatus.BAD_REQUEST);
+            response = new ResponseEntity(e, HttpStatus.BAD_REQUEST);
             LOGGER.error("Ocurrio un error al dar de Alta", e);
         }
         return response;
     }
 
-    @JsonView(Views.External.class)
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<List<Persona>> getPersonasAll() {
         ResponseEntity<List<Persona>> response;
@@ -60,7 +60,6 @@ public class PersonaController {
 
     }
 
-    @JsonView(Views.External.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Persona> getPersonasById(@PathVariable("id") Integer id) {
 
@@ -70,7 +69,20 @@ public class PersonaController {
         } else {
             return ResponseEntity.noContent().build();
         }
+    }
 
+    @RequestMapping(value = "/buscar", method = RequestMethod.GET)
+    public ResponseEntity<List<Persona>> getPersonasByCondicion(
+            @PathVariable("nombre") String nombre, @PathVariable("apellido") String apellido,
+            @PathVariable("idTipoDoc") Integer idTipoDoc, @PathVariable("numero") Integer numero
+    ) {
+
+        List<Persona> personas = null;// personaService.getPersonasById(null;id);
+        if (personas.isEmpty()) {
+            return ResponseEntity.ok(personas);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 
 
@@ -85,7 +97,5 @@ public class PersonaController {
             response = ResponseEntity.ok(rtaTipoDocumento);
         }
         return response;
-
     }
-
 }
