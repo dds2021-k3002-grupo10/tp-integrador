@@ -27,6 +27,12 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
         this.estado = Estado.PENDIENTE;
     }
 
+    public PublicacionPerdida(Persona autor, MascotaRescatada mascota, MascotaHogarTransito hogar) {
+        super(autor);
+        this.mascota = mascota;
+        this.hogar = hogar;
+    }
+
     public PublicacionPerdida() {
     }
 
@@ -34,7 +40,7 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
     //Accessors
 
     @OneToOne
-    @JoinColumn(name = "ID_MASCOTA",nullable = true)
+    @JoinColumn(name = "ID_MASCOTA_RESCATADA",nullable = true)
     public MascotaRescatada getMascota() {
         return mascota;
     }
@@ -43,7 +49,7 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
         this.mascota = mascota;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "ID_HOGAR",nullable = true)
     public MascotaHogarTransito getHogar() {
         return hogar;

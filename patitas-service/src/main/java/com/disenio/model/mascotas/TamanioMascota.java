@@ -2,6 +2,9 @@ package com.disenio.model.mascotas;
 // Generated 01/09/2021 19:13:39 by Hibernate Tools 4.3.1
 
 
+import com.disenio.model.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -22,24 +25,25 @@ import javax.persistence.Table;
 )
 public class TamanioMascota  implements java.io.Serializable {
 
-
+    @JsonView(Views.External.class)
      private Integer idTamanio;
+    @JsonView(Views.External.class)
      private String descripcion;
      private char estado;
-     private Set mascotaRescatadas = new HashSet(0);
+     //private Set mascotaRescatadas = new HashSet(0);
 
     public TamanioMascota() {
     }
 
-	
-    public TamanioMascota(String descripcion, char estado) {
+    public TamanioMascota(String descripcion) {
         this.descripcion = descripcion;
-        this.estado = estado;
+        this.estado = 'A';
     }
-    public TamanioMascota(String descripcion, char estado, Set mascotaRescatadas) {
+
+
+    public TamanioMascota(String descripcion, char estado) {
        this.descripcion = descripcion;
        this.estado = estado;
-       this.mascotaRescatadas = mascotaRescatadas;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -73,18 +77,6 @@ public class TamanioMascota  implements java.io.Serializable {
     public void setEstado(char estado) {
         this.estado = estado;
     }
-
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="tamanioMascota")
-    public Set<MascotaRescatada> getMascotaRescatadas() {
-        return this.mascotaRescatadas;
-    }
-    
-    public void setMascotaRescatadas(Set mascotaRescatadas) {
-        this.mascotaRescatadas = mascotaRescatadas;
-    }
-
-
-
 
 }
 

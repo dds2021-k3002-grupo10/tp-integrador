@@ -6,6 +6,7 @@ import com.disenio.model.Views;
 import com.disenio.model.caracteristicas.CaracteristicaDetalle;
 import com.disenio.model.personas.Persona;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
@@ -34,10 +35,12 @@ public class Mascota implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_SEXO", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private SexoMascota sexoMascota;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_TIPO_MASCOTA", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoMascota tipoMascota;
 
     @Column(name = "NOMBRE", nullable = false, length = 50)

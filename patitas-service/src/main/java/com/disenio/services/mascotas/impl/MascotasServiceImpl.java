@@ -23,6 +23,13 @@ public class MascotasServiceImpl implements MascotasService {
     @Autowired
     private MascotaFotoService mascotaFotoService;
 
+    @Override
+    public Optional<Mascota> getById(int id) {
+        Optional<Mascota> mascota = mascotaDAO.findById(id);
+
+        return mascota;
+    }
+
     @Transactional
     @Override
     public void alta(List<Mascota> mascotas, Persona persona) {

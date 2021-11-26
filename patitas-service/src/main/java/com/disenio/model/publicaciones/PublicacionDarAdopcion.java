@@ -17,8 +17,13 @@ public class PublicacionDarAdopcion extends PublicacionAdopcion {
     private Mascota mascotaOfrecida;
 
     //Constructors
-    protected PublicacionDarAdopcion(Persona autor) {
-        super(autor);
+    protected PublicacionDarAdopcion(Persona autor,String d) {
+        super(autor,d);
+    }
+
+    public PublicacionDarAdopcion(Persona autor, Mascota mascotaOfrecida,String description) {
+        super(autor,description);
+        this.mascotaOfrecida = mascotaOfrecida;
     }
 
     public PublicacionDarAdopcion() {
