@@ -1,8 +1,9 @@
 package com.disenio.controller.faq;
 
+import com.disenio.dto.faq.FaqALtaDTO;
 import com.disenio.dto.faq.FaqDTO;
+import com.disenio.model.faq.Faq;
 import com.disenio.services.faq.FaqService;
-import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,21 +21,21 @@ public class FaqController {
     @Autowired
     private FaqService faqService;
 
-    /*@PostMapping("/guardar")
-    public ResponseEntity alta(HttpServletRequest request, @RequestBody Caracteristica caracteristica) {
+    @PostMapping("/alta")
+    public ResponseEntity alta( @RequestBody FaqALtaDTO faqAltaDTO) {
         ResponseEntity response;
         try {
-            caracteristicaService.alta(caracteristica);
+            faqService.alta(faqAltaDTO);
             response = new ResponseEntity(HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             response = new ResponseEntity(HttpStatus.BAD_REQUEST);
-            LOGGER.error("Ocurrio un error al dar de Alta una caracterstica", e);
+            LOGGER.error("Ocurrio un error al dar de Alta Las Preguntas", e);
         }
         return response;
-    }*/
+    }
 
-    @RequestMapping(value = "/organizacion/{idOrganizacion}/pregunta-tipo/{idPreguntaTipo}", method = RequestMethod.GET)
-    @ApiOperation(value = "", notes = "Trae las preguntas con sus respuestas filtrado por organizacion y tipoPregunta ejemplo establecimento")
+    @RequestMapping(value = "/organizacion/pregunta-tipo", method = RequestMethod.GET)
+   // @ApiOperation(value = "", notes = "Trae las preguntas con sus respuestas filtrado por organizacion y tipoPregunta ejemplo establecimento")
     public ResponseEntity<?> getFaqAllByOrganizacionAndPreguntaTipo(@RequestParam(required = true) Integer idOrganizacion,
                                                                     @RequestParam(required = true) Integer idPreguntaTipo) {
         try {

@@ -4,12 +4,15 @@ import lombok.Data;
 
 import java.util.List;
 
-
 @Data
-public class FaqDTO {
+public class FaqALtaDTO {
     private Integer idFaq;
-    private FaqComportamientoTipoDTO faqComportamientoTipo;
+    private Integer idComportamientoTipo;
+    private Integer idPreguntaTipo;
     private String descripcionFaq;
+    private Integer idOrganizacion;
+    private Integer idUsuario;
     private String estado;
     private List<FaqRespuestaValorDTO> faqRespuestaValors;
+
 }

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FaqComportamientoTipoServiceImpl implements FaqComportamientoTipoService {
@@ -16,5 +17,10 @@ public class FaqComportamientoTipoServiceImpl implements FaqComportamientoTipoSe
     @Override
     public List<FaqComportamientoTipo> getFaqComportamientoTipoAll() {
         return faqComportamientoTipoDAO.findAll(Sort.by(Sort.Direction.ASC, "idComportamientoTipo"));
+    }
+
+    @Override
+    public Optional<FaqComportamientoTipo> getFaqComportamientoTipoById(Integer id) {
+        return faqComportamientoTipoDAO.findById(id);
     }
 }

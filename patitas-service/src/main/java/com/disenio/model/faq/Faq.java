@@ -60,7 +60,7 @@ public class Faq implements java.io.Serializable {
     private String descripcionFaq;
 
     @Column(name = "ESTADO", length = 1)
-    private Character estado;
+    private String estado;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     @Column(name = "FECHA_ALTA", nullable = false, length = 10)

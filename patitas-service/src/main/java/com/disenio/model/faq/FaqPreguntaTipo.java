@@ -1,6 +1,7 @@
 package com.disenio.model.faq;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class FaqPreguntaTipo  implements java.io.Serializable {
     @Column(name="DESCRIPCION_FAQ", nullable=false, length=2000)
      private String descripcionFaq;
 
+    @JsonIgnore
     @OneToMany(fetch=FetchType.LAZY, mappedBy="faqPreguntaTipo")
      private List<Faq> faqs;
 

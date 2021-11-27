@@ -4,6 +4,7 @@ package com.disenio.model.organizacion;
 import com.disenio.model.cuestionario.Cuestionario;
 import com.disenio.model.faq.Faq;
 import com.disenio.model.usuarios.UsuarioOrganizacion;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.HashSet;
@@ -36,10 +37,12 @@ public class Organizacion implements java.io.Serializable {
     @Column(name = "ID_ORGANIZACION", unique = true, nullable = false)
     private Integer idOrganizacion;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuestionario_para_dar_adopcion_id_cuestionario")
     private Cuestionario cuestionarioByCuestionarioParaDarAdopcionIdCuestionario;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuestionario_de_adopcion_id_cuestionario")
     private Cuestionario cuestionarioByCuestionarioDeAdopcionIdCuestionario;
@@ -53,9 +56,11 @@ public class Organizacion implements java.io.Serializable {
     @Column(name = "ESTADO", nullable = false, length = 1)
     private char estado;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organizacion")
     private List<UsuarioOrganizacion> usuarioOrganizacions;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organizacion")
     private List<Faq> faqs;
 

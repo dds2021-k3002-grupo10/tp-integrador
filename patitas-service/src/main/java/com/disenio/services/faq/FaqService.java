@@ -1,5 +1,6 @@
 package com.disenio.services.faq;
 
+import com.disenio.dto.faq.FaqALtaDTO;
 import com.disenio.dto.faq.FaqDTO;
 import com.disenio.model.faq.Faq;
 
@@ -8,9 +9,7 @@ import java.util.Optional;
 
 public interface FaqService {
 
-    //void alta(Faq faq);
-
-    //List<Faq> getFaqAll();
+    void alta(FaqALtaDTO faqAltaDTO);
 
     Optional<Faq> getFaqByID(Integer id);
 
