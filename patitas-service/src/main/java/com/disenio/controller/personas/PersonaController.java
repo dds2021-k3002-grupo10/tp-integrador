@@ -1,5 +1,6 @@
 package com.disenio.controller.personas;
 
+import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.personas.MedioNotificacion;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.TipoDocumento;
@@ -31,7 +32,7 @@ public class PersonaController {
 
     //@PostMapping("")
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<Persona> guardar(HttpServletRequest request, @RequestBody Persona persona) {
+    public ResponseEntity<Persona> alta(HttpServletRequest request, @RequestBody Persona persona) {
         ResponseEntity response;
         try {
             personaService.alta(persona);
@@ -47,39 +48,39 @@ public class PersonaController {
 
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<List<Persona>> getPersonasAll() {
-        ResponseEntity<List<Persona>> response;
+    public ResponseEntity<List<PersonaDTO>> getPersonasAll() {
+        ResponseEntity<List<PersonaDTO>> response;
 
-        List<Persona> personas = personaService.getListaAllPersona();
-        if (personas.isEmpty()) {
+        List<PersonaDTO> personasDTO = personaService.getListaAllPersona();
+        if (personasDTO.isEmpty()) {
             response = ResponseEntity.noContent().build();
         } else {
-            response = ResponseEntity.ok(personas);
+            response = ResponseEntity.ok(personasDTO);
         }
         return response;
 
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Persona> getPersonasById(@PathVariable("id") Integer id) {
+    public ResponseEntity<PersonaDTO> getPersonasDTOById(@PathVariable("id") Integer id) {
 
-        Optional<Persona> personas = personaService.getPersonasById(id);
-        if (personas.isPresent()) {
-            return ResponseEntity.ok(personas.get());
+        PersonaDTO personasDTO = personaService.getPersonaDTOById(id);
+        if (personasDTO != null) {
+            return ResponseEntity.ok(personasDTO);
         } else {
             return ResponseEntity.noContent().build();
         }
     }
 
     /*Buscar persona por tipo y nro de documento*/
-    @RequestMapping(value = "/buscar", method = RequestMethod.GET)
-    public ResponseEntity<List<Persona>> getPersonasByCondicion(
-            @PathVariable("idTipoDoc") Integer idTipoDoc, @PathVariable("numero") Integer numero
-    ) {
+    @RequestMapping(value = "/buscarByDoc", method = RequestMethod.GET)
+    public ResponseEntity<List<PersonaDTO>> getPersonasByCondicion(
+            @RequestParam(required = true) Integer idTipoDoc,
+            @RequestParam(required = true) Integer numero ) {
 
-        List<Persona> personas = null;// personaService.getPersonasById(null;id);
-        if (personas.isEmpty()) {
-            return ResponseEntity.ok(personas);
+        List<PersonaDTO> personasDTO =  personaService.getPersonasByCondicion(idTipoDoc,numero);
+        if (!personasDTO.isEmpty()) {
+            return ResponseEntity.ok(personasDTO);
         } else {
             return ResponseEntity.noContent().build();
         }
