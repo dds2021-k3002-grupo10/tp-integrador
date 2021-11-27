@@ -1,11 +1,12 @@
 package com.disenio.controller.mascotas;
 
-import com.disenio.controller.personas.PersonaController;
+import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
-import com.disenio.model.personas.TipoDocumento;
+import com.disenio.services.mascotas.MascotasService;
 import com.disenio.services.mascotas.SexoMascotaService;
 import com.disenio.services.mascotas.TipoMascotaService;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ public class MascotaController {
     TipoMascotaService tipoMascotaService;
     @Autowired
     SexoMascotaService sexoMascotaService;
+    @Autowired
+    MascotasService mascotasService;
 
     @RequestMapping(value = "/tipo", method = RequestMethod.GET)
     public ResponseEntity<List<TipoMascota>> getTipoMascotaAll() {
@@ -46,6 +49,19 @@ public class MascotaController {
             response = ResponseEntity.noContent().build();
         } else {
             response = ResponseEntity.ok(sexoMascota);
+        }
+        return response;
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ResponseEntity<List<Mascota>> getMascotaAll() {
+        ResponseEntity<List<Mascota>> response;
+
+        List<Mascota> rtaMascotas = mascotasService.getMascotasAll();
+        if (rtaMascotas.isEmpty()) {
+            response = ResponseEntity.noContent().build();
+        } else {
+            response = ResponseEntity.ok(rtaMascotas);
         }
         return response;
     }

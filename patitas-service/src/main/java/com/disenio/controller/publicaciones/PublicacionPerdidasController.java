@@ -1,6 +1,5 @@
 package com.disenio.controller.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.publicaciones.Publicacion;
 import com.disenio.model.publicaciones.PublicacionPerdida;
 import com.disenio.services.publicaciones.PublicacionService;
@@ -34,7 +33,6 @@ public class PublicacionPerdidasController {
     }
     */
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/{id}")
     public ResponseEntity<List<PublicacionPerdida>> getPublicacionesPerdidasByID(@PathVariable("id") Integer id) {
         ResponseEntity<List<PublicacionPerdida>> response;
@@ -46,7 +44,6 @@ public class PublicacionPerdidasController {
     }
 
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/all")
     public ResponseEntity<List<PublicacionPerdida>> getPublicacionesPerdidasAll() {
         ResponseEntity<List<PublicacionPerdida>> response;

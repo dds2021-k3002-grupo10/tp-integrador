@@ -1,9 +1,7 @@
 package com.disenio.model.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.personas.Persona;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -13,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 @DiscriminatorValue("darAdopcion")
 public class PublicacionDarAdopcion extends PublicacionAdopcion {
-    @JsonView(Views.External.class)
+
     private Mascota mascotaOfrecida;
 
     //Constructors

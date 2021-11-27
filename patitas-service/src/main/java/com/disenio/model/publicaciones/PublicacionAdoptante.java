@@ -1,8 +1,6 @@
 package com.disenio.model.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.personas.Persona;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -12,7 +10,7 @@ import javax.persistence.Transient;
 @Entity
 @DiscriminatorValue("adoptante")
 public class PublicacionAdoptante extends PublicacionAdopcion {
-    @JsonView(Views.External.class)
+
     private boolean esVisible = false;
 
     private String clave;

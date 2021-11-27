@@ -1,6 +1,5 @@
 package com.disenio.controller.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.publicaciones.Publicacion;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
 import com.disenio.services.publicaciones.PublicacionService;
@@ -36,7 +35,6 @@ public class PublicacionAdoptanteController {
     }
     */
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/{id}")
     public ResponseEntity<List<PublicacionDarAdopcion>> getPublicacionDarAdopcionByID(@PathVariable("id") Integer id) {
         ResponseEntity<List<PublicacionDarAdopcion>> response;
@@ -48,7 +46,6 @@ public class PublicacionAdoptanteController {
     }
 
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/all")
     public ResponseEntity<List<PublicacionDarAdopcion>> getPublicacionDarAdopcionAll() {
         ResponseEntity<List<PublicacionDarAdopcion>> response;

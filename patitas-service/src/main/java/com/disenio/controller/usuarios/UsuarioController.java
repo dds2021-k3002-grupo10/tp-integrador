@@ -1,13 +1,9 @@
 package com.disenio.controller.usuarios;
 
-import com.disenio.model.Views;
-import com.disenio.model.organizacion.Organizacion;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.usuarios.Rol;
 import com.disenio.model.usuarios.Usuario;
 import com.disenio.model.usuarios.UsuarioOrganizacion;
-import com.disenio.model.usuarios.UsuarioRol;
-import com.disenio.services.organizacion.OrganizacionService;
 import com.disenio.services.personas.PersonaService;
 import com.disenio.services.usuarios.RolService;
 import com.disenio.services.usuarios.UsuarioOrganizacionService;
@@ -27,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -74,7 +69,6 @@ public class UsuarioController {
     }
 
 
-    @JsonView(Views.External.class)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<String> login(@RequestBody Usuario usuario) {
         ResponseEntity<String> response;

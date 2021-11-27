@@ -7,4 +7,6 @@ public interface UsuarioService {
     void altaUsuario(Usuario usuario);
 
     Usuario getByNombre(String nombre);
+
+    Usuario getById(Integer idUsuario);
 }

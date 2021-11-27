@@ -3,9 +3,7 @@ package com.disenio.model.usuarios;
 import com.disenio.model.organizacion.Organizacion;
 import lombok.Data;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

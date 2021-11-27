@@ -1,6 +1,6 @@
 package com.disenio.controller.personas;
 
-import com.disenio.model.Views;
+import com.disenio.model.personas.MedioNotificacion;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.TipoDocumento;
 import com.disenio.services.personas.*;
@@ -23,13 +23,13 @@ public class PersonaController {
 
     @Autowired
     private PersonaService personaService;
-
     @Autowired
     private TipoDocumentoService tipoDocumentoService;
+    @Autowired
+    private MedioNotificacionService MedioNotificacionService;
 
 
     //@PostMapping("")
-    @JsonView(Views.External.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Persona> guardar(HttpServletRequest request, @RequestBody Persona persona) {
         ResponseEntity response;
@@ -71,9 +71,9 @@ public class PersonaController {
         }
     }
 
+    /*Buscar persona por tipo y nro de documento*/
     @RequestMapping(value = "/buscar", method = RequestMethod.GET)
     public ResponseEntity<List<Persona>> getPersonasByCondicion(
-            @PathVariable("nombre") String nombre, @PathVariable("apellido") String apellido,
             @PathVariable("idTipoDoc") Integer idTipoDoc, @PathVariable("numero") Integer numero
     ) {
 
@@ -85,8 +85,8 @@ public class PersonaController {
         }
     }
 
-
-    @RequestMapping(value = "/tipodocumento", method = RequestMethod.GET)
+    /*tipo de documento trae All*/
+    @RequestMapping(value = "/tipo-documento", method = RequestMethod.GET)
     public ResponseEntity<List<TipoDocumento>> getTipoDocumentoAll() {
         ResponseEntity<List<TipoDocumento>> response;
 
@@ -95,6 +95,20 @@ public class PersonaController {
             response = ResponseEntity.noContent().build();
         } else {
             response = ResponseEntity.ok(rtaTipoDocumento);
+        }
+        return response;
+    }
+
+    /*Medio de notificacion trae All*/
+    @RequestMapping(value = "/medio-notificacion", method = RequestMethod.GET)
+    public ResponseEntity<List<MedioNotificacion>> getMedioNotificacionAll() {
+        ResponseEntity<List<MedioNotificacion>> response;
+
+        List<MedioNotificacion> rtaMedioNotificacion = MedioNotificacionService.getMedioNotificacionALl();
+        if (rtaMedioNotificacion.isEmpty()) {
+            response = ResponseEntity.noContent().build();
+        } else {
+            response = ResponseEntity.ok(rtaMedioNotificacion);
         }
         return response;
     }

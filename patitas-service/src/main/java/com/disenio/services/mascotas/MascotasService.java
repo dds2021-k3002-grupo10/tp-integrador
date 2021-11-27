@@ -8,4 +8,6 @@ import java.util.List;
 public interface MascotasService {
 
     void alta(List<Mascota> mascotas, Persona persona);
+
+    List<Mascota> getMascotasAll();
 }

@@ -1,10 +1,8 @@
 package com.disenio.model.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.MascotaHogarTransito;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.personas.Persona;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,11 +11,9 @@ import java.io.Serializable;
 @DiscriminatorValue("perdida")
 public class PublicacionPerdida extends Publicacion implements Serializable {
 
-    @JsonView(Views.External.class)
+
     private MascotaRescatada mascota;
-    @JsonView(Views.External.class)
     private MascotaHogarTransito hogar;
-    @JsonView(Views.External.class)
     private Estado estado;
 
 
