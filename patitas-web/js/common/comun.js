@@ -12,9 +12,6 @@ function home() {
         async: true,
         dataType: "html",
         type: "GET",
-        error: function () {
-            alert("Se a producido un error");
-        },
         complete: function () {
             $('#main-menu').removeClass("mobile-is-visible");
             $('#home').addClass("active");
