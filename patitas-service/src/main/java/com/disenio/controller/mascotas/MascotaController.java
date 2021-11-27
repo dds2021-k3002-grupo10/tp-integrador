@@ -70,9 +70,19 @@ public class MascotaController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<MascotaDTO> getPersonasDTOById(@PathVariable("id") Integer id) {
+    public ResponseEntity<MascotaDTO> getMascotaDTOById(@PathVariable("id") Integer id) {
 
         MascotaDTO mascotaDTO = mascotasService.getMascotaDTOById(id);
+        if (mascotaDTO != null) {
+            return ResponseEntity.ok(mascotaDTO);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+    @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
+    public ResponseEntity<MascotaDTO> getMascotaByPersonasId(@PathVariable("id") Integer id) {
+
+        MascotaDTO mascotaDTO = mascotasService.getMascotaByPersonasId(id);
         if (mascotaDTO != null) {
             return ResponseEntity.ok(mascotaDTO);
         } else {

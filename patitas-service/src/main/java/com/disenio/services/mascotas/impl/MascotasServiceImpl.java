@@ -70,4 +70,17 @@ public class MascotasServiceImpl implements MascotasService {
         }
         return mascotaDTO;
     }
+
+    @Override
+    public MascotaDTO getMascotaByPersonasId(Integer idPersona) {
+        Optional<Mascota> mascotas  =mascotaDAO.MascotaByPersonasId(idPersona);
+
+
+        MascotaDTO mascotaDTO = null;
+        if (mascotas.isPresent()) {
+            mascotaDTO= new MascotaDTO();
+            mascotaDTO = modelMapper.map(mascotas.get(), MascotaDTO.class);
+        }
+        return mascotaDTO;
+    }
 }
