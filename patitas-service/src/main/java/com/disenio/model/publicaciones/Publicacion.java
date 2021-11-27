@@ -1,8 +1,7 @@
 package com.disenio.model.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.personas.Persona;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,18 +11,14 @@ import java.util.Date;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "publicacion"
-        , catalog = "patitas"
+@Table(name = "publicacion", catalog = "patitas"
 )
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_publicacion")
 public abstract class Publicacion implements Serializable {
 
-    @JsonView(Views.External.class)
     private Integer idPublicacion;
-    @JsonView(Views.External.class)
     private Date fecha;
-    @JsonView(Views.External.class)
     private Persona autor;
 
     //Constructors
@@ -51,7 +46,7 @@ public abstract class Publicacion implements Serializable {
         this.idPublicacion = idPublicacion;
     }
 
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     @Column(name = "FECHA_PUBLICACION", nullable = false, length = 0)
     public Date getFecha() {
         return fecha;

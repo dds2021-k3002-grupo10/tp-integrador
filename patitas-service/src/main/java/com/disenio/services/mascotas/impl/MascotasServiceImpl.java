@@ -45,4 +45,9 @@ public class MascotasServiceImpl implements MascotasService {
         });
 
     }
+
+    @Override
+    public List<Mascota> getMascotasAll() {
+        return mascotaDAO.findAll();
+    }
 }

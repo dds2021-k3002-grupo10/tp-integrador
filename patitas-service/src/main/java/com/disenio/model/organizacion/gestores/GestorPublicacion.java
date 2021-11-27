@@ -1,15 +1,6 @@
 package com.disenio.model.organizacion.gestores;
 
-import com.disenio.model.Views;
-import com.disenio.model.cuestionario.Cuestionario;
-import com.disenio.model.publicaciones.Publicacion;
-import com.fasterxml.jackson.annotation.JsonView;
-
 import javax.persistence.Embeddable;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
-import java.util.List;
 
 @Embeddable
 public class GestorPublicacion {

@@ -1,7 +1,7 @@
 package com.disenio.services.mascotas;
 
-import com.disenio.model.caracteristicas.CaracteristicaDetalle;
-import com.disenio.model.caracteristicas.CaracteristicaDetalleValor;
+import com.disenio.model.mascotas.CaracteristicaDetalle;
+import com.disenio.model.mascotas.CaracteristicaDetalleValor;
 
 import java.util.List;
 

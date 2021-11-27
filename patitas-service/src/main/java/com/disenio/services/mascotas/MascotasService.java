@@ -11,4 +11,6 @@ public interface MascotasService {
     Optional<Mascota> getById(int id);
 
     void alta(List<Mascota> mascotas, Persona persona);
+
+    List<Mascota> getMascotasAll();
 }
