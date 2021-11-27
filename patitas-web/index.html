@@ -1,259 +1,89 @@
-<html>
-    <head>
-        <meta name="LANGUAGE" content="es" />
-        <meta name="DISTRIBUTION" content="Global" />
-        <title>Patitas</title>
-        <meta name="application-name" content="patitas.com.ar" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Xenon Boostrap Admin Panel"/>
+    <meta name="author" content="Grupo10"/>
 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Alexander Ortega">
+    <title>Patitas-Web</title>
 
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 
-        <!-- xenon styles -->
-        <link rel="stylesheet" href="assets/css/bootstrap.css">
-        <link rel="stylesheet" href="assets/css/xenon-components.css">
-        <link rel="stylesheet" href="assets/css/xenon-core.css">        
-        <link rel="stylesheet" href="assets/css/xenon-forms.css">
-        <link rel="stylesheet" href="assets/css/xenon-skins.css">
-        <link rel="stylesheet" href="assets/css/xenon.css">        
-        <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/js/uikit/uikit.css">
-        <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.min.css">
-        <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.theme.min.css">
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
 
-
-        <!-- Personas old css -->
-        <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
-        <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/custom.css">
-        <link rel="stylesheet" href="assets/js/cropper/cropper.css">
-        <link rel="stylesheet" href="assets/css/fonts/elusive/css/elusive.css">
-
-        <link rel="stylesheet" href="assets/js/daterangepicker/daterangepicker-bs3.css">
-        <link rel="stylesheet" href="assets/js/select2/select2.css">
-        <link rel="stylesheet" href="assets/js/select2/select2-bootstrap.css">
-        <link rel="stylesheet" href="assets/js/multiselect/css/multi-select.css">
-
-        <!-- Css propios -->
-        <link rel="stylesheet" href="css/comun/comun.css">
+</head>
+<body class="page-body">
 
 
-    </head>
+<nav class="navbar horizontal-menu navbar-fixed-top"><!-- set fixed position by adding class "navbar-fixed-top" -->
 
-    <body class="page-body skin-white" >
-        <div class="settings-pane">
+    <div class="navbar-inner">
+        <!-- Navbar Brand -->
+        <div class="navbar-brand">
+            <a href="dashboard-1.html" class="logo">
+                <img src="assets/images/logo-white-bg@2x.png" width="80" alt="" class="hidden-xs"/>
+                <img src="assets/images/logo@2x.png" width="80" alt="" class="visible-xs"/>
+            </a>
             <a href="#" data-toggle="settings-pane" data-animate="true">
-                &times;
+                <i class="linecons-cog"></i>
             </a>
         </div>
-        <div class="page-container">
+    </div>
 
-            <div class="sidebar-menu toggle-others fixed">
+</nav>
 
-                <div class="sidebar-menu-inner">
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
-                    <header class="logo-env">
-                        <!-- logo -->
-                        <div class="logo">
-                            <a href="#" class="logo-expanded">
-                                <img src="images/logo/logo.png" style="width: 90%"  alt="" />
-                            </a>
-                            <a href="#" class="logo-collapsed">
-                                <img src="images/logo/logo.png" style="width: 100%" alt="" />
-                            </a>
-                        </div>
-                        <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
-                        <div class="mobile-menu-toggle visible-xs">
-
-                            <a href="#" data-toggle="mobile-menu" id="mobile">
-                                <i class="fa-bars"></i>
-                            </a>
-                        </div>
-                    </header>
+    <div class="main-content" id="idCajaOrganizacion">
 
 
+        <h3 id="layout-variants">
+            Bienvenido a Patitas Web
+            <br/>
+            <small>Seleccione una organizacion</small>
+        </h3>
 
-                    <ul id="main-menu" class="main-menu">
-                        <li class="active abierto" id="home">
-                            <a href="#" onclick="home()">
-                                <i class="fa-home"></i>
-                                <span class="title">Inicio</span>
-                            </a>
-                        </li>
-                        <li class="abierto" id="adopcion">
-                            <a href="#" onclick="adopcion()">
-                                <i class="fa-user-md"></i>
-                                <span class="title">Adopcion</span>
-                            </a>
-                        </li>
-                        <li class="abierto" id="registrar">
-                            <a href="#" onclick="registrar()">
-                                <i class="fa-user-md"></i>
-                                <span class="title">Registrar</span>
-                            </a>
-                        </li>
+        <div class="panel panel-default panel-headerless">
 
-                        <li class="abierto" id="usuario">
-                            <a href="#" onclick="usuario()">
-                                <i class="fa-h-square"></i>
-                                <span class="title">Usuario</span>
-                            </a>
-                        </li>
-                        <li class="abierto" id="publicacion">
-                            <a href="#" onclick="publicacion()">
-                                <i class="fa-medkit"></i>
-                                <span class="title">Publicar mascota</span>
-                            </a>
+            <div class="panel-body layout-variants" >
 
-                        </li>
+                <div class="row" >
+                    <div class="col-sm-4">
+                        <ul>
+                            <li v-for="organizacion of organizaciones">
+                                <div onclick="location.href='http://localhost:63342/patitas-web/principal.html'" style="cursor: pointer">{{organizacion.nombre}} - {{organizacion.idOrganizacion}} </div>
+                            </li>
+                        </ul>
 
-                        <li class="opened abierto expanded has-sub" id="abm"> 
-                            <a href="#">
-                                <i class="linecons-cog"></i>
-                                <span class="title">Mascotas perdidas</span>
-                            </a> 
-                            <ul>
-                                <li class="abierto" id="publicacion">
-                                    <a href="#" onclick="publicacion()">
-                                        <span class="title">Publicar mascota</span>
-                                    </a>
-                                </li>
-                            </ul> 
-                        </li>
-                    </ul>
-
-                </div>
-
-            </div>
-
-            <div class="main-content" >
-
-                <nav class="navbar user-info-navbar fixed" role="navigation" style="text-align: center">      
-                    <img src="images/logo/logoInforme.png" style="padding: 30px; width: 75%;" alt="" /> 
-                </nav>
-
-
-
-
-                <div  id="navegacionAjax"> 
-
-                    <!-- aca se cargan las paginas ajax-->
-
-                </div>
-
-
-
-
-
-                <footer class="main-footer sticky footer-type-1"  >
-
-                    <div class="footer-inner">                 
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <strong>Grupo 10</strong>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <strong>Rescate de patitas</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-5" >
-                                <div class="row">
-                                    <div class="col-lg-12" >Medrano 1111 Ciudad de Buenos Aires</div>
-                                    <div class="col-lg-12" >Te: (5411) 4444-4444</div>
-                                </div> 
-                            </div>
-                            <div class="col-sm-3">
-                                Ubicaci&oacuten en el mapa: pulse aqu&iacute:<a href="#" rel="go-top" onclick="mapa()" ><strong> Google Maps</strong></a>
-                            </div>
-                        </div>
 
                     </div>
-                </footer> 
 
-            </div>
-
-            <!-- Modal 3 (Basic)-->
-            <div class="modal fade " id="modal-mapa">
-                <div class="modal-dialog" >
-                    <div class="modal-content">
-                        <span class = "fa fa-spin fa-circle-o-notch" >< /span>
-
-                    </div>
                 </div>
-            </div>
         </div>
-
-        <!-- xennon js -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/js/TweenMax.min.js"></script>        
-        <script src="assets/js/resizeable.js"></script>
-        <script src="assets/js/joinable.js"></script>
-        <script src="assets/js/xenon-api.js"></script>
-        <script src="assets/js/xenon-notes.js"></script>
-        <script src="assets/js/xenon-toggles.js"></script>
-        <script src="assets/js/xenon-widgets.js"></script>
-        <script src="assets/js/xenon-custom.js"></script>
-        <script src="assets/js/uikit/js/uikit.min.js"></script>
-        <script src="assets/js/uikit/js/addons/nestable.js"></script>
+    </div>
 
 
-        <script src="assets/js/daterangepicker/daterangepicker.js"></script>
-        <script src="assets/js/datepicker/bootstrap-datepicker.js"></script>
-        <script src="assets/js/timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="assets/js/colorpicker/bootstrap-colorpicker.min.js"></script>
-        <script src="assets/js/select2/select2.min.js"></script>
-        <script src="assets/js/jquery-ui/jquery-ui.min.js"></script>
-        <script src="assets/js/selectboxit/jquery.selectBoxIt.min.js"></script>
-        <script src="assets/js/tagsinput/bootstrap-tagsinput.min.js"></script>
-        <script src="assets/js/typeahead.bundle.js"></script>
-        <script src="assets/js/handlebars.min.js"></script>
-        <script src="assets/js/multiselect/js/jquery.multi-select.js"></script>
-        <script src="assets/js/selectboxit/jquery.selectBoxIt.min.js"></script>
-        <script src="assets/js/cropper/cropper.min.js"></script>
-        <script src="assets/js/responsive-paginate.js"></script>
-
-        <script src="assets/js/dropzone/dropzone.min.js"></script>
-        <script src="assets/js/inputmask/jquery.inputmask.bundle.js"></script>
+</div>
 
 
+<!-- Bottom Scripts -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/xenon-custom.js"></script>
 
-        <script src="assets/js/toastr/toastr.min.js"></script>
-        <!-- paginador -->
-        <script type="text/javascript" src="assets/js/jquery.bootpag.min.js"></script>
-        <!-- Js Internos -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="js/vue.js"></script>
 
-
-        <!-- Js Propios -->
-        <script src="js/common/comun.js"></script>
-        
-        <script src="js/admin/jsAdmin.js"></script>
-        
-        
-
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="assets/js/jquery-validate/jquery.validate.js"></script>
-        <script type="text/javascript" src="assets/js/jquery-validate/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="assets/js/jquery-validate/additional-methods.min.js"></script>
-        <script type="text/javascript" src="assets/js/jquery-validate/localization/messages_es.min.js"></script>
-
-
-
-
-    </body>
-
-    <script>
-                                    home();
-    </script>
+</div>
+</body>
 </html>
-
-
-
-
-
