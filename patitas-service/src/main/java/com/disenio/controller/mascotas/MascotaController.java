@@ -1,6 +1,7 @@
 package com.disenio.controller.mascotas;
 
 import com.disenio.dto.mascota.MascotaDTO;
+import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,5 +67,16 @@ public class MascotaController {
             response = ResponseEntity.ok(rtaMascotas);
         }
         return response;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<MascotaDTO> getPersonasDTOById(@PathVariable("id") Integer id) {
+
+        MascotaDTO mascotaDTO = mascotasService.getMascotaDTOById(id);
+        if (mascotaDTO != null) {
+            return ResponseEntity.ok(mascotaDTO);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 }

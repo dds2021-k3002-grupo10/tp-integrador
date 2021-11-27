@@ -11,4 +11,6 @@ public interface MascotasService {
     void alta(List<Mascota> mascotas, Persona persona);
 
     List<MascotaDTO> getMascotasAll();
+
+    MascotaDTO getMascotaDTOById(Integer id);
 }

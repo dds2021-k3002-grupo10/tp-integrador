@@ -2,7 +2,6 @@ package com.disenio.services.mascotas.impl;
 
 import com.disenio.dao.mascotas.MascotaDAO;
 import com.disenio.dto.mascota.MascotaDTO;
-import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.personas.Persona;
 import com.disenio.services.mascotas.CaracteristicaDetalleService;
@@ -55,6 +54,19 @@ public class MascotasServiceImpl implements MascotasService {
         List<MascotaDTO> mascotaDTO = new ArrayList<MascotaDTO>();
         if (!mascotas.isEmpty()) {
             mascotaDTO = Arrays.asList(modelMapper.map(mascotas, MascotaDTO[].class));
+        }
+        return mascotaDTO;
+    }
+
+    @Override
+    public MascotaDTO getMascotaDTOById(Integer id) {
+        Optional<Mascota> mascotas  =mascotaDAO.findById(id);
+
+
+        MascotaDTO mascotaDTO = null;
+        if (mascotas.isPresent()) {
+            mascotaDTO= new MascotaDTO();
+            mascotaDTO = modelMapper.map(mascotas.get(), MascotaDTO.class);
         }
         return mascotaDTO;
     }
