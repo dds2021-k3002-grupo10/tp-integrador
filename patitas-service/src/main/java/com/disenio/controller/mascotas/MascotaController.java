@@ -1,5 +1,6 @@
 package com.disenio.controller.mascotas;
 
+import com.disenio.dto.mascota.MascotaDTO;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
@@ -54,10 +55,10 @@ public class MascotaController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<List<Mascota>> getMascotaAll() {
-        ResponseEntity<List<Mascota>> response;
+    public ResponseEntity<List<MascotaDTO>> getMascotaAll() {
+        ResponseEntity<List<MascotaDTO>> response;
 
-        List<Mascota> rtaMascotas = mascotasService.getMascotasAll();
+        List<MascotaDTO> rtaMascotas = mascotasService.getMascotasAll();
         if (rtaMascotas.isEmpty()) {
             response = ResponseEntity.noContent().build();
         } else {

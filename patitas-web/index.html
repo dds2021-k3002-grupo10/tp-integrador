@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,7 +62,9 @@
                     <div class="col-sm-4">
                         <ul>
                             <li v-for="organizacion of organizaciones">
-                                <div onclick="location.href='http://localhost:63342/patitas-web/principal.html'" style="cursor: pointer">{{organizacion.nombre}} - {{organizacion.idOrganizacion}} </div>
+                                <div style="cursor: pointer" v-on:click=" ir()">
+                                    {{organizacion.nombre}} - {{organizacion.idOrganizacion}}
+                                </div>
                             </li>
                         </ul>
                     </div>
