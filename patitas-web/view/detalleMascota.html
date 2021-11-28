@@ -1,0 +1,66 @@
+</head>
+<body>
+<div class="main-content">
+    <section class="profile-env">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdFLnHEH09ySL3nccvfcNlsj7qD5aOtyMdIw&usqp=CAU" class="img-circle" alt="user-pic">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-6" style="border:solid;">
+                <h4>Tipo: Perro</h4>
+                <h4>Nombre: Batata</h4>
+                <h4>Apodo: Gordo</h4>
+                <h4>Edad: 4</h4>
+                <h4>Sexo: Macho</h4>
+                <h4>Descripcion: Tamaño medio, tricolor, orejas grandes</h4>
+                <!-- aca iria info tales como perro/gato, nombre, apodo, edad, sexo, descripcion fisica-->
+            </div>
+        </div>
+        <hr>
+        <div class="col-sm-12">
+            <strong>Caracteristicas:</strong>
+            <hr>
+            <p>
+                Castrado? Si
+            </p>
+            <p>
+                Colores? Negro, Marron, Blanco
+            </p>
+            <p>
+                Agresivo? No
+            </p>
+            <!-- aca irian los detalles de las características -->
+        </div>
+        <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4">
+                <button>Dar de baja</button>
+                <button>Dar en adopción</button>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+
+<script>
+    const app = new Vue({
+    el:'#detalleMascota',
+    data:{
+        mascota:''
+    },
+    created(){
+        fetch('http://localhost:8080/mascota/all')
+            .then(response => response.json())
+            .then(data =>{
+                this.organizaciones = data
+            })
+    },
+    methods
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script src="js/vue.js"></script>

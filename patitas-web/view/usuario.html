@@ -58,7 +58,7 @@
     methods: {
         hola:function (id){
            $.ajax({
-                url: "view/adopcion.html",
+                url: "view/detalleMascota.html?"+id,
                 async: true,
                 dataType: "html",
                 type: "GET",
@@ -80,7 +80,7 @@
         persona: 'hola'
     },
     created(){
-        fetch('http://localhost:8080/personas/1')
+        fetch('http://localhost:8080/personas/10')
         .then(response => response.json())
         .then(data =>{
             this.persona = data
