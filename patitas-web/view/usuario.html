@@ -1,4 +1,4 @@
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="LANGUAGE" content="es"/>
     <meta name="DISTRIBUTION" content="Global"/>
@@ -33,7 +33,7 @@
                     <td>{{mascota.idMascota}} </td>
                     <td>{{mascota.nombre}}</td>
                     <td>{{mascota.fechaNacimiento}}</td>
-                    <td><button><a :href="'mascotaDetalle.html?id=' + mascota.idMascota">Ver</a></button></td>
+                    <td><button><a href="#" v-on:click="hola(mascota.idMascota)">Ver</a></button></td>
                 </tr>
                 </tbody>
             </table>
@@ -54,7 +54,25 @@
                 .then(data => {
                     this.mascotas = data
                 })
+        },
+    methods: {
+        hola:function (id){
+           $.ajax({
+                url: "view/adopcion.html",
+                async: true,
+                dataType: "html",
+                type: "GET",
+                complete: function () {
+                },
+                success: function (html) {
+
+                $('#navegacionAjax').html("");
+                $('#navegacionAjax').html(html);
+
+                }
+            });
         }
+    }
     })
     var datosPersona = new Vue({
     el:'#datosPersona',

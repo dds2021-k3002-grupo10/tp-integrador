@@ -25,8 +25,8 @@ const app = new Vue({
                 },
                 success: function (html) {
 
-                   $('#navegacionAjax').html("");
-            $('body').html(html);
+                 $('#navegacionAjax').html("");
+                 $('#navegacionAjax').html(html);
 
                 }
             });*/
