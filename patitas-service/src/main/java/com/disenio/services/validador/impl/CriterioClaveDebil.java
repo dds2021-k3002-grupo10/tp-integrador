@@ -15,7 +15,7 @@ import java.util.List;
 public class CriterioClaveDebil implements ValidacionClaveService {
     List<String> clavesInvalidas = new ArrayList<String>();
 
-    @Autowired
+    //@Autowired
     public void levantarContrasenasDebiles(){
         try(FileReader fr = new FileReader("clavesDebiles.txt");
             BufferedReader br = new BufferedReader(fr))
