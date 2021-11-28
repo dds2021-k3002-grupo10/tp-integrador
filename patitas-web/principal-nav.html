@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="PatitasWeb"/>
+    <meta name="author" content="Grupo 10"/>
+    <meta name="application-name" content="patitas.com.ar"/>
+    <title>Patitas Web</title>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+
+
+    <!-- Css propios -->
+    <link rel="stylesheet" href="css/comun/comun.css">
+</head>
+<body class="page-body skin-navy">
+
+<div class="settings-pane">
+
+
+    <div class="settings-pane-inner">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="user-info">
+
+                    <div class="user-image">
+                        <a href="extra-profile.html">
+                            <img src="assets/images/user-2.png" class="img-responsive img-circle"/>
+                        </a>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="col-md-8 link-blocks-env">
+
+                <div class="links-block left-sep">
+                    <h4>
+                        <span>Notifications</span>
+                    </h4>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1"/>
+                            <label for="sp-chk1">Messages</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2"/>
+                            <label for="sp-chk2">Events</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3"/>
+                            <label for="sp-chk3">Updates</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4"/>
+                            <label for="sp-chk4">Server Uptime</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="links-block left-sep">
+                    <h4>
+                        <a href="#">
+                            <span>Help Desk</span>
+                        </a>
+                    </h4>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">
+                                <i class="fa-angle-right"></i>
+                                Support Center
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa-angle-right"></i>
+                                Submit a Ticket
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa-angle-right"></i>
+                                Domains Protocol
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa-angle-right"></i>
+                                Terms of Service
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+    <!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
+    <!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
+    <!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
+    <div class="sidebar-menu toggle-others fixed">
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a href="#" class="logo-expanded">
+                        <img src="images/logo/logo.png" style="width: 90%" alt=""/>
+                    </a>
+                    <a href="#" class="logo-collapsed">
+                        <img src="images/logo/logo.png" style="width: 100%" alt=""/>
+                    </a>
+                </div>
+
+                <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+
+
+            </header>
+
+            <!-- NAVEGACION -->
+            <ul id="main-menu" class="main-menu">
+                <li class="active abierto" id="home">
+                    <a href="#" onclick="home()">
+                        <i class="fa-home"></i>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+                <li class="abierto" id="adopcion">
+                    <a href="#" onclick="adopcion()">
+                        <i class="fa-user-md"></i>
+                        <span class="title">Adopcion</span>
+                    </a>
+                </li>
+                <li class="abierto" id="registrar">
+                    <a href="#" onclick="registrar()">
+                        <i class="fa-user-md"></i>
+                        <span class="title">Registrar</span>
+                    </a>
+                </li>
+
+                <li class="abierto" id="usuario">
+                    <a href="#" onclick="usuario()">
+                        <i class="fa-h-square"></i>
+                        <span class="title">Usuario</span>
+                    </a>
+                </li>
+                <li class="abierto" id="publicacion">
+                    <a href="#" onclick="publicacion()">
+                        <i class="fa-bus"></i>
+                        <span class="title">Publicar mascota</span>
+                    </a>
+
+                </li>
+
+                <li class="opened abierto expanded has-sub" id="abm">
+                    <a href="#">
+                        <i class="linecons-cog"></i>
+                        <span class="title">Mascotas perdidas</span>
+                    </a>
+                    <ul>
+                        <li class="abierto" id="publicaciones">
+                            <a href="#" onclick="publicacion()">
+                                <span class="title">Publicar mascota</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="main-content">
+
+        <nav class="navbar user-info-navbar" role="navigation"><!-- User Info, Notifications and Menu Bar -->
+            <!-- Left links for user info navbar -->
+            <ul class="user-info-menu left-links list-inline list-unstyled">
+                <li class="hidden-sm hidden-xs">
+                    <a href="#" data-toggle="sidebar">
+                        <i class="fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <div id="navegacionAjax">
+
+            <!-- aca se cargan las paginas ajax-->
+
+        </div>
+
+
+        <footer class="main-footer sticky footer-type-1">
+
+            <div class="footer-inner">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <strong>Grupo 10</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <strong>Rescate de patitas</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-lg-12">Medrano 1111 Ciudad de Buenos Aires</div>
+                            <div class="col-lg-12">Te: (5411) 4444-4444</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        Ubicaci&oacuten en el mapa: pulse aqu&iacute:<a href="#" rel="go-top" onclick="mapa()"><strong>
+                        Google Maps</strong></a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    <!-- Modal 3 (Basic)-->
+    <div class="modal fade " id="modal-mapa">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                        <span class="fa fa-spin fa-circle-o-notch"></span>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Page Loading Overlay -->
+<div class="page-loading-overlay">
+    <div class="loader-2"></div>
+</div>
+
+
+<!-- Imported styles on this page -->
+<link rel="stylesheet" href="assets/js/devexpress-web-14.1/css/dx.common.css">
+<link rel="stylesheet" href="assets/js/devexpress-web-14.1/css/dx.light.css">
+
+<!-- Bottom Scripts -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/TweenMax.min.js"></script>
+<script src="assets/js/resizeable.js"></script>
+<script src="assets/js/joinable.js"></script>
+<script src="assets/js/xenon-api.js"></script>
+<script src="assets/js/xenon-toggles.js"></script>
+
+
+<!-- Imported scripts on this page -->
+<script src="assets/js/xenon-widgets.js"></script>
+<script src="assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="assets/js/jvectormap/regions/jquery-jvectormap-world-mill-en.js"></script>
+<script src="assets/js/jvectormap/regions/jquery-jvectormap-it-mill-en.js"></script>
+<script src="assets/js/devexpress-web-14.1/js/globalize.min.js"></script>
+<script src="assets/js/devexpress-web-14.1/js/dx.webappjs.js"></script>
+<script src="assets/js/devexpress-web-14.1/js/dx.chartjs.js"></script>
+
+
+<!-- JavaScripts initializations and stuff -->
+<script src="assets/js/xenon-custom.js"></script>
+
+<!-- Js Propios -->
+<script src="js/common/comun.js"></script>
+
+<script src="js/admin/jsAdmin.js"></script>
+
+<script src="js/admin/jsRegistar.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+</body>
+
+<script>
+    home();
+</script>
+</html>

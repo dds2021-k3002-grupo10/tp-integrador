@@ -13,12 +13,11 @@ function home() {
         dataType: "html",
         type: "GET",
         complete: function () {
-            $('#main-menu').removeClass("mobile-is-visible");
             $('#home').addClass("active");
             $('#navegacionAjax').addClass("colorBordeLeft");
-            var d = new Date();
+           /* var d = new Date();
             var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-            $('.anio').html(strDate);
+            $('.anio').html(strDate);*/
         },
         success: function (html) {
 
@@ -46,9 +45,8 @@ function registrar() {
             alert("Se a producido un error");
         },
         complete: function () {
-            $('#main-menu').removeClass("mobile-is-visible");
 
-            $('#institucional').addClass("active");
+            $('#registrar').addClass("active");
 
             funcNoCopy();
         },
@@ -71,8 +69,7 @@ function adopcion() {
             alert("Se a producido un error");
         },
         complete: function () {
-            $('#main-menu').removeClass("mobile-is-visible");
-            $('#seccionCursos').addClass("active");
+            $('#adopcion').addClass("active");
 
             $('#navegacionAjax').addClass("colorBordeLeftCyQ");
 
@@ -97,8 +94,7 @@ function usuario() {
             alert("Se a producido un error");
         },
         complete: function () {
-            $('#main-menu').removeClass("mobile-is-visible");
-            $('#formacion').addClass("active");
+            $('#usuario').addClass("active");
 
             $('#navegacionAjax').addClass("colorBordeLeftEyL");
 
@@ -126,10 +122,7 @@ function publicacion() {
             alert("Se a producido un error");
         },
         complete: function () {
-            $('#main-menu').removeClass("mobile-is-visible");
-            $('#actividades').addClass("active");
-
-            funcNoCopy();
+            $('#publicaciones').addClass("active");
         },
         success: function (html) {
             $('#navegacionAjax').html("");
@@ -155,6 +148,9 @@ function mapa() {
     });
 
 }
+
+
+
 
 
 
