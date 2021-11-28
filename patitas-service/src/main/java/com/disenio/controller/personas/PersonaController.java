@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/personas")
 public class PersonaController {
 
