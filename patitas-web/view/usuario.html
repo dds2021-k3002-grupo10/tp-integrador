@@ -1,4 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Xenon Boostrap Admin Panel"/>
+    <meta name="author" content="Grupo10"/>
 
+    <title>Patitas-Web</title>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+</head>
+<body class="page-body">
+
+<div id="test">
+    {{ message }}
+</div>
   <div class="row">
           <div class="col-lg-12">
 
@@ -19,8 +49,17 @@
                                   </div>
 
 
-                                  <div class="col-lg-8">
+                                  <div id="mascotas-all">
 
+                                      <table>
+                                          <tr v-for="mascota in mascotas">
+                                              <td>{{mascota.nombre}}</td>
+                                              <td>{{mascota.edad}}</td>
+                                          </tr>
+                                      </table>
+
+                                  </div>
+<!--
                                       <div class="col-sm-12">
                                           <strong>Mis mascotas</strong>
                                           <table class="table table-model-2 table-hover">
@@ -53,6 +92,7 @@
                                               </tbody>
                                           </table>
                                       </div>
+                               -->
                                   </div>
                               </div>
 
@@ -62,10 +102,29 @@
                   </div>
           </div>
   </div>
+</body>
 
+<script>
+
+
+    var app = new Vue({
+        el: "#mascotas-all",
+        data: {
+            mascotas: []
+        },
+        created () {
+            fetch('http://localhost:8080/mascota/all')
+                .then(response => response.json())
+                .then(data => {
+                    this.mascotas = data
+                })
+        }
+    })
+
+</script>
                           <script src="assets/js/bootstrap.min.js"></script>
                           <script src="assets/js/xenon-custom.js"></script>
 
-                          <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
-                          <script src="js/vue.js"></script>
+                          <script src="js/vue-test.js"></script>
+</html>
