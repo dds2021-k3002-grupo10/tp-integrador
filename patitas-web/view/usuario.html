@@ -1,92 +1,63 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Xenon Boostrap Admin Panel"/>
-    <meta name="author" content="Grupo10"/>
-
-    <title>Patitas-Web</title>
+    <meta name="LANGUAGE" content="es"/>
+    <meta name="DISTRIBUTION" content="Global"/>
+    <title>Patitas</title>
+    <meta name="application-name" content="patitas.com.ar"/>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
-    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alexander Ortega">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
     <link rel="stylesheet" href="assets/css/xenon-core.css">
     <link rel="stylesheet" href="assets/css/xenon-forms.css">
-    <link rel="stylesheet" href="assets/css/xenon-components.css">
     <link rel="stylesheet" href="assets/css/xenon-skins.css">
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/xenon.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/js/uikit/uikit.css">
+    <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.theme.min.css">
 
-    <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-
 </head>
-<body class="page-body">
 
-  <div class="row">
-          <div class="col-lg-12">
-                 <div class="panel panel-headerless">
-                      <div class="panel-body"> <div class="member-form-add-header">
-                          <div class="row">
-                              <div class="col-md-10 col-sm-8">
-                                  <div class="user-img">
-                                      <img src="https://images.vexels.com/media/users/3/147103/isolated/lists/e9bf9a44d83e00b1535324b0fda6e91a-icono-de-linea-de-perfil-de-instagram.png" class="img-circle" alt="user-pic">
-                                  </div>
-                                  <div class="user-name" id="datos-persona">
-                                      <h3> {{ persona.nombre }} {{ persona.apellido }}</h3>
-                                      <h5> {{ persona.fechaNacimiento }} </h5>
-                                      <h5> {{ persona.idPersona }}</h5>
-                                  </div>
+<body>
+<div id="appVue">
 
-                                  <div class="col-sm-12">
-                                          <strong>Mis mascotas</strong>
-                                          <table class="table table-model-2 table-hover">
-                                              <thead>
-                                          <tr>
-                                              <th>ID DE MASCOTA</th>
-                                              <th>NOMBRE DE MASCOTA</th>
-                                              <th>EDAD DE MASCOTA</th>
-                                              <th>DETALLES</th>
-                                          </tr>
-                                              </thead>
-                                              <tbody id="mascotas-persona">
-                                              <tr v-for="mascota in mascotas">
-                                                  <td>{{ mascota.idMascota }}</td>
-                                                  <td>{{ mascota.nombre }}</td>
-                                                  <td>{{ mascota.edad }}</td>
-                                                  <td><button>VER</button></td>
-                                              </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      </div>
-                  </div>
-          </div>
-  </div>
+    <table class="table table-bordered table-striped">
+        <tr v-for="mascota in mascotas">
+            <td>{{mascota.nombre}}</td>
+            <td>{{mascota.idMascota}} </td>
+            <td><button>Ver</button></td>
+        </tr>
+    </table>
+
+</div>
 </body>
+
 <script>
-var mascotas = new Vue({
-    el:"#mascotas",
-    data:{
-        mascotas: []
-    },
-    created(){
-        fetch('http://localhost:8080/mascota/all')
-            .then(response => response.json())
-            .then(data =>{
-                this.mascotas = data
-            })
-    }
+    var app = new Vue({
+        el: "#appVue",
+        data: {
+            // mascotasHardcode: [{id: 1, nombre: "Juan", raza: "PEPE"}, {id: 1, nombre: "Juana", raza: "PEPA"}],
+            mascotas: []
+        },
+        created () {
+            fetch('http://localhost:8080/mascota/all')
+                .then(response => response.json())
+                .then(data => {
+                    this.mascotas = data
+                })
+        }
+    })
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
 })
 </script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/xenon-custom.js"></script>
-<script src="js/vue-test.js"></script>
 </html>
