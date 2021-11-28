@@ -10,6 +10,7 @@ import com.disenio.services.usuarios.UsuarioOrganizacionService;
 import com.disenio.services.usuarios.UsuarioRolService;
 import com.disenio.services.usuarios.UsuarioService;
 import com.disenio.services.validador.impl.CriterioClaveDebil;
+import com.disenio.services.validador.impl.CriterioRegex;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
@@ -41,6 +42,10 @@ public class UsuarioController {
     private RolService rolService;
     @Autowired
     private UsuarioRolService usuarioRolService;
+    @Autowired
+    private CriterioClaveDebil criterioClaveDebil;
+    @Autowired
+    private CriterioRegex criterioRegex;
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -119,7 +124,11 @@ public class UsuarioController {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"description\":\"El password no cumple los requisitos del TP \"}");
         }
-        //Agregar los dos criterios de validacion de clave. REGEX y Clave debil
+        if(!criterioClaveDebil.esClaveValida(clave) || !criterioRegex.esClaveValida(clave)){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body("{\"description\":\"El password no cumple los requisitos del TP \"}");
+        }
         return null;
     }
 }

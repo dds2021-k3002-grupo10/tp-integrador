@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CriterioRegex implements ValidacionClaveService {
 
-    //@Autowired
     //Expresión regular que me permite verificar que una contraseña tiene una minúscula, una mayúscula, un número y más de 8 caracteres.
     private String criterioRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,64}$";
 
