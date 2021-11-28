@@ -26,41 +26,22 @@
 </head>
 <body class="page-body">
 
-<div id="test">
-    {{ message }}
-</div>
   <div class="row">
           <div class="col-lg-12">
-
-                  <div class="panel panel-headerless">
+                 <div class="panel panel-headerless">
                       <div class="panel-body"> <div class="member-form-add-header">
-
                           <div class="row">
-                              <div class="col-md-2 col-sm-4 pull-right-sm">
-                              </div>
                               <div class="col-md-10 col-sm-8">
                                   <div class="user-img">
                                       <img src="https://images.vexels.com/media/users/3/147103/isolated/lists/e9bf9a44d83e00b1535324b0fda6e91a-icono-de-linea-de-perfil-de-instagram.png" class="img-circle" alt="user-pic">
                                   </div>
-                                  <div class="user-name">
-                                      <h3>Nombre de la persona logueada</h3>
-                                      <h5>Fecha nacimiento</h5>
-                                      <h5>DNI</h5>
+                                  <div class="user-name" id="datos-persona">
+                                      <h3> {{ persona.nombre }} {{ persona.apellido }}</h3>
+                                      <h5> {{ persona.fechaNacimiento }} </h5>
+                                      <h5> {{ persona.idPersona }}</h5>
                                   </div>
 
-
-                                  <div id="mascotas-all">
-
-                                      <table>
-                                          <tr v-for="mascota in mascotas">
-                                              <td>{{mascota.nombre}}</td>
-                                              <td>{{mascota.edad}}</td>
-                                          </tr>
-                                      </table>
-
-                                  </div>
-<!--
-                                      <div class="col-sm-12">
+                                  <div class="col-sm-12">
                                           <strong>Mis mascotas</strong>
                                           <table class="table table-model-2 table-hover">
                                               <thead>
@@ -71,31 +52,18 @@
                                               <th>DETALLES</th>
                                           </tr>
                                               </thead>
-                                              <tbody>
-                                              <tr>
-                                                  <td>1</td>
-                                                  <td>Gino</td>
-                                                  <td>5</td>
-                                                  <td><button>VER</button></td>
-                                              </tr>
-                                              <tr>
-                                                  <td>2</td>
-                                                  <td>Luba</td>
-                                                  <td>2</td>
-                                                  <td><button>VER</button></td>
-                                              </tr> <tr>
-                                                  <td>3</td>
-                                                  <td>Mona</td>
-                                                  <td>7</td>
+                                              <tbody id="mascotas-persona">
+                                              <tr v-for="mascota in mascotas">
+                                                  <td>{{ mascota.idMascota }}</td>
+                                                  <td>{{ mascota.nombre }}</td>
+                                                  <td>{{ mascota.edad }}</td>
                                                   <td><button>VER</button></td>
                                               </tr>
                                               </tbody>
                                           </table>
                                       </div>
-                               -->
                                   </div>
                               </div>
-
                           </div>
                       </div>
                       </div>
@@ -103,28 +71,22 @@
           </div>
   </div>
 </body>
-
 <script>
-
-
-    var app = new Vue({
-        el: "#mascotas-all",
-        data: {
-            mascotas: []
-        },
-        created () {
-            fetch('http://localhost:8080/mascota/all')
-                .then(response => response.json())
-                .then(data => {
-                    this.mascotas = data
-                })
-        }
-    })
-
+var mascotas = new Vue({
+    el:"#mascotas",
+    data:{
+        mascotas: []
+    },
+    created(){
+        fetch('http://localhost:8080/mascota/all')
+            .then(response => response.json())
+            .then(data =>{
+                this.mascotas = data
+            })
+    }
+})
 </script>
-                          <script src="assets/js/bootstrap.min.js"></script>
-                          <script src="assets/js/xenon-custom.js"></script>
-
-
-                          <script src="js/vue-test.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/xenon-custom.js"></script>
+<script src="js/vue-test.js"></script>
 </html>
