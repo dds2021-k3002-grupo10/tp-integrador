@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,15 +24,14 @@
 </head>
 <body class="page-body">
 
-
 <nav class="navbar horizontal-menu navbar-fixed-top"><!-- set fixed position by adding class "navbar-fixed-top" -->
 
     <div class="navbar-inner">
         <!-- Navbar Brand -->
         <div class="navbar-brand">
             <a href="dashboard-1.html" class="logo">
-                <img src="assets/images/logo-white-bg@2x.png" width="80" alt="" class="hidden-xs"/>
-                <img src="assets/images/logo@2x.png" width="80" alt="" class="visible-xs"/>
+                <img src="images/logo/logo.png" width="80" alt="" class="hidden-xs"/>
+                <img src="images/logo/logo.png" width="80" alt="" class="visible-xs"/>
             </a>
             <a href="#" data-toggle="settings-pane" data-animate="true">
                 <i class="linecons-cog"></i>
@@ -42,48 +41,40 @@
 
 </nav>
 
-<div class="page-container">
+<div class="page-container"
+     style="background-image: url('/images/inicio/inicio.jpg');background-repeat: no-repeat, repeat;background-position: center;background-size: cover; ">
     <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
     <div class="main-content" id="idCajaOrganizacion">
 
 
-        <h3 id="layout-variants">
-            Bienvenido a Patitas Web
-            <br/>
-            <small>Seleccione una organizacion</small>
-        </h3>
-
-        <div class="panel panel-default panel-headerless">
-
-            <div class="panel-body layout-variants" >
-
-                <div class="row" >
-                    <div class="col-sm-4">
-                        <ul>
-                            <li v-for="organizacion of organizaciones">
-                                <div onclick="location.href='http://localhost:63342/patitas-web/principal.html'" style="cursor: pointer">{{organizacion.nombre}} - {{organizacion.idOrganizacion}} </div>
-                            </li>
-                        </ul>
-
+        <div class="row">
+            <div class="col-lg-3 col-lg-offset-9">
+                <blockquote class="blockquote blockquote-info">
+                    <p><strong>Bienvenido a Patitas Web</strong> Seleccione una organizacion</p>
+                    <div class="list-group list-group-minimal" v-for="organizacion of organizaciones">
+                        <a href="#" class="list-group-item" @click="saludar(organizacion.idOrganizacion)" style="cursor: pointer">
+                           Nombre Organizacion: {{organizacion.nombre}}
+                        </a>
 
                     </div>
+                </blockquote>
 
-                </div>
+            </div>
         </div>
+
+
     </div>
 
 
 </div>
 
-
 <!-- Bottom Scripts -->
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/xenon-custom.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="js/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
-</div>
+<script src="js/vue.js"></script>
 </body>
 </html>

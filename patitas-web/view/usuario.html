@@ -1,43 +1,57 @@
 
-    <div class="panel-body   panelNoCopy">
-        <ul class="highlights list-unstyled">
-            <li class="version lineaBordeEL"> 
-                 <h3><strong>Formación</strong></h3>
-            </li> 
-            <li> 
-                <p class="parrafo"><strong class="text-primary">A partir del eje ofrecido por los Seminarios y Cursos Intensivos propuestos por la Sección Enseñanza cada año, cada participante traza su propio camino en la formación, que concebimos como formación permanente. Cada interesado dispone de un abanico de Actividades, Cursos, Seminarios, Artificios clínicos- Reuniones de Lectura- Cartels, que hacen a las propuestas de las diferentes secciones de la institución cada vez, y que van armando así su propio itinerario.</strong></p>
-            </li> 
-        </ul>
-    </div> 
+  <div class="row">
+
+      <div class="col-lg-6">
+          <div class="col-sm-12"> <strong>Table Model 2</strong> <table class="table table-model-2 table-hover"> <thead> <tr> <th>#</th> <th>Name</th> <th>Address</th> </tr> </thead> <tbody> <tr> <td>1</td> <td>Arlind</td> <td>Nushi</td> </tr> <tr> <td>2</td> <td>Art</td> <td>Ramadani</td> </tr> <tr> <td>3</td> <td>Filan</td> <td>Fisteku</td> </tr> </tbody> </table> </div>
+      </div>
+
+          <div class="col-lg-6">
+
+              <form method="post">
+                  <div class="panel panel-headerless">
+                      <div class="panel-body"> <div class="member-form-add-header">
+                          <div class="row"> <div class="col-md-2 col-sm-4 pull-right-sm">
+
+                              <div class="action-buttons"> <button type="submit" class="btn btn-block btn-secondary">Save Changes</button> <button type="reset" class="btn btn-block btn-gray">Reset to Default</button> </div> </div> <div class="col-md-10 col-sm-8"> <div class="user-img"> <img src="https://themes.laborator.co/xenon/assets/images/user-4.png" class="img-circle" alt="user-pic"> </div> <div class="user-name"> <a href="#">Jack Gates</a> <span>Administrator</span> </div> </div> </div> </div> <div class="member-form-inputs"> <div class="row"> <div class="col-sm-3"> <label class="control-label" for="username">Screen Name</label> </div> <div class="col-sm-9"> <input type="text" class="form-control" name="username" id="username" value="jackthegreat" disabled=""> </div> </div> <div class="row"> <div class="col-sm-3"> <label class="control-label" for="name">Full Name</label> </div> <div class="col-sm-9"> <input type="text" class="form-control" name="name" id="name" value="Jack Gates"> </div> </div> <div class="row"> <div class="col-sm-3"> <label class="control-label" for="birthdate">Birthdate</label> </div> <div class="col-sm-9"> <div class="input-group"> <input type="text" class="form-control datepicker" name="birthdate" data-format="dd-mm-yyyy" value="04-12-1989"> <div class="input-group-addon"> <a href="#"><i class="linecons-calendar"></i></a> </div> </div> </div> </div> <div class="row"> <div class="col-sm-3"> <label class="control-label">Country</label> </div> <div class="col-sm-9"> <script type="text/javascript">
+                  jQuery(document).ready(function($)
+                  {
+                      $("#s2example-1").select2({
+                          placeholder: 'Select your country...',
+                          allowClear: true,
+                          dropdownAutoWidth: true
+                      }).on('select2-open', function()
+                      {
+// Adding Custom Scrollbar
+                          $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                      });
+                  });
+              </script> <div class="select2-container form-control select2-allowclear" id="s2id_s2example-1"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-1">California</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen1" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1" id="s2id_autogen1"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen1_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1" id="s2id_autogen1_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1">   </ul></div></div><select class="form-control select2-offscreen" id="s2example-1" tabindex="-1" title=""> <option></option> <optgroup label="North America"> <option>Alabama</option> <option>Alaska</option> <option>Arizona</option> <option>Arkansas</option> <option selected="">California</option> <option>Colorado</option> <option>Connecticut</option> <option>Delaware</option> <option>Florida</option> <option>Georgia</option> <option>Hawaii</option> <option>Idaho</option> <option>Illinois</option> <option>Indiana</option> <option>Iowa</option> <option>Kansas</option> <option>Kentucky[C]</option> <option>Louisiana</option> <option>Maine</option> <option>Maryland</option> <option>Massachusetts[D]</option> <option>Michigan</option> <option>Minnesota</option> <option>Mississippi</option> <option>Missouri</option> <option>Montana</option> <option>Nebraska</option> <option>Nevada</option> <option>New Hampshire</option> <option>New Jersey</option> <option>New Mexico</option> <option>New York</option> <option>North Carolina</option> <option>North Dakota</option> <option>Ohio</option> <option>Oklahoma</option> <option>Oregon</option> <option>Pennsylvania[E]</option> <option>Rhode Island[F]</option> <option>South Carolina</option> <option>South Dakota</option> <option>Tennessee</option> <option>Texas</option> <option>Utah</option> <option>Vermont</option> <option>Virginia[G]</option> <option>Washington</option> <option>West Virginia</option> <option>Wisconsin</option> <option>Wyoming</option> </optgroup> <optgroup label="Europe"> <option>Albania</option> <option>Andorra</option> <option>Armenia</option> <option>Austria</option> <option>Azerbaijan</option> <option>Belarus</option> <option>Belgium</option> <option>Bosnia &amp; Herzegovina</option> <option>Bulgaria</option> <option>Croatia</option> <option>Cyprus</option> <option>Czech Republic</option> <option>Denmark</option> <option>Estonia</option> <option>Finland</option> <option>France</option> <option>Georgia</option> <option>Germany</option> <option>Greece</option> <option>Hungary</option> <option>Iceland</option> <option>Ireland</option> <option>Italy</option> <option>Kosovo</option> <option>Latvia</option> <option>Liechtenstein</option> <option>Lithuania</option> <option>Luxembourg</option> <option>Macedonia</option> <option>Malta</option> <option>Moldova</option> <option>Monaco</option> <option>Montenegro</option> <option>The Netherlands</option> <option>Norway</option> <option>Poland</option> <option>Portugal</option> <option>Romania</option> <option>Russia</option> <option>San Marino</option> <option>Serbia</option> <option>Slovakia</option> <option>Slovenia</option> <option>Spain</option> <option>Sweden</option> <option>Switzerland</option> <option>Turkey</option> <option>Ukraine</option> <option>United Kingdom</option> <option>Vatican City (Holy See)</option> </optgroup> <optgroup label="Asia"> <option>Afghanistan</option> <option>Bahrain</option> <option>Bangladesh</option> <option>Bhutan</option> <option>Brunei</option> <option>Cambodia</option> <option>China</option> <option>East Timor</option> <option>India</option> <option>Indonesia</option> <option>Iran</option> <option>Iraq</option> <option>Israel</option> <option>Japan</option> <option>Jordan</option> <option>Kazakhstan</option> <option>Korea North</option> <option>Korea South</option> <option>Kuwait</option> <option>Kyrgyzstan</option> <option>Laos</option> <option>Lebanon</option> <option>Malaysia</option> <option>Maldives</option> <option>Mongolia</option> <option>Myanmar (Burma)</option> <option>Nepal</option> <option>Oman</option> <option>Pakistan</option> <option>The Philippines</option> <option>Qatar</option> <option>Russia</option> <option>Saudi Arabia</option> <option>Singapore</option> <option>Sri Lanka</option> <option>Syria</option> <option>Taiwan</option> <option>Tajikistan</option> <option>Thailand</option> <option>Turkey</option> <option>Turkmenistan</option> <option>United Arab Emirates</option> <option>Uzbekistan</option> <option>Vietnam</option> <option>Yemen</option> </optgroup> </select> </div> </div> <div class="row"> <div class="col-sm-3"> <label class="control-label">Dashboard Widgets</label> </div> <div class="col-sm-9"> <script type="text/javascript">
+                  jQuery(document).ready(function($)
+                  {
+                      $("#multi-select").multiSelect({
+                          afterInit: function()
+                          {
+// Add alternative scrollbar to list
+                              this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar();
+                          },
+                          afterSelect: function()
+                          {
+// Update scrollbar size
+                              this.$selectableContainer.add(this.$selectionContainer).find('.ms-list').perfectScrollbar('update');
+                          }
+                      });
+                  });
+              </script> <select class="form-control" multiple="multiple" id="multi-select" name="my-select[]" style="position: absolute; left: -9999px;"> <option value="1" selected="">Dashboard Info</option> <option value="2" selected="">Latest News</option> <option value="3">Currency</option> <option value="4">Shopping Cart</option> <option value="5">Products</option> <option value="6" selected="">Blog Posts</option> <option value="7">Add New Product</option> <option value="8" selected="">Analytics</option> <option value="9" selected="">Emails</option> <option value="10" selected="">Users Management</option> </select><div class="ms-container" id="ms-multi-select"><div class="ms-selectable"><ul class="ms-list ps-container" tabindex="-1"><li selected="" class="ms-elem-selectable ms-selected" id="49-selectable" style="display: none;"><span>Dashboard Info</span></li><li selected="" class="ms-elem-selectable ms-selected" id="50-selectable" style="display: none;"><span>Latest News</span></li><li class="ms-elem-selectable" id="51-selectable"><span>Currency</span></li><li class="ms-elem-selectable" id="52-selectable"><span>Shopping Cart</span></li><li class="ms-elem-selectable" id="53-selectable"><span>Products</span></li><li selected="" class="ms-elem-selectable ms-selected" id="54-selectable" style="display: none;"><span>Blog Posts</span></li><li class="ms-elem-selectable" id="55-selectable"><span>Add New Product</span></li><li selected="" class="ms-elem-selectable ms-selected" id="56-selectable" style="display: none;"><span>Analytics</span></li><li selected="" class="ms-elem-selectable ms-selected" id="57-selectable" style="display: none;"><span>Emails</span></li><li selected="" class="ms-elem-selectable ms-selected" id="1567-selectable" style="display: none;"><span>Users Management</span></li><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 2px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></ul></div><div class="ms-selection"><ul class="ms-list ps-container" tabindex="-1"><li selected="" class="ms-elem-selection ms-selected" id="49-selection" style=""><span>Dashboard Info</span></li><li selected="" class="ms-elem-selection ms-selected" id="50-selection" style=""><span>Latest News</span></li><li class="ms-elem-selection" id="51-selection" style="display: none;"><span>Currency</span></li><li class="ms-elem-selection" id="52-selection" style="display: none;"><span>Shopping Cart</span></li><li class="ms-elem-selection" id="53-selection" style="display: none;"><span>Products</span></li><li selected="" class="ms-elem-selection ms-selected" id="54-selection" style=""><span>Blog Posts</span></li><li class="ms-elem-selection" id="55-selection" style="display: none;"><span>Add New Product</span></li><li selected="" class="ms-elem-selection ms-selected" id="56-selection" style=""><span>Analytics</span></li><li selected="" class="ms-elem-selection ms-selected" id="57-selection" style=""><span>Emails</span></li><li selected="" class="ms-elem-selection ms-selected" id="1567-selection" style=""><span>Users Management</span></li><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 2px;"><div class="ps-scrollbar-y" style="top: 0px; height: 0px;"></div></div></ul></div></div> </div> </div> <div class="row"> <div class="col-sm-3"> <label class="control-label">Newsletter Subscribe</label> </div> <div class="col-sm-9"> <label class="cbr-inline"> <div class="cbr-replaced cbr-checked cbr-info"><div class="cbr-input"><input type="checkbox" checked="" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div>
+                  Daily news about our portal
+              </label> <br> <label class="cbr-inline"> <div class="cbr-replaced cbr-checked cbr-danger"><div class="cbr-input"><input type="checkbox" checked="" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div>
+                  Reported issues and bug fixes
+              </label> <br> <label class="cbr-inline"> <div class="cbr-replaced cbr-checked cbr-success"><div class="cbr-input"><input type="checkbox" checked="" class="cbr cbr-done"></div><div class="cbr-state"><span></span></div></div>
+                  Latest offers and discounts
+              </label> </div> </div> </div> </div> </div> </form>
+
+          </div>
 
 
-<!-- Modal 1 (Basic)-->
-<div class="modal fade custom-width panelNoCopy" id="modal-estetica">
-    <div class="modal-dialog" style="width: 60%;">
-        <div class="modal-content">
-            <span class = "fa fa-spin fa-circle-o-notch" >< /span>
 
-        </div>
-    </div>
-</div>
+  </div>
 
-<div class="modal fade panelNoCopy" id="modal-estetica-chico">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <span class = "fa fa-spin fa-circle-o-notch" >< /span>
-
-        </div>
-    </div>
-</div>
-
-
-<script>
-$( ".cursor" ).hover(
-  function() {
-     $( this ).addClass( "hoverEL" );;
-  }, function() {
-     $( this ).removeClass( "hoverEL" );
-  }
-);
- 
-</script>

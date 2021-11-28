@@ -1,5 +1,7 @@
 package com.disenio.controller.mascotas;
 
+import com.disenio.dto.mascota.MascotaDTO;
+import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
@@ -10,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,15 +57,36 @@ public class MascotaController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public ResponseEntity<List<Mascota>> getMascotaAll() {
-        ResponseEntity<List<Mascota>> response;
+    public ResponseEntity<List<MascotaDTO>> getMascotaAll() {
+        ResponseEntity<List<MascotaDTO>> response;
 
-        List<Mascota> rtaMascotas = mascotasService.getMascotasAll();
+        List<MascotaDTO> rtaMascotas = mascotasService.getMascotasAll();
         if (rtaMascotas.isEmpty()) {
             response = ResponseEntity.noContent().build();
         } else {
             response = ResponseEntity.ok(rtaMascotas);
         }
         return response;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<MascotaDTO> getMascotaDTOById(@PathVariable("id") Integer id) {
+
+        MascotaDTO mascotaDTO = mascotasService.getMascotaDTOById(id);
+        if (mascotaDTO != null) {
+            return ResponseEntity.ok(mascotaDTO);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+    @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
+    public ResponseEntity<MascotaDTO> getMascotaByPersonasId(@PathVariable("id") Integer id) {
+
+        MascotaDTO mascotaDTO = mascotasService.getMascotaByPersonasId(id);
+        if (mascotaDTO != null) {
+            return ResponseEntity.ok(mascotaDTO);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 }
