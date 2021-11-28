@@ -12,11 +12,11 @@ const mascotas-persona = new Vue({
     }
 })
 
-const datos-persona = new Vue({
-    el:'#datos-persona',
+const datosPersona = new Vue({
+    el:'#datosPersona',
     data:{
-        persona
-    }
+        persona: 'hola'
+    },
     created(){
         fetch('http://localhost:8080/personas/1')
         .then(response => response.json())

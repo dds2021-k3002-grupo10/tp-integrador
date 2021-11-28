@@ -4,44 +4,48 @@
     <meta name="DISTRIBUTION" content="Global"/>
     <title>Patitas</title>
     <meta name="application-name" content="patitas.com.ar"/>
-
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Alexander Ortega">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/xenon-components.css">
-    <link rel="stylesheet" href="assets/css/xenon-core.css">
-    <link rel="stylesheet" href="assets/css/xenon-forms.css">
-    <link rel="stylesheet" href="assets/css/xenon-skins.css">
-    <link rel="stylesheet" href="assets/css/xenon.css">
-    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/js/uikit/uikit.css">
-    <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/js/jquery-ui/jquery-ui.theme.min.css">
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
-
 <body>
-<div id="appVue">
-
-    <table class="table table-bordered table-striped">
-        <tr v-for="mascota in mascotas">
-            <td>{{mascota.nombre}}</td>
-            <td>{{mascota.idMascota}} </td>
-            <td><button>Ver</button></td>
-        </tr>
-    </table>
-
-</div>
+<section class="profile-env">
+    <div class="row">
+        <div class="col-sm-3" id="datosPersona">
+            <div class="user-info-slidebar">
+                <a href="#" class="user-img"><img src="https://cdn-icons-png.flaticon.com/128/3135/3135707.png" class="img-circle" alt="user-pic"></a>
+                <hr>
+                <span class="user-title"><strong>Usuario</strong>: {{persona.nombre }} {{persona.apellido}}</span><br>
+                <span> <strong>Numero de usuario</strong>: {{persona.idPersona}} </span>
+            </div>
+        </div>
+        <div class="col-sm-9" id="mascotas">
+            <strong>Mis mascotas</strong>
+            <hr>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Numero de la mascota</th>
+                    <th>Nombre de la mascota</th>
+                    <th>Fecha de nacimiento</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="mascota in mascotas">
+                    <td>{{mascota.idMascota}} </td>
+                    <td>{{mascota.nombre}}</td>
+                    <td>{{mascota.fechaNacimiento}}</td>
+                    <td><button><a :href="'mascotaDetalle.html?id=' + mascota.idMascota">Ver</a></button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 </body>
 
 <script>
     var app = new Vue({
-        el: "#appVue",
+        el: "#mascotas",
         data: {
-            // mascotasHardcode: [{id: 1, nombre: "Juan", raza: "PEPE"}, {id: 1, nombre: "Juana", raza: "PEPA"}],
             mascotas: []
         },
         created () {
@@ -52,12 +56,19 @@
                 })
         }
     })
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
+    var datosPersona = new Vue({
+    el:'#datosPersona',
+    data:{
+        persona: 'hola'
+    },
+    created(){
+        fetch('http://localhost:8080/personas/1')
+        .then(response => response.json())
+        .then(data =>{
+            this.persona = data
+        })
+    }
 })
 </script>
+<script src="js/vue-test.js"></script>
 </html>

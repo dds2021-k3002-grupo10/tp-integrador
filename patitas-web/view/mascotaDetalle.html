@@ -1,11 +1,73 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h1>hola</h1>
-    </div>
+<html>
+<head>
+    <meta name="LANGUAGE" content="es"/>
+    <meta name="DISTRIBUTION" content="Global"/>
+    <title>Patitas</title>
+    <meta name="application-name" content="patitas.com.ar"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/xenon-custom.js"></script>
+</head>
+<body>
+<div class="main-content">
+    <section class="profile-env">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdFLnHEH09ySL3nccvfcNlsj7qD5aOtyMdIw&usqp=CAU" class="img-circle" alt="user-pic">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-6">
+                <h4>Tipo: Perro</h4>
+                <h4>Nombre: Batata</h4>
+                <h4>Apodo: Gordo</h4>
+                <h4>Edad: 4</h4>
+                <h4>Sexo: Macho</h4>
+                <h4>Descripcion: Tamaño medio, tricolor, orejas grandes</h4>
+                <!-- aca iria info tales como perro/gato, nombre, apodo, edad, sexo, descripcion fisica-->
+            </div>
+        </div>
+        <hr>
+        <div class="col-sm-12">
+            <strong>Caracteristicas:</strong>
+            <hr>
+            <p>
+                Castrado? Si
+            </p>
+            <p>
+                Colores? Negro, Marron, Blanco
+            </p>
+            <p>
+                Agresivo? No
+            </p>
+            <!-- aca irian los detalles de las características -->
+        </div>
+    </section>
 </div>
+</body>
+</html>
 
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/xenon-custom.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script src="js/vue.js"></script>
+
+<script>
+    const datosMascota = new Vue({
+    el:'#datosMascota',
+    data:{
+        mascota: 'test'
+    },
+    created(){
+        fetch('http://localhost:8080/mascota/1')
+        .then(response => response.json())
+        .then(data =>{
+            this.persona = data
+        })
+    }
+})
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
