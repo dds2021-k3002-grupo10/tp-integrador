@@ -9,6 +9,7 @@ import com.disenio.services.usuarios.RolService;
 import com.disenio.services.usuarios.UsuarioOrganizacionService;
 import com.disenio.services.usuarios.UsuarioRolService;
 import com.disenio.services.usuarios.UsuarioService;
+import com.disenio.services.validador.impl.CriterioClaveDebil;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
@@ -118,6 +119,7 @@ public class UsuarioController {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"description\":\"El password no cumple los requisitos del TP \"}");
         }
+        //Agregar los dos criterios de validacion de clave. REGEX y Clave debil
         return null;
     }
 }
