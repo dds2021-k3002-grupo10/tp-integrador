@@ -11,9 +11,25 @@ const app = new Vue({
                 this.organizaciones = data
             })
     },
-    methods:{
-        ir(){
-          console.log(this.nombre);
+    methods: {
+
+        saludar:function (id){
+            localStorage.setItem("IDORGANIZACION", id) //guarda ID
+            $(location).attr('href','principal-nav.html')
+           /* $.ajax({
+                url: "principal.html",
+                async: true,
+                dataType: "html",
+                type: "GET",
+                complete: function () {
+                },
+                success: function (html) {
+
+                   $('#navegacionAjax').html("");
+            $('body').html(html);
+
+                }
+            });*/
         }
     }
 })
