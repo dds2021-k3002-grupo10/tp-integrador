@@ -8,6 +8,7 @@
 .cursor{
     cursor: pointer
 }
+.bordes:hover{ border:1px solid #2C3E50}
 
 #color1,#color2,#color3,#color4{
     text-align: -webkit-center;

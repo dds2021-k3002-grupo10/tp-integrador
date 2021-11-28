@@ -1,101 +1,50 @@
-
-<h3><strong>Registrar</strong></h3>
+<h3><strong>Registar</strong></h3>
 
 <div class="col-md-12">
-    <h4 class="title"> 
-        <strong>Presentación:</strong>
+    <h4 class="title">
+        <strong>Empadronamiento de Personas con sus mascotas:</strong>
     </h4>
-<br>
-    <p class="parrafo">
-        <strong class="text-primary">Fundada en 1977 por iniciativa de Roberto Harari, Mayéutica-Institución Psicoanalítica sostiene desde un comienzo, constituyendo este su objetivo esencial, la formación de analistas en torno a las enseñanzas de los maestros Freud y Lacan, considerando esta vía condición imprescindible para encauzar una clínica que se diga lacaniana.</strong>
-    </p>
-    <p class="parrafo">
-        <strong class="text-primary">La práctica analítica reconoce su legítimo lugar de transmisión en el propio análisis del analista, sin embargo, es en el seno de la institución donde los analistas pueden dar cuenta de ella, y con otros, autorizarse de sí mismos. En esta dirección, innovadores artificios para la transmisión de la experiencia clínica son propiciados en Mayéutica, siendo la institución el lugar de una puesta en acto siempre diversa y singular. El analista entonces, en otra escena, para la cual la institución ofrece el necesario soporte.</strong>
-    </p> <!--button class="btn btn-orange btn-xs" onclick="tiendavirtual()" style="margin-left: 10px">ir a tienda online</button--> </p>
-<br>
+    <br>
+    <br>
 
 </div>
 <!-- 1ra fila -->
-<div class="row"> 
+<div class="row">
     <div class="col-sm-4">
-        <div class="xe-widget xe-counter xe-counter-blue cursor"  onclick="showAjaxModalInstitucional('consejoDirectivo');"> 
-            <div class="xe-icon"> 
-                <i class="linecons-user"></i> 
-            </div> 
-            <div class="xe-label"> 
-                <strong>Consejo directivo</strong> 
+        <div class="xe-widget xe-counter xe-counter-blue cursor bordes"  id="altaMascota" onclick="registrarAltaMascota('altaMascota');">
+            <div class="xe-icon">
+                <i class="linecons-user"></i>
             </div>
-        </div> 
+            <div class="xe-label">
+                <strong>Alta persona - Mascota</strong>
+            </div>
+        </div>
     </div>
     <div class="col-sm-4">
-        <div class="xe-widget xe-counter xe-counter-blue cursor"  onclick="showAjaxModalInstitucional('organoGarantia');"> 
-            <div class="xe-icon"> 
-                <i class="linecons-user"></i> 
-            </div> 
-            <div class="xe-label" > 
-                <strong>Organo de garantia y designaciones</strong> 
+        <div class="xe-widget xe-counter xe-counter-blue cursor bordes"
+             onclick="showAjaxModalInstitucional('busquedaMascota');">
+            <div class="xe-icon">
+                <i class="fa fa-paw"></i>
             </div>
-        </div> 
-    </div>
-    <div class="col-sm-4">
-        <div class="xe-widget xe-counter xe-counter-blue cursor"  onclick="showAjaxModalInstitucional('miembros');"> 
-            <div class="xe-icon"> 
-                <i class="linecons-user"></i> 
-            </div> 
-            <div class="xe-label" > 
-                <strong>Miembros</strong> 
+            <div class="xe-label">
+                <strong>Buscar Mascota por Documento</strong>
             </div>
-        </div> 
-    </div>
-
-</div>
-<!-- 2da fila -->
-<div class="row"> 
-    <div class="col-sm-4">
-        <div class="xe-widget xe-counter xe-counter-blue cursor"  onclick="showAjaxModalInstitucional('adherentes');"> 
-            <div class="xe-icon"> 
-                <i class="linecons-user"></i> 
-            </div> 
-            <div class="xe-label" > 
-                <strong>Adherentes</strong> 
-            </div>
-        </div> 
-    </div>
-    <div class="col-sm-4">
-        <div class="xe-widget xe-counter xe-counter-blue cursor"  onclick="showAjaxModalInstitucional('participantes');"> 
-            <div class="xe-icon"> 
-                <i class="linecons-user"></i> 
-            </div> 
-            <div class="xe-label" > 
-                <strong>Participantes</strong> 
-            </div>
-        </div> 
-    </div>
-    <div class="col-sm-4">
-        <div class="xe-widget xe-counter xe-counter-blue cursor"  onclick="showAjaxModalInstitucional('documentos');"> 
-            <div class="xe-icon"> 
-                <i class="linecons-user"></i> 
-            </div> 
-            <div class="xe-label" > 
-                <strong>Documentos</strong> 
-            </div>
-        </div> 
+        </div>
     </div>
 
 
 </div>
-
-
 
 
 <!-- Modal 1 (Basic)-->
 <div class="modal fade custom-width" id="modal-institucional">
     <div class="modal-dialog" style="width: 80%;">
         <div class="modal-content">
-            <span class = "fa fa-spin fa-circle-o-notch" >< /span>
+            <span class="fa fa-spin fa-circle-o-notch"></span>
 
         </div>
     </div>
 </div>
+
 
 
