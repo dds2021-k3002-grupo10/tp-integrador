@@ -11,10 +11,15 @@ import javax.persistence.*;
 public abstract class PublicacionAdopcion extends Publicacion {
 
     private Cuestionario cuestionario;
+    private String descripcion;
 
     //Constructors
-    protected PublicacionAdopcion(Persona autor) {
+    protected PublicacionAdopcion(Persona autor, String descripcion) {
         super(autor);
+        if (descripcion == null) {
+            descripcion = "";
+        }
+        this.descripcion = descripcion;
     }
 
     public PublicacionAdopcion() {
@@ -32,4 +37,13 @@ public abstract class PublicacionAdopcion extends Publicacion {
         this.cuestionario = cuestionario;
     }
 
+
+    @Column(name = "DESCRIPCION")
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

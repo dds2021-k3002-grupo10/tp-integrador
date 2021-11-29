@@ -1,0 +1,76 @@
+<div class="panel panel-default ">
+    <div class="panel-heading ">
+        <h1 class="text-center"> Personas que buscan adoptar</h1>
+        <br>
+        <br>
+        <p class="text-gray">Aca encontraras a personas que estan en busqueda de una mascota que le cambie la vida. Si
+            crees que alguno de ellos puede ser el mejor dueño para tu mascota, contactalo!</p>
+    </div>
+    <div class="panel-body">
+        <ul class="highlights list-group" data-max-height="400"
+            style="max-height: 600px; overflow-y: auto;overflow-x: hidden">
+            <!-- 1ra fila -->
+            {{#publicacion}}
+                <li class="list-item publicacion-contenedor " style="margin: 50px 2.5rem;">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 d-flex col-sm-12 ">
+                            <div class="imagen-contenido margenEC text-center" style="margin: 0 auto;">
+                                <h3 class="title p-1 ">{{autor.nombre}} {{autor.apellido}} </h3>
+                                <img src="https://cdn.pixabay.com/photo/2020/12/28/01/01/man-5865608_960_720.jpg"
+                                     class="thumb img-responsive img-cirlce" alt="" width="250 height="250"/>
+
+                            </div>
+                        </div>
+                        <p class="text-gray d-flex justify-end fecha-publicacion text-bold hidden-md">
+                            <small>{{fecha}}</small></p>
+                        <div class="col-md-6 col-lg-8  col-sm-12 ">
+
+
+                            <div class="flex-column">
+                                <div class="publicacion-adoptar-contenido">
+                                    <h4 class="text-underline">Sobre la persona</h4>
+                                    <div class="publicacion-info">
+
+
+                                        <div class="d-flex justify-between align-item-center ">
+                                            <p><span><i
+                                                    class="fas fa-paw"></i>  Nombre</span>: {{autor.nombre}}
+                                            </p>
+                                            <p style="padding-right: 1rem"><span><i
+                                                    class="fas fa-paw"></i>  Apellido</span>:{{autor.apellido}}</p>
+
+
+                                        </div>
+                                        <p style="padding-right: 1rem"><span><i
+                                                class="fas fa-paw"></i>  Edad</span>:{{autor.edad}} años</p>
+                                        <p><span><i
+                                                class="fas fa-paw"></i>  Observacion del adoptante</span>: {{descripcion}}
+                                        </p>
+
+                                    </div>
+                                    <h4 class="text-underline">Caracteristicas</h4>
+                                    <div class="publicacion-info">
+                                        {{#cuestionario.preguntas}}
+                                        <p><i class="fas fa-info"></i> <span
+                                                class="text-capitalize">{{faq.descripcionFaq}}
+                                            ({{faq.faqPreguntaTipo.descripcionFaq}}):
+                                            {{#faq.faqRespuestaValors}}
+                                                {{#caracteristicaDetalleValors}} {{descripcion}} {{/caracteristicaDetalleValors}} {{/faq.faqRespuestaValors}}
+                                        {{/cuestionario.preguntas}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-evenly publicacion-botonera ">
+                                    <button class="btn btn-terciary btn-icon"><i class="fa-solid fa-phone"></i>
+                                        <span>Contactar!</span></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </li>
+            {{/publicacion}}
+        </ul>
+    </div>
+</div>
+
