@@ -21,6 +21,7 @@ public class DTOMascota implements Serializable {
     SexoMascota sexo;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TipoMascota tipoMascota;
+    String foto;
     String nombre;
     String apodo;
     String descripcionFisica;
@@ -47,6 +48,7 @@ public class DTOMascota implements Serializable {
         this.apodo = mascota.getApodo();
         this.descripcionFisica = mascota.getDescripcionFisica();
         this.caracteristicas = mascota.getCaracteristicaDetalles().stream().map(DTOMascotaCaracteristica::new).collect(Collectors.toList());
+        this.foto = mascota.getMascotaFotos().stream().findFirst().get().getValorFoto();
     }
 
     //Getters and Setters
@@ -106,5 +108,21 @@ public class DTOMascota implements Serializable {
 
     public void setDescripcionFisica(String descripcionFisica) {
         this.descripcionFisica = descripcionFisica;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public List<DTOMascotaCaracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(List<DTOMascotaCaracteristica> caracteristicas) {
+        this.caracteristicas = caracteristicas;
     }
 }
