@@ -248,7 +248,12 @@
                 {{> adoptar }}
             {{/esPublicacionAdoptar}}
             {{^esPublicacionAdoptar}}
-                {{> perdida }}
+                {{#esPublicacionAdoptante}}
+                    {{> adoptante }}
+                {{/esPublicacionAdoptante}}
+                {{^esPublicacionAdoptante}}
+                    {{> perdida }}
+                {{/esPublicacionAdoptante}}
             {{/esPublicacionAdoptar}}
 
             <!-- aca se cargan las paginas ajax-->

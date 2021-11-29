@@ -25,6 +25,9 @@ public class Mascota implements java.io.Serializable {
     @Column(name = "ID_MASCOTA", unique = true, nullable = false)
     private Integer idMascota;
 
+    @Column(name = "EDAD", unique = true, nullable = false)
+    private Integer edad;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PERSONA", nullable = false)
     private Persona persona;

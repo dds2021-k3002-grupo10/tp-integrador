@@ -1,8 +1,10 @@
 package com.disenio.controller.view;
 
-import com.disenio.model.publicaciones.PublicacionAdopcion;
+import com.disenio.model.personas.Persona;
+import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
 import com.disenio.model.publicaciones.PublicacionPerdida;
+import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class ViewPublicaciones {
     @Autowired
     private PublicacionService publicacionService;
+    @Autowired
+    private PersonaService personaService;
 
     @GetMapping("/perdida")
     public ModelAndView displayArticle(Map<String, Object> model) {
@@ -31,7 +35,16 @@ public class ViewPublicaciones {
     public ModelAndView viewPublicacionAdoptar(Map<String, Object> model) {
         List<PublicacionDarAdopcion> publicaciones = publicacionService.listarDarAdopcion();
         model.put("publicacion", publicaciones);
-        model.put("esPublicacionAdoptar",true);
+        model.put("esPublicacionAdoptar", true);
+
+        return new ModelAndView("principal", model);
+    }
+
+    @GetMapping("/adoptante")
+    public ModelAndView viewPublicacionAdoptante(Map<String, Object> model) {
+        List<PublicacionAdoptante> publicaciones = publicacionService.listarAdoptante();
+        model.put("publicacion", publicaciones);
+        model.put("esPublicacionAdoptante", true);
 
         return new ModelAndView("principal", model);
     }
