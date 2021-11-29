@@ -17,6 +17,6 @@ public interface MascotasService {
 
     MascotaDTO getMascotaDTOById(Integer id);
 
-    MascotaDTO getMascotaByPersonasId(Integer id);
+    List<MascotaDTO> getMascotaByPersonasId(Integer id);
 
 }

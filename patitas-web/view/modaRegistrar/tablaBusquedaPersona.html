@@ -1,0 +1,28 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Resultado de busqueda</h3>
+    </div>
+    <div class="panel-body">
+        <p>{{ nombre }}</p>
+
+        <table class="table table-bordered table-striped table-condensed table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="mascota in mascotas">
+                <td>{{mascota.idMascota}} </td>
+                <td>{{mascota.nombre}}</td>
+                <td>{{mascota.fechaNacimiento}}</td>
+                <td><button><a :href="'mascotaDetalle.html?id=' + mascota.idMascota">Ver</a></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

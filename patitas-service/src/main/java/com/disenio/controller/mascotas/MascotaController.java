@@ -77,14 +77,18 @@ public class MascotaController {
             return ResponseEntity.noContent().build();
         }
     }
-    @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
-    public ResponseEntity<MascotaDTO> getMascotaByPersonasId(@PathVariable("id") Integer id) {
 
-        MascotaDTO mascotaDTO = mascotasService.getMascotaByPersonasId(id);
-        if (mascotaDTO != null) {
-            return ResponseEntity.ok(mascotaDTO);
+    @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<MascotaDTO>> getMascotaByPersonasId(@PathVariable("id") Integer id) {
+        ResponseEntity<List<MascotaDTO>> response;
+        List<MascotaDTO> rtaMascotas = mascotasService.getMascotaByPersonasId(id);
+
+        if (rtaMascotas.isEmpty()) {
+            response = ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.noContent().build();
+            response = ResponseEntity.ok(rtaMascotas);
         }
+        return response;
+
     }
 }
