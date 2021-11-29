@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Calendar;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -57,7 +58,7 @@ public class Persona implements java.io.Serializable {
     private char estado;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
-    private List<PersonaDocumento> personaDocumentos ;
+    private List<PersonaDocumento> personaDocumentos;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
     private List<PersonaContacto> personaContactos;
@@ -66,7 +67,7 @@ public class Persona implements java.io.Serializable {
     private List<PersonaDireccion> personaDireccions;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
-    private List<Mascota> mascotas ;
+    private List<Mascota> mascotas;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
     private List<Usuario> usuarios;
@@ -77,6 +78,19 @@ public class Persona implements java.io.Serializable {
     //Funcionalidad
     public void notificar(String mensaje) {
         /*TODO magia notificacion*/
+    }
+
+    public int edad() {
+        Calendar now = Calendar.getInstance();
+        Calendar bdThisYear = Calendar.getInstance();
+        int age = now.get(Calendar.YEAR) - this.fechaNacimiento.get(Calendar.YEAR);
+        if (bdThisYear.after(now))
+            age--;
+        return age;
+    }
+
+    public int cantMascotas() {
+        return mascotas.size();
     }
 
 }
