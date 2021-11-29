@@ -1,0 +1,195 @@
+.parrafo {
+    /* margin-bottom: -2px !important*/
+}
+
+.h3 {
+    font-size: 19px
+}
+
+.cursor {
+    cursor: pointer
+}
+
+#color1, #color2, #color3, #color4 {
+    text-align: -webkit-center;
+    background-color: #fff;
+    padding: 10px;
+    border: 3px solid #fff;
+}
+
+.padre {
+    width: 100%;
+    display: table;
+    height: 172.45px;
+}
+
+.hijo {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 18px;
+    font-weight: bolder;
+    /* color: #1e1e1e;*/
+}
+
+.version {
+    border-bottom: 1px solid #ccc
+}
+
+.colorFondo {
+
+    background-color: #FCEADE;
+
+}
+
+.colorBordeLeftCyQ {
+    border-left: 5px solid #E3E3E1;
+}
+
+.colorBordeLeftEyL {
+    border-left: 5px solid #E5E8DF;
+}
+
+.colorBordeLeftPyC {
+    border-left: 5px solid #FCEADE;
+}
+
+
+.hoverEL {
+
+    border: 4px solid #ccc !important;
+}
+
+.hoverHome {
+    border: 2px solid #ccc !important;
+}
+
+
+.hoverEC {
+
+    border: 4px solid #dedbdb !important;
+}
+
+
+.margenEC {
+    margin-top: 10px;
+}
+
+.lineaBordeEC {
+    border-bottom: 4px solid #FCEADE;
+}
+
+.lineaBordeEL {
+    border-bottom: 4px solid #E5E8DF;
+}
+
+.lineaBordeEQ {
+    border-bottom: 4px solid #E3E3E1;
+}
+
+.fondoBotonEL {
+    background-image: url("http://www.mgrderma.com.ar/images/backgrounds/fondoGris.jpg") !important;
+    border: 4px solid #dce0d3;
+}
+
+.fondoBotonEC {
+
+    background-color: #FCEADE !important;
+    border: 4px solid #e4e4e4;
+    color: #717171 !important;
+
+}
+
+.colorDiamante {
+    color: #b7aaaa !important;
+}
+
+.letraEL {
+    color: #6b6565 !important;
+    min-height: 83px
+}
+
+.linkContacto {
+    cursor: pointer;
+    border: 1px solid #fdb381;
+    padding: 0 4px 0 4px;
+}
+
+
+.d-flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-evenly {
+    justify-content: space-evenly !important;
+}
+
+.justify-end {
+    justify-content: flex-end !important;
+}
+
+.align-item-center {
+    align-items: center;
+}
+
+.publicacion-contenedor {
+    padding: 1rem;
+    border: 1px rgba(0, 0, 0, 0.12) solid;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.12);
+
+}
+
+.publicacion-botonera {
+    padding: 2.5rem 0rem;
+}
+
+.publicacion-botonera button {
+    min-width: 100%;
+    border-radius: 1rem;
+}
+
+.imagen-contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    scroll-color: red blue;
+    scrollbar-width: thin;
+}
+
+.imagen-contenido {
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.text-underline {
+    text-decoration: underline;
+    padding: .5rem;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.fecha-publicacion {
+    margin-right: 1rem;
+}
+
+.publicacion-info {
+    padding: 0 2rem;
+}
+
+.btn-terciary {
+    background-color: #68b828;
+    color: #fff;
+}
+
+.btn-terciary:hover {
+    background-color: #5ca323;
+    color: #FFF;
+}

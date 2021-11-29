@@ -7,4 +7,5 @@ import java.util.List;
 public interface TipoMascotaService {
 
     List<TipoMascota> getAllTipoMascota();
+    TipoMascota getById(Integer id);
 }

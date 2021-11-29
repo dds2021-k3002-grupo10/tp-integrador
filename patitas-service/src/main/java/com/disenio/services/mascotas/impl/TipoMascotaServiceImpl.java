@@ -17,4 +17,9 @@ public class TipoMascotaServiceImpl implements TipoMascotaService {
     public List<TipoMascota> getAllTipoMascota() {
         return tipoMascotaDAO.findAll();
     }
+
+    @Override
+    public TipoMascota getById(Integer id) {
+        return tipoMascotaDAO.getById(id);
+    }
 }
