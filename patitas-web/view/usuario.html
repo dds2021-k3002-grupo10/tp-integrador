@@ -9,15 +9,15 @@
 <body>
 <section class="profile-env">
     <div class="row">
-        <div class="col-sm-3" id="datosPersona">
+        <div class="col-sm-2" id="datosPersona">
             <div class="user-info-slidebar">
                 <a href="#" class="user-img"><img src="https://cdn-icons-png.flaticon.com/128/3135/3135707.png" class="img-circle" alt="user-pic"></a>
                 <hr>
-                <span class="user-title"><strong>Usuario</strong>: {{persona.nombre }} {{persona.apellido}}</span><br>
-                <span> <strong>Numero de usuario</strong>: {{persona.idPersona}} </span>
+                <span> <strong>Numero de usuario</strong>: {{persona.idPersona}} </span><br>
+                <span class="user-title"><strong>Nombre</strong>: {{persona.nombre }} {{persona.apellido}}</span>
             </div>
         </div>
-        <div class="col-sm-9" id="mascotas">
+        <div class="col-sm-10" id="mascotas">
             <strong>Mis mascotas</strong>
             <hr>
             <table class="table table-bordered table-striped">
@@ -33,7 +33,6 @@
                     <td>{{mascota.idMascota}} </td>
                     <td>{{mascota.nombre}}</td>
                     <td>{{mascota.fechaNacimiento}}</td>
-                    <!--<td><button><a v-bind:href="'view/detalleMascota.html?id=' + mascota.idMascota">Ver</a></button></td>-->
                     <td><button><a href="#" v-on:click="hola(mascota.idMascota)">Ver</a></button></td>
                 </tr>
                 </tbody>
@@ -90,5 +89,4 @@
     }
 })
 </script>
-<script src="js/vue-test.js"></script>
 </html>
