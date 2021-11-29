@@ -1,0 +1,76 @@
+<div class="panel panel-default" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <h3><strong>Autenticacion</strong></h3>
+
+    <div class="col-md-12">
+        <h4 class="title">
+            <strong>Login</strong>
+        </h4>
+        <br>
+        <br>
+
+    </div>
+    <!-- 1ra fila -->
+
+    <div id="appVue" class="container">
+
+        <!--    INPUT TEXTO-->
+        <div class="row">
+            <div class="col">
+
+                <div class="form">
+
+                    <div class="form-group">
+                        <input placeholder="usuario" v-model="usuario" type="text" id="usuario" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <input placeholder="clave" v-model="clave" type="password" id="clave"
+                               class="form-control">
+                    </div>
+
+                </div>
+
+                <br>
+
+                <button class="btn btn-primary" v-on:click="auth">Login</button>
+                <div>{{mensaje}}</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#appVue",
+            data: {
+                usuario: "",
+                clave: "",
+                mensaje: "No estoy logueado",
+            },
+            methods: {
+                auth: function () {
+                    fetch("http://localhost:8080/usuario/login", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            usuario: this.usuario,
+                            clave: this.clave
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(datos => {
+                            localStorage.setItem("IDSESION", datos.idSesion) //guarda ID
+                            $('#navegacionAjax').html("");
+                            $('#navegacionAjax').html(html);
+                        })
+                }
+            }
+        })
+    </script>
+</div>
+</body>
+
+
+
+

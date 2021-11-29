@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/publicaciones/perdidas")
 public class PublicacionPerdidasController {
     @Autowired

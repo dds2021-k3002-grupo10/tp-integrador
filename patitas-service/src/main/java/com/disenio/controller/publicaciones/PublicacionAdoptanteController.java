@@ -6,9 +6,9 @@ import com.disenio.dto.publicacion.DTOPublicacionAdoptante;
 import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
+import com.disenio.model.usuarios.Usuario;
 import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/publicaciones/adopciones/adoptar")
 public class PublicacionAdoptanteController {
 
@@ -58,11 +59,20 @@ public class PublicacionAdoptanteController {
 
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<DTOResponse> getPublicacionAdptanteID(@PathVariable("id") Integer id) {
+    public ResponseEntity<DTOResponse> getPublicacionAdptanteID(@PathVariable("id") Integer id, HttpServletRequest request) {
         DTOResponse dtoResponse = new DTOResponse();
 
         PublicacionAdoptante publicacion = (PublicacionAdoptante) publicacionService.getById(id).orElseGet(null);
         DTOPublicacionAdoptante dtoPublicacion = new DTOPublicacionAdoptante(publicacion);
+
+        Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+
+        if (usuario != null) {
+            System.out.println("El nombre del usuario es:"+usuario.getNombre());
+        } else {
+            System.out.println("No hay session");
+        }
+
 
         if (dtoPublicacion.getAutor() == null) {
             dtoResponse.setStatus(HttpStatus.NO_CONTENT);

@@ -154,6 +154,10 @@ function mapa() {
         }
     });
 
+function auth(){
+    $.ajax()
+
+}
 }
 
 

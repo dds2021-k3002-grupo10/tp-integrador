@@ -4,12 +4,14 @@ import com.disenio.model.faq.FaqPreguntaTipo;
 import com.disenio.services.faq.FaqPreguntaTipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 @RestController
+@CrossOrigin
 @RequestMapping("/preguntas-tipo")
 public class FaqPreguntaTipoController {
     @Autowired

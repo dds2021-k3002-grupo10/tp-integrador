@@ -15,6 +15,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/faq")
 public class FaqController {
     private static final Logger LOGGER = Logger.getLogger(FaqController.class);

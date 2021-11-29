@@ -7,6 +7,7 @@ import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
 import com.disenio.model.personas.Persona;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class MascotaDTO {
     private Integer idMascota;
     private PersonaDTO persona;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private SexoMascotaDTO sexoMascota;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoMascotaDTO tipoMascota;
     private String nombre;
     private String apodo;
@@ -27,7 +30,9 @@ public class MascotaDTO {
     private Calendar fechaNacimiento;
     private String descripcionFisica;
     private char estado;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<CaracteristicaDetalleDTO> caracteristicaDetalles;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<MascotaFotoDTO> mascotaFotos;
 
 }

@@ -49,7 +49,7 @@
             mascotas: []
         },
         created () {
-            fetch('http://localhost:8080/mascota/7')
+            fetch('http://localhost:8080/mascota/1')
                 .then(response => response.json())
                 .then(data => {
                     this.mascotas = data
@@ -81,7 +81,7 @@
         persona: 'hola'
     },
     created(){
-        fetch('http://localhost:8080/personas/24')
+        fetch('http://localhost:8080/personas/'+localStorage.getItem("IDSESION"))
         .then(response => response.json())
         .then(data =>{
             this.persona = data

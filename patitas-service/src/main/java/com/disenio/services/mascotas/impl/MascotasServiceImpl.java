@@ -90,4 +90,11 @@ public class MascotasServiceImpl implements MascotasService {
         }
         return mascotaDTO;
     }
+
+    @Override
+    public List<Mascota> getAllMascotasByIdPersona(Integer idPersona) {
+        List<Mascota> mascotas  =mascotaDAO.MascotasSegunID(idPersona).get();
+        return mascotas;
+    }
+
 }

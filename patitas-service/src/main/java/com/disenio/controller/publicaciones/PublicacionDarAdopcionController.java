@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/publicaciones/adopciones/dar")
 public class PublicacionDarAdopcionController {
 

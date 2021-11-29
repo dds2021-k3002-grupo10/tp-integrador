@@ -1,26 +1,26 @@
 package com.disenio.controller.mascotas;
 
 import com.disenio.dto.mascota.MascotaDTO;
-import com.disenio.dto.persona.PersonaDTO;
-import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
 import com.disenio.services.mascotas.MascotasService;
 import com.disenio.services.mascotas.SexoMascotaService;
 import com.disenio.services.mascotas.TipoMascotaService;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/mascota")
 public class MascotaController {
     private static final Logger LOGGER = Logger.getLogger(MascotaController.class);
+    private static final ModelMapper modelMapper = new ModelMapper();
     @Autowired
     TipoMascotaService tipoMascotaService;
     @Autowired
@@ -77,10 +77,15 @@ public class MascotaController {
             return ResponseEntity.noContent().build();
         }
     }
-    @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
-    public ResponseEntity<MascotaDTO> getMascotaByPersonasId(@PathVariable("id") Integer id) {
 
-        MascotaDTO mascotaDTO = mascotasService.getMascotaByPersonasId(id);
+    @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<MascotaDTO>> getMascotaByPersonasId(@PathVariable("id") Integer id) {
+
+        List<MascotaDTO> mascotaDTO = mascotasService.getAllMascotasByIdPersona(id).stream().map(mascota ->
+
+                modelMapper.map(mascota, MascotaDTO.class)
+        ).collect(Collectors.toList());
+
         if (mascotaDTO != null) {
             return ResponseEntity.ok(mascotaDTO);
         } else {

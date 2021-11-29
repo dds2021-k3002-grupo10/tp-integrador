@@ -111,7 +111,33 @@ function usuario() {
         }
     });
 }
+function login() {
+    $.ajax({
+        url: "view/login.html",
+        async: true,
+        dataType: "html",
+        type: "GET",
+        error: function () {
+            alert("Se a producido un error");
+        },
+        complete: function () {
+            $('#usuario').addClass("active");
 
+            $('#navegacionAjax').addClass("colorBordeLeftEyL");
+
+            funcNoCopy();
+        },
+        success: function (html) {
+            $('#navegacionAjax').html("");
+            $('#navegacionAjax').html(html);
+            $('.abierto').removeClass("active");
+
+            $('#navegacionAjax').removeClass("colorBordeLeftCyQ");
+            $('#navegacionAjax').removeClass("colorBordeLeftEyL");
+            $('#navegacionAjax').removeClass("colorBordeLeftPyC");
+        }
+    });
+}
 function publicacion() {
     $.ajax({
         url: "localhost:8080/view/publicacion/perdida",
@@ -146,6 +172,8 @@ function mapa() {
             jQuery('#modal-mapa .modal-content').html(response);
         }
     });
+
+
 
 }
 

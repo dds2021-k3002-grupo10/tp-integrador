@@ -7,6 +7,7 @@ import com.disenio.model.publicaciones.PublicacionPerdida;
 import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 @RequestMapping("view/publicacion")
 public class ViewPublicaciones {
     @Autowired

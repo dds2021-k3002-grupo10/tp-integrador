@@ -1,5 +1,6 @@
 package com.disenio.controller.usuarios;
 
+import com.disenio.dto.persona.UsuarioDTO;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.usuarios.Rol;
 import com.disenio.model.usuarios.Usuario;
@@ -11,7 +12,6 @@ import com.disenio.services.usuarios.UsuarioRolService;
 import com.disenio.services.usuarios.UsuarioService;
 import com.disenio.services.validador.impl.CriterioClaveDebil;
 import com.disenio.services.validador.impl.CriterioRegex;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 import org.apache.log4j.Logger;
@@ -19,15 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/usuario")
 
 public class UsuarioController {
@@ -75,18 +73,23 @@ public class UsuarioController {
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
-        ResponseEntity<String> response;
-
-        Usuario rtaUsuario = usuarioService.getByNombre(usuario.getNombre());
-
-        if (rtaUsuario.getClave() != usuario.getClave() ) {
+    @PostMapping(value = "/login")
+    public ResponseEntity<String> login(HttpServletRequest request, @RequestBody UsuarioDTO usuario) {
+        ResponseEntity response;
+        System.out.println("RECIBI:" + usuario.getUsuario() + usuario.getClave());
+        Usuario rtaUsuario = usuarioService.getByNombre(usuario.getUsuario());
+        System.out.println(rtaUsuario == null);
+        if (rtaUsuario == null || !rtaUsuario.getClave().equals(usuario.getClave())) {
             response = ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"description\":\"El password no cumple los requisitos del TP \"}");
+            System.out.println("Se logueo fallo");
         } else {
-            response = new ResponseEntity(HttpStatus.OK);
+            System.out.println("Se logueo ok");
+            request.getSession().setAttribute("usuario", rtaUsuario);
+
+            response = new ResponseEntity("{" + "\"idSesion\"" + ":" + rtaUsuario.getPersona().getIdPersona() + "}", HttpStatus.OK);
+
         }
         return response;
 
@@ -104,7 +107,7 @@ public class UsuarioController {
             Rol rtaRol = rolService.getById(usuarioOrganizacion.getUsuarioRols().get(0).getRol().getIdRol());
 
             //alta usuarioRol
-            usuarioRolService.alta(rtaRol,rtaUsuarioOrganizacion);
+            usuarioRolService.alta(rtaRol, rtaUsuarioOrganizacion);
 
             response = new ResponseEntity(HttpStatus.CREATED);
 
@@ -124,7 +127,7 @@ public class UsuarioController {
                     .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"description\":\"El password no cumple los requisitos del TP \"}");
         }
-        if(!criterioClaveDebil.esClaveValida(clave) || !criterioRegex.esClaveValida(clave)){
+        if (!criterioClaveDebil.esClaveValida(clave) || !criterioRegex.esClaveValida(clave)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"description\":\"El password no cumple los requisitos del TP \"}");

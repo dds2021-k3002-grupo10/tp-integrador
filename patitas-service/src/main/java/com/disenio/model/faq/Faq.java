@@ -7,6 +7,7 @@ import com.disenio.model.organizacion.Organizacion;
 import com.disenio.model.usuarios.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.Date;
@@ -40,10 +41,12 @@ public class Faq implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_COMPORTAMIENTO_TIPO", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private FaqComportamientoTipo faqComportamientoTipo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PREGUNTA_TIPO")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private FaqPreguntaTipo faqPreguntaTipo;
 
     @JsonIgnore
@@ -83,6 +86,7 @@ public class Faq implements java.io.Serializable {
     private List<EntradaCuestionario> entradaCuestionarios;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "faq")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<FaqRespuestaValor> faqRespuestaValors;
 
 }
