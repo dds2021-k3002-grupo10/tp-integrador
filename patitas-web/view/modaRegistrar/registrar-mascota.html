@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-lalala
-</body>
-</html>
+<h3><strong>Registar</strong></h3>
+
+<!-- 1ra fila -->
+<div class="row" id="registarMascota">
+    <div class="col-sm-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filtro busqueda</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label>Tipo Doc:</label>
+
+                        <select class="form-control" :required="true">
+                            <option v-for="tipo in tipoDoc" :value="tipo.idTipoDoc" :key="tipo.idTipoDoc"
+                                    :selected="tipo.idTipoDoc == 1">
+                                {{tipo.descripcionCorta }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nro Documento:</label>
+                        <input type="number" class="form-control" min="1" max="12" placeholder="nro doc">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info btn-single pull-right">Buscar persona</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#registarMascota",
+        data: {
+            tipoDoc: []
+        },
+        created() {
+            fetch('http://localhost:8080/personas/tipo-documento')
+                .then(response => response.json())
+                .then(data => {
+                    this.tipoDoc = data
+
+                })
+        }
+    })
+</script>
