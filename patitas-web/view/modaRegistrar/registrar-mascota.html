@@ -13,7 +13,6 @@
                         <label>Tipo Doc:</label>
 
                         <select class="form-control" id="idTipo">
-                            <option :value="0">Seleccione</option>
                             <option v-for="tipo in tipoDoc" :value="tipo.idTipoDoc"
                                     :selected="tipo.idTipoDoc == 1">
                                 {{tipo.descripcionCorta }}
@@ -57,37 +56,41 @@
         },
         methods: {
             buscarPersona: function () {
-                if (validar($('#idTipo').val(), $('#nroDoc').val())) {
-                    $.ajax({
-                        url: "view/modaRegistrar/tablaBusquedaPersona.html",
-                        async: true,
-                        dataType: "html",
-                        type: "GET",
-                        complete: function () {
-                        },
-                        success: function (html) {
+                idTipo = 5;//$('#idTipo').val($("#idTipo option:selected"));
+
+                $.ajax({
+                    url: "view/modaRegistrar/tablaBusquedaPersona.html",
+                    async: true,
+                    dataType: "html",
+                    type: "GET",
+                    complete: function () {
+                    },
+                    success: function (html) {
+
+                        if (validar($('#idTipo').val(), $('#nroDoc').val())) {
                             $('#tablaBusquedaPersona').html("");
                             $('#tablaBusquedaPersona').html(html);
 
-                            traeTablaPersona($('#idTipo').val(), $('#nroDoc').val()));
-
+                            traeTablaPersona();
 
                         }
-                    })
-                }
+
+                    }
+                })
             }
         }
     })
 
 
-    function traeTablaPersona(tipoDoc, NroDoc) {
+    function traeTablaPersona() {
+
         var appTabla = new Vue({
             el: "#tablaBusquedaPersona",
             data: {
                 mascotas: []
             },
             created() {
-                fetch('http://localhost:8080/persona/buscarByDoc')
+                fetch('http://localhost:8080/mascota/all')
                     .then(response => response.json())
                     .then(data => {
                         this.mascotas = data
@@ -95,15 +98,15 @@
             }
         })
 
+
     }
 
-
-    function validar(tipoDoc, nroDoc){
-        if(tipoDoc == 0){
+    function validar(tipoDoc, nroDoc) {
+        if (tipoDoc == 0) {
             alert("ingrese un tipo de documento")
             return false
         }
-        if(nroDoc = ""){
+        if (nroDoc = "") {
             alert("ingrese un nro de documento")
             return false
         }
