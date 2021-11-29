@@ -12,9 +12,10 @@
                     <div class="form-group">
                         <label>Tipo Doc:</label>
 
-                        <select class="form-control" v-model="selected">
-                            <option v-for="sexo in sexoMascota" :value="sexo" :key="sexo.idSexo">
-                                {{sexo.descripcion }}
+                        <select class="form-control" :required="true">
+                            <option v-for="tipo in tipoDoc" :value="tipo.idTipoDoc" :key="tipo.idTipoDoc"
+                                    :selected="tipo.idTipoDoc == 1">
+                                {{tipo.descripcionCorta }}
                             </option>
                         </select>
                     </div>
@@ -36,13 +37,14 @@
     var app = new Vue({
         el: "#registarMascota",
         data: {
-            sexoMascota: []
+            tipoDoc: []
         },
         created() {
-            fetch('http://localhost:8080/mascota/sexo')
+            fetch('http://localhost:8080/personas/tipo-documento')
                 .then(response => response.json())
                 .then(data => {
-                    this.sexoMascota = data
+                    this.tipoDoc = data
+
                 })
         }
     })
