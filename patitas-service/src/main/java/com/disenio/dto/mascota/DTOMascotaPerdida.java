@@ -4,6 +4,7 @@ import com.disenio.dto.persona.DTOPersona;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.mascotas.TamanioMascota;
 import com.disenio.model.mascotas.TipoMascota;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,7 +13,9 @@ import java.io.Serializable;
 public class DTOMascotaPerdida implements Serializable {
     Integer idMascota;
     DTOPersona rescatista;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TipoMascota tipoMascota;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TamanioMascota tamanioMascota;
     String descripcionFisica;
     DTOUbicacionMascota ubicacion;
@@ -31,6 +34,7 @@ public class DTOMascotaPerdida implements Serializable {
 
     public DTOMascotaPerdida(MascotaRescatada mr) {
         this.idMascota = mr.getIdMascotaRescatada();
+        this.rescatista = new DTOPersona(mr.getPersona());
         this.tipoMascota = mr.getTipoMascota();
         this.tamanioMascota = mr.getTamanioMascota();
         this.descripcionFisica = mr.getDescripcion();
