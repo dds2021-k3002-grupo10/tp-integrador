@@ -21,17 +21,21 @@ public class DTOMascota implements Serializable {
     SexoMascota sexo;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TipoMascota tipoMascota;
+    String foto;
     String nombre;
     String apodo;
     String descripcionFisica;
     List<DTOMascotaCaracteristica> caracteristicas;
 
     //Constructors
-    public DTOMascota(Integer idMascota, DTOPersona duenio, SexoMascota sexo, TipoMascota tipoMascota, String nombre, String apodo, String descripcionFisica, List<DTOMascotaCaracteristica> caracteristicas) {
+
+
+    public DTOMascota(Integer idMascota, DTOPersona duenio, SexoMascota sexo, TipoMascota tipoMascota, String foto, String nombre, String apodo, String descripcionFisica, List<DTOMascotaCaracteristica> caracteristicas) {
         this.idMascota = idMascota;
         this.duenio = duenio;
         this.sexo = sexo;
         this.tipoMascota = tipoMascota;
+        this.foto = foto;
         this.nombre = nombre;
         this.apodo = apodo;
         this.descripcionFisica = descripcionFisica;
@@ -47,6 +51,7 @@ public class DTOMascota implements Serializable {
         this.apodo = mascota.getApodo();
         this.descripcionFisica = mascota.getDescripcionFisica();
         this.caracteristicas = mascota.getCaracteristicaDetalles().stream().map(DTOMascotaCaracteristica::new).collect(Collectors.toList());
+        this.foto = mascota.getMascotaFotos().stream().findFirst().get().getValorFoto();
     }
 
     //Getters and Setters
@@ -104,7 +109,25 @@ public class DTOMascota implements Serializable {
         return descripcionFisica;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public List<DTOMascotaCaracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public void setCaracteristicas(List<DTOMascotaCaracteristica> caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
     public void setDescripcionFisica(String descripcionFisica) {
         this.descripcionFisica = descripcionFisica;
+
+
     }
 }
