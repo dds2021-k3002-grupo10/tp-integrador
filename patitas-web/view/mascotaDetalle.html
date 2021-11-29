@@ -18,12 +18,12 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-6">
-                    <h4>Tipo: Perro</h4>
-                    <h4>Nombre: Batata</h4>
-                    <h4>Apodo: Gordo</h4>
-                    <h4>Edad: 4</h4>
-                    <h4>Sexo: Macho</h4>
-                    <h4>Descripcion: Tamaño medio, tricolor, orejas grandes</h4>
+                <h4>Tipo: Perro</h4>
+                <h4>Nombre: Batata</h4>
+                <h4>Apodo: Gordo</h4>
+                <h4>Edad: 4</h4>
+                <h4>Sexo: Macho</h4>
+                <h4>Descripcion: Tamaño medio, tricolor, orejas grandes</h4>
                 <!-- aca iria info tales como perro/gato, nombre, apodo, edad, sexo, descripcion fisica-->
             </div>
         </div>
@@ -48,6 +48,26 @@
 </html>
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script src="js/vue.js"></script>
+
+<script>
+    const datosMascota = new Vue({
+    el:'#datosMascota',
+    data:{
+        mascota: 'test'
+    },
+    created(){
+        fetch('http://localhost:8080/mascota/1')
+        .then(response => response.json())
+        .then(data =>{
+            this.persona = data
+        })
+    }
+})
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
