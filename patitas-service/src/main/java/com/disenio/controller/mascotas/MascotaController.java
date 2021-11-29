@@ -81,15 +81,15 @@ public class MascotaController {
     @RequestMapping(value = "/persona/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<MascotaDTO>> getMascotaByPersonasId(@PathVariable("id") Integer id) {
 
-        List<MascotaDTO> mascotaDTO = mascotasService.getAllMascotasByIdPersona(id).stream().map(mascota ->
+        ResponseEntity<List<MascotaDTO>> response;
+        List<MascotaDTO> rtaMascotas = mascotasService.getMascotaByPersonasId(id);
 
-                modelMapper.map(mascota, MascotaDTO.class)
-        ).collect(Collectors.toList());
-
-        if (mascotaDTO != null) {
-            return ResponseEntity.ok(mascotaDTO);
+        if (rtaMascotas.isEmpty()) {
+            response = ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.noContent().build();
+            response = ResponseEntity.ok(rtaMascotas);
         }
+        return response;
+
     }
 }

@@ -2,7 +2,7 @@
 
 <!-- 1ra fila -->
 <div class="row" id="registarMascota">
-    <div class="col-sm-3">
+    <div class="col-lg-3">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Filtro busqueda</h3>
@@ -12,8 +12,8 @@
                     <div class="form-group">
                         <label>Tipo Doc:</label>
 
-                        <select class="form-control" :required="true">
-                            <option v-for="tipo in tipoDoc" :value="tipo.idTipoDoc" :key="tipo.idTipoDoc"
+                        <select class="form-control" id="idTipo">
+                            <option v-for="tipo in tipoDoc" :value="tipo.idTipoDoc"
                                     :selected="tipo.idTipoDoc == 1">
                                 {{tipo.descripcionCorta }}
                             </option>
@@ -22,14 +22,21 @@
 
                     <div class="form-group">
                         <label>Nro Documento:</label>
-                        <input type="number" class="form-control" min="1" max="12" placeholder="nro doc">
+                        <input type="number" class="form-control" id="nroDoc" required placeholder="nro doc">
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-info btn-single pull-right">Buscar persona</button>
+                        <button type="button" @click="buscarPersona()" class="btn btn-info btn-single pull-right">Buscar
+                            persona
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+
+    <div class="col-lg-9" id="tablaBusquedaPersona">
+
+
     </div>
 </div>
 
@@ -46,6 +53,64 @@
                     this.tipoDoc = data
 
                 })
+        },
+        methods: {
+            buscarPersona: function () {
+                idTipo = 5;//$('#idTipo').val($("#idTipo option:selected"));
+
+                $.ajax({
+                    url: "view/modaRegistrar/tablaBusquedaPersona.html",
+                    async: true,
+                    dataType: "html",
+                    type: "GET",
+                    complete: function () {
+                    },
+                    success: function (html) {
+
+                        if (validar($('#idTipo').val(), $('#nroDoc').val())) {
+                            $('#tablaBusquedaPersona').html("");
+                            $('#tablaBusquedaPersona').html(html);
+
+                            traeTablaPersona();
+
+                        }
+
+                    }
+                })
+            }
         }
     })
+
+
+    function traeTablaPersona() {
+
+        var appTabla = new Vue({
+            el: "#tablaBusquedaPersona",
+            data: {
+                mascotas: []
+            },
+            created() {
+                fetch('http://localhost:8080/mascota/all')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.mascotas = data
+                    })
+            }
+        })
+
+
+    }
+
+    function validar(tipoDoc, nroDoc) {
+        if (tipoDoc == 0) {
+            alert("ingrese un tipo de documento")
+            return false
+        }
+        if (nroDoc = "") {
+            alert("ingrese un nro de documento")
+            return false
+        }
+        return true;
+
+    }
 </script>

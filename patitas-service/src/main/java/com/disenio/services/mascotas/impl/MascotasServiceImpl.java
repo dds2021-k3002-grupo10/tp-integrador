@@ -79,14 +79,12 @@ public class MascotasServiceImpl implements MascotasService {
     }
 
     @Override
-    public MascotaDTO getMascotaByPersonasId(Integer idPersona) {
-        Optional<Mascota> mascotas  =mascotaDAO.MascotaByPersonasId(idPersona);
+    public List<MascotaDTO> getMascotaByPersonasId(Integer idPersona) {
+        List<Mascota> mascotas  =mascotaDAO.MascotaByPersonasId(idPersona);
 
-
-        MascotaDTO mascotaDTO = null;
-        if (mascotas.isPresent()) {
-            mascotaDTO= new MascotaDTO();
-            mascotaDTO = modelMapper.map(mascotas.get(), MascotaDTO.class);
+        List<MascotaDTO> mascotaDTO = new ArrayList<MascotaDTO>();
+        if (!mascotas.isEmpty()) {
+            mascotaDTO = Arrays.asList(modelMapper.map(mascotas, MascotaDTO[].class));
         }
         return mascotaDTO;
     }

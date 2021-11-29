@@ -12,10 +12,9 @@ import java.util.Optional;
 public interface MascotaDAO extends JpaRepository<Mascota,Integer> {
 
     @Query("select m from Mascota m where m.persona.idPersona= :idPersona")
-    Optional<Mascota> MascotaByPersonasId(Integer idPersona);
+    List<Mascota> MascotaByPersonasId(Integer idPersona);
 
     @Query("select m from Mascota m where m.persona.idPersona= :idPersona")
     Optional<List<Mascota>> MascotasSegunID(Integer idPersona);
-
 
 }
