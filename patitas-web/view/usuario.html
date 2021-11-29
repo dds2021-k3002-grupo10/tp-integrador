@@ -29,7 +29,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="mascota in mascotas">
+                <tr>
                     <td>{{mascota.idMascota}} </td>
                     <td>{{mascota.nombre}}</td>
                     <td>{{mascota.fechaNacimiento}}</td>
@@ -46,10 +46,10 @@
     var app = new Vue({
         el: "#mascotas",
         data: {
-            mascotas: []
+            mascota: 'test'
         },
         created () {
-            fetch('http://localhost:8080/mascota/all')
+            fetch('http://localhost:8080/mascota/1')
                 .then(response => response.json())
                 .then(data => {
                     this.mascotas = data

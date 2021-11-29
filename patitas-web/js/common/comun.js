@@ -114,7 +114,7 @@ function usuario() {
 
 function publicacion() {
     $.ajax({
-        url: "view/publicacion.html",
+        url: "localhost:8080/view/publicacion/perdida",
         async: true,
         dataType: "html",
         type: "GET",
