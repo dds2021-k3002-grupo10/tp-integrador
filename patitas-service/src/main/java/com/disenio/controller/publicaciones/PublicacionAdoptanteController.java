@@ -1,7 +1,12 @@
 package com.disenio.controller.publicaciones;
 
-import com.disenio.model.publicaciones.Publicacion;
-import com.disenio.model.publicaciones.PublicacionDarAdopcion;
+import com.disenio.dto.DTOResponse;
+import com.disenio.dto.persona.DTOPersona;
+import com.disenio.dto.publicacion.DTOPublicacionAdoptante;
+import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
+import com.disenio.model.personas.Persona;
+import com.disenio.model.publicaciones.PublicacionAdoptante;
+import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/publicaciones/adopciones/adoptar")
@@ -20,12 +25,28 @@ public class PublicacionAdoptanteController {
 
     @Autowired
     private PublicacionService publicacionService;
-
+    @Autowired
+    private PersonaService personaService;
 
     @PostMapping(path = "/guardar")
-    public ResponseEntity<PublicacionDarAdopcion> guardar(HttpServletRequest request, @RequestBody PublicacionDarAdopcion publicacion) {
-        //TODO Potencial DTO?
-        return new ResponseEntity(publicacionService.alta(publicacion), HttpStatus.CREATED);
+    public ResponseEntity<DTOResponse> guardar(HttpServletRequest request, @RequestBody DTOPublicacionDarAdopcion dtoPublicacion) {
+        DTOPersona dtoPersona = dtoPublicacion.getAutor();
+        DTOResponse dtoResponse = new DTOResponse();
+
+        Persona persona = personaService.getPersonasById(dtoPersona.getIdPersona()).orElse(null);
+
+        PublicacionAdoptante publicacion = new PublicacionAdoptante(persona, dtoPublicacion.getDescripcion());
+
+        if (persona == null) {
+            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
+            dtoResponse.setMsg("No existe persona");
+            return new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
+        }
+        publicacionService.alta(publicacion);
+
+        dtoResponse.setStatus(HttpStatus.CREATED);
+        dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
+        return new ResponseEntity(dtoResponse, HttpStatus.CREATED);
     }
 
     /* TODO :Terminar eliminar
@@ -35,28 +56,40 @@ public class PublicacionAdoptanteController {
     }
     */
 
+
     @GetMapping(path = "/{id}")
-    public ResponseEntity<List<PublicacionDarAdopcion>> getPublicacionDarAdopcionByID(@PathVariable("id") Integer id) {
-        ResponseEntity<List<PublicacionDarAdopcion>> response;
+    public ResponseEntity<DTOResponse> getPublicacionAdptanteID(@PathVariable("id") Integer id) {
+        DTOResponse dtoResponse = new DTOResponse();
 
-        Optional<Publicacion> publicaciones = publicacionService.getById(id);
+        PublicacionAdoptante publicacion = (PublicacionAdoptante) publicacionService.getById(id).orElseGet(null);
+        DTOPublicacionAdoptante dtoPublicacion = new DTOPublicacionAdoptante(publicacion);
 
-        response = publicaciones.map(publicacion -> ResponseEntity.ok((List<PublicacionDarAdopcion>) publicacion)).orElseGet(() -> ResponseEntity.noContent().build());
-        return response;
+        if (dtoPublicacion.getAutor() == null) {
+            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
+            dtoResponse.setMsg("No existen publicacion.");
+            return ResponseEntity.ok(dtoResponse);
+        }
+        dtoResponse.setStatus(HttpStatus.OK);
+        dtoResponse.setData(dtoPublicacion);
+        return ResponseEntity.ok(dtoResponse);
     }
 
 
     @GetMapping(path = "/all")
-    public ResponseEntity<List<PublicacionDarAdopcion>> getPublicacionDarAdopcionAll() {
-        ResponseEntity<List<PublicacionDarAdopcion>> response;
+    public ResponseEntity<DTOResponse> getPublicacionDarAdopcionAll() {
+        DTOResponse response = new DTOResponse();
+        List<PublicacionAdoptante> publicaciones = publicacionService.listarAdoptante();
+        List<DTOPublicacionAdoptante> dtoPublicaciones;
 
-        List<PublicacionDarAdopcion> publicacion = publicacionService.listarDarAdopcion();
+        dtoPublicaciones = publicaciones.stream()
+                .map(DTOPublicacionAdoptante::new)
+                .collect(Collectors.toList());
 
-        if (publicacion.isEmpty()) {
-            response = ResponseEntity.noContent().build();
-        } else {
-            response = ResponseEntity.ok(publicacion);
-        }
-        return response;
+        response.setStatus(HttpStatus.OK);
+        response.setData(dtoPublicaciones);
+
+
+        return ResponseEntity.ok(response);
     }
 }
+

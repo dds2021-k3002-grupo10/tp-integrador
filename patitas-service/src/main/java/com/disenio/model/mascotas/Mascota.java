@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Calendar;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -16,7 +17,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Data
-@Table(name = "mascota" , catalog = "patitas")
+@Table(name = "mascota", catalog = "patitas")
 public class Mascota implements java.io.Serializable {
 
     @Id
@@ -69,8 +70,6 @@ public class Mascota implements java.io.Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mascota")
     private List<MascotaFoto> mascotaFotos;
-
-
 
 
 }

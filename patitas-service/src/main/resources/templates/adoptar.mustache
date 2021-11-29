@@ -1,0 +1,74 @@
+<div class="panel panel-default ">
+    <div class="panel-heading ">
+        <h1 class="panel-title text-center"> Publicaciones de Adopcion</h1>
+        <br>
+        <br>
+        <p class="text-gray">No hay nada mas lindo que tener una mascota amiga. En estos momentos, existen muchas
+            mascotas que estan buscando un nuevo hogar. Encontra la
+            mascota que siempre soñaste!</p>
+    </div>
+    <div class="panel-body">
+        <ul class="highlights list-group scrollable ps-container ps-active-y" data-max-height="400"
+            style="max-height: 400px;">
+            <!-- 1ra fila -->
+            {{#publicacion}}
+                <li class="list-item publicacion-contenedor">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 d-flex col-sm-12 ">
+                            <div class="imagen-contenido text-center">
+                                <h3 class="title p-1 ">{{mascotaOfrecida.apodo}}</h3>
+                                {{#mascotaOfrecida.mascotaFotos}}
+                                    <img src="{{{valorFoto}}}" class="img-responsive " alt=""/>
+                                {{/mascotaOfrecida.mascotaFotos}}
+                            </div>
+                        </div>
+                        <p class="text-gray d-flex justify-end fecha-publicacion text-bold hidden-md">
+                            <small>{{fecha}}</small></p>
+                        <div class="col-md-6 col-lg-8  col-sm-12 ">
+
+
+                            <div class="flex-column">
+                                <div class="publicacion-adoptar-contenido">
+                                    <h4 class="text-underline">Sobre la mascota</h4>
+                                    <div class="publicacion-info">
+
+
+                                        <div class="d-flex justify-between align-item-center ">
+                                            <p><span><i
+                                                    class="fas fa-paw"></i>  Nombre</span>: {{mascotaOfrecida.nombre}}
+                                            </p>
+                                            <p style="padding-right: 1rem"><span><i
+                                                    class="fas fa-paw"></i>  Apodo</span>:{{mascotaOfrecida.apodo}}</p>
+                                        </div>
+                                        <p><span><i
+                                                class="fas fa-paw"></i>  Descripcion fisica</span>: {{mascotaOfrecida.descripcionFisica}}
+                                        </p>
+                                        <p><span><i
+                                                class="fas fa-paw"></i>  Observacion del dueño</span>: {{descripcion}}
+                                        </p>
+                                    </div>
+                                    <h4 class="text-underline">Caracteristicas</h4>
+                                    <div class="publicacion-info">
+                                        {{#mascotaOfrecida.caracteristicaDetalles}}
+                                        <p><i class="fas fa-info"></i> <span
+                                                class="text-capitalize">{{faq.descripcionFaq}}:
+                                            {{#faq.faqRespuestaValors}}
+                                                {{#caracteristicaDetalleValors}} {{descripcion}}{{/caracteristicaDetalleValors}} {{/faq.faqRespuestaValors}}
+                                        {{/mascotaOfrecida.caracteristicaDetalles}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-evenly publicacion-botonera ">
+                                    <button class="btn btn-secondary btn-icon"><i class="fa-heart"></i>
+                                        <span>Adoptar!</span></button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </li>
+            {{/publicacion}}
+        </ul>
+    </div>
+</div>
+
