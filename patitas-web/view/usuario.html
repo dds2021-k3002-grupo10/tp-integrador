@@ -1,4 +1,4 @@
-<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="LANGUAGE" content="es"/>
     <meta name="DISTRIBUTION" content="Global"/>
@@ -33,6 +33,7 @@
                     <td>{{mascota.idMascota}} </td>
                     <td>{{mascota.nombre}}</td>
                     <td>{{mascota.fechaNacimiento}}</td>
+                    <!--<td><button><a v-bind:href="'view/detalleMascota.html?id=' + mascota.idMascota">Ver</a></button></td>-->
                     <td><button><a href="#" v-on:click="hola(mascota.idMascota)">Ver</a></button></td>
                 </tr>
                 </tbody>
@@ -57,8 +58,9 @@
         },
     methods: {
         hola:function (id){
+           localStorage.setItem("idMascota",id)
            $.ajax({
-                url: "view/detalleMascota.html?"+id,
+                url: "view/detalleMascota.html?",
                 async: true,
                 dataType: "html",
                 type: "GET",

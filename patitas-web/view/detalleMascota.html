@@ -1,3 +1,6 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
 <div class="main-content">
@@ -8,13 +11,14 @@
             </div>
             <div class="col-sm-2">
             </div>
-            <div class="col-sm-6" style="border:solid;">
+            <div class="col-sm-6" style="border:solid;" id="detalleMascota">
                 <h4>Tipo: Perro</h4>
                 <h4>Nombre: Batata</h4>
                 <h4>Apodo: Gordo</h4>
                 <h4>Edad: 4</h4>
                 <h4>Sexo: Macho</h4>
                 <h4>Descripcion: Tamaño medio, tricolor, orejas grandes</h4>
+                <h4>{{mascota.nombre}}</h4>
                 <!-- aca iria info tales como perro/gato, nombre, apodo, edad, sexo, descripcion fisica-->
             </div>
         </div>
@@ -46,21 +50,21 @@
 </html>
 
 <script>
-    const app = new Vue({
+    var idMascota = localStorage.getItem("idMascota");
+
+    var app = new Vue({
     el:'#detalleMascota',
     data:{
-        mascota:''
+        mascota:'test'
     },
     created(){
-        fetch('http://localhost:8080/mascota/all')
+        //const urlParams = new URLSearchParams(window.location.search);
+
+        fetch('http://localhost:8080/mascota/' + idMascota)
             .then(response => response.json())
             .then(data =>{
-                this.organizaciones = data
+                this.mascota = data
             })
-    },
-    methods
+        }
+    })
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-
-<script src="js/vue.js"></script>
