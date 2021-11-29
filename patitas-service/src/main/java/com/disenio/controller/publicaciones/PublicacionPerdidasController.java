@@ -5,7 +5,6 @@ import com.disenio.dto.mascota.DTOMascotaPerdida;
 import com.disenio.dto.mascota.DTOUbicacionMascota;
 import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionPerdida;
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.MascotaHogarTransito;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.mascotas.UbicacionMascotaRescatada;
@@ -84,7 +83,7 @@ public class PublicacionPerdidasController {
     }
     */
 
-    @JsonView(Views.External.class)
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<DTOResponse> getPublicacionesPerdidasByID(@PathVariable("id") Integer id) {
         DTOResponse dtoResponse = new DTOResponse();
@@ -103,7 +102,6 @@ public class PublicacionPerdidasController {
     }
 
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/all")
     public ResponseEntity<DTOResponse> getPublicacionesPerdidasAll() {
         DTOResponse response = new DTOResponse();

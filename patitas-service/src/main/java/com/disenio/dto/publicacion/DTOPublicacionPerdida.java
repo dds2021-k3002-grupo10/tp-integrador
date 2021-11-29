@@ -2,10 +2,8 @@ package com.disenio.dto.publicacion;
 
 import com.disenio.dto.mascota.DTOMascotaPerdida;
 import com.disenio.dto.persona.DTOPersona;
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.publicaciones.PublicacionPerdida;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,17 +11,11 @@ import java.util.Date;
 
 @Data
 public class DTOPublicacionPerdida implements Serializable {
-    @JsonView(Views.External.class)
     Integer idPublicacion;
-    @JsonView(Views.External.class)
     Date fechaPublicacion;
-    @JsonView(Views.External.class)
     DTOPersona autor;
-    @JsonView(Views.External.class)
     DTOMascotaPerdida mascota;
-    @JsonView(Views.External.class)
     Integer idHogar;
-    @JsonView(Views.External.class)
     String descripcion;
 
 

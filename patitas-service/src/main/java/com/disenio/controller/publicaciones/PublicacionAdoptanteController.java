@@ -1,11 +1,9 @@
 package com.disenio.controller.publicaciones;
 
 import com.disenio.dto.DTOResponse;
-import com.disenio.dto.mascota.DTOMascota;
 import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionAdoptante;
 import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
-import com.disenio.model.Views;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.services.personas.PersonaService;
@@ -37,7 +35,7 @@ public class PublicacionAdoptanteController {
 
         Persona persona = personaService.getPersonasById(dtoPersona.getIdPersona()).orElse(null);
 
-       PublicacionAdoptante publicacion = new PublicacionAdoptante(persona, dtoPublicacion.getDescripcion());
+        PublicacionAdoptante publicacion = new PublicacionAdoptante(persona, dtoPublicacion.getDescripcion());
 
         if (persona == null) {
             dtoResponse.setStatus(HttpStatus.NO_CONTENT);
@@ -58,7 +56,7 @@ public class PublicacionAdoptanteController {
     }
     */
 
-    @JsonView(Views.External.class)
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<DTOResponse> getPublicacionAdptanteID(@PathVariable("id") Integer id) {
         DTOResponse dtoResponse = new DTOResponse();
@@ -66,7 +64,7 @@ public class PublicacionAdoptanteController {
         PublicacionAdoptante publicacion = (PublicacionAdoptante) publicacionService.getById(id).orElseGet(null);
         DTOPublicacionAdoptante dtoPublicacion = new DTOPublicacionAdoptante(publicacion);
 
-        if ( dtoPublicacion.getAutor() == null) {
+        if (dtoPublicacion.getAutor() == null) {
             dtoResponse.setStatus(HttpStatus.NO_CONTENT);
             dtoResponse.setMsg("No existen publicacion.");
             return ResponseEntity.ok(dtoResponse);
@@ -77,7 +75,6 @@ public class PublicacionAdoptanteController {
     }
 
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/all")
     public ResponseEntity<DTOResponse> getPublicacionDarAdopcionAll() {
         DTOResponse response = new DTOResponse();

@@ -1,8 +1,6 @@
 package com.disenio.model.mascotas;
 
 
-import com.disenio.model.Views;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,11 +18,9 @@ public class TipoMascota implements java.io.Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID_TIPO_MASCOTA", unique = true, nullable = false)
-    @JsonView(Views.External.class)
     private Integer idTipoMascota;
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
-    @JsonView(Views.External.class)
     private String nombre;
 /*
     @JsonIgnore

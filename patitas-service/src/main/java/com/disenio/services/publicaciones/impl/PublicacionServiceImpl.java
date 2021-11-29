@@ -1,6 +1,6 @@
 package com.disenio.services.publicaciones.impl;
 
-import com.disenio.dao.PublicacionDAO;
+import com.disenio.dao.publicacion.PublicacionDAO;
 import com.disenio.model.publicaciones.Publicacion;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;

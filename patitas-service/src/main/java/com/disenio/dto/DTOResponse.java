@@ -1,6 +1,5 @@
 package com.disenio.dto;
 
-import com.disenio.model.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.http.HttpStatus;
 
@@ -8,11 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DTOResponse implements Serializable {
-    @JsonView(Views.External.class)
     Integer status;
-    @JsonView(Views.External.class)
     Object data;
-    @JsonView(Views.External.class)
     String msg;
 
     //Constructors

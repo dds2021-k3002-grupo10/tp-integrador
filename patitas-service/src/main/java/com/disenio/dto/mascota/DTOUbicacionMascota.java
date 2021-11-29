@@ -1,23 +1,13 @@
 package com.disenio.dto.mascota;
 
-import com.disenio.model.Views;
-import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.mascotas.UbicacionMascotaRescatada;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import java.io.Serializable;
 
 public class DTOUbicacionMascota implements Serializable {
-    @JsonView(Views.External.class)
     private Integer idUbicacion;
-
-    @JsonView(Views.External.class)
     private String direccion;
-
-    @JsonView(Views.External.class)
     private Integer latitud;
-
-    @JsonView(Views.External.class)
     private Integer longitud;
 
     //Constructors
@@ -27,6 +17,7 @@ public class DTOUbicacionMascota implements Serializable {
         this.latitud = latitud;
         this.longitud = longitud;
     }
+
     public DTOUbicacionMascota(UbicacionMascotaRescatada ub) {
         this.idUbicacion = ub.getIdUbicacion();
         this.direccion = ub.getDireccion();

@@ -2,7 +2,6 @@ package com.disenio.model.mascotas;
 // Generated 01/09/2021 19:13:39 by Hibernate Tools 4.3.1
 
 
-import com.disenio.model.caracteristicas.CaracteristicaDetalle;
 import com.disenio.model.personas.Persona;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

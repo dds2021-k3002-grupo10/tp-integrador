@@ -1,36 +1,33 @@
 package com.disenio.dto.mascota;
 
+
 import com.disenio.dto.persona.DTOPersona;
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class DTOMascota implements Serializable {
-    @JsonView(Views.External.class)
+
     Integer idMascota;
-    @JsonView(Views.External.class)
     DTOPersona duenio;
-    @JsonView(Views.External.class)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     SexoMascota sexo;
-    @JsonView(Views.External.class)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TipoMascota tipoMascota;
-    @JsonView(Views.External.class)
     String nombre;
-    @JsonView(Views.External.class)
     String apodo;
-    @JsonView(Views.External.class)
     String descripcionFisica;
-    //TODO CARACTERTISTICAS
+    List<DTOMascotaCaracteristica> caracteristicas;
 
     //Constructors
-
-    public DTOMascota(Integer idMascota, DTOPersona duenio, SexoMascota sexo, TipoMascota tipoMascota, String nombre, String apodo, String descripcionFisica) {
+    public DTOMascota(Integer idMascota, DTOPersona duenio, SexoMascota sexo, TipoMascota tipoMascota, String nombre, String apodo, String descripcionFisica, List<DTOMascotaCaracteristica> caracteristicas) {
         this.idMascota = idMascota;
         this.duenio = duenio;
         this.sexo = sexo;
@@ -38,6 +35,7 @@ public class DTOMascota implements Serializable {
         this.nombre = nombre;
         this.apodo = apodo;
         this.descripcionFisica = descripcionFisica;
+        this.caracteristicas = caracteristicas;
     }
 
     public DTOMascota(Mascota mascota) {
@@ -48,6 +46,7 @@ public class DTOMascota implements Serializable {
         this.nombre = mascota.getNombre();
         this.apodo = mascota.getApodo();
         this.descripcionFisica = mascota.getDescripcionFisica();
+        this.caracteristicas = mascota.getCaracteristicaDetalles().stream().map(DTOMascotaCaracteristica::new).collect(Collectors.toList());
     }
 
     //Getters and Setters

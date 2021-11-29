@@ -4,7 +4,6 @@ import com.disenio.dto.DTOResponse;
 import com.disenio.dto.mascota.DTOMascota;
 import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
@@ -75,7 +74,6 @@ public class PublicacionDarAdopcionController {
         return ResponseEntity.ok(dtoResponse);
     }
 
-    @JsonView(Views.External.class)
     @GetMapping(path = "/all")
     public ResponseEntity<DTOResponse> getPublicacionDarAdopcionAll() {
         DTOResponse response = new DTOResponse();

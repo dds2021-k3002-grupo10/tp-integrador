@@ -11,7 +11,6 @@ import javax.persistence.*;
 public abstract class PublicacionAdopcion extends Publicacion {
 
     private Cuestionario cuestionario;
-    @JsonView(Views.External.class)
     private String descripcion;
 
     //Constructors

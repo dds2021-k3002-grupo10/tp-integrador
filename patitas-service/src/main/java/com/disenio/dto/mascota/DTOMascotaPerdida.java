@@ -1,28 +1,20 @@
 package com.disenio.dto.mascota;
 
 import com.disenio.dto.persona.DTOPersona;
-import com.disenio.model.Views;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.mascotas.TamanioMascota;
 import com.disenio.model.mascotas.TipoMascota;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
 public class DTOMascotaPerdida implements Serializable {
-    @JsonView(Views.External.class)
     Integer idMascota;
-    @JsonView(Views.External.class)
     DTOPersona rescatista;
-    @JsonView(Views.External.class)
     TipoMascota tipoMascota;
-    @JsonView(Views.External.class)
     TamanioMascota tamanioMascota;
-    @JsonView(Views.External.class)
     String descripcionFisica;
-    @JsonView(Views.External.class)
     DTOUbicacionMascota ubicacion;
 
     //Constructors

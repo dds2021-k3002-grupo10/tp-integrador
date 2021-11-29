@@ -1,19 +1,15 @@
 package com.disenio.dto.persona;
 
-import com.disenio.model.Views;
 import com.disenio.model.personas.Persona;
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
 public class DTOPersona implements Serializable {
-    @JsonView(Views.External.class)
+
     Integer idPersona;
-    @JsonView(Views.External.class)
     String nombre;
-    @JsonView(Views.External.class)
     String apellido;
 
     //Constructor Persona
@@ -23,11 +19,12 @@ public class DTOPersona implements Serializable {
         this.apellido = apellido;
     }
 
-    public DTOPersona(Persona persona){
+    public DTOPersona(Persona persona) {
         this.idPersona = persona.getIdPersona();
         this.nombre = persona.getNombre();
         this.apellido = persona.getApellido();
     }
+
     //Getters and Setters
     public Integer getIdPersona() {
         return idPersona;

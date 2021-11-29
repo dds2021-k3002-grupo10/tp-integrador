@@ -1,9 +1,7 @@
 package com.disenio.model.publicaciones;
 
-import com.disenio.model.Views;
 import com.disenio.model.personas.Persona;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -19,9 +17,9 @@ public class PublicacionAdoptante extends PublicacionAdopcion {
     @JsonIgnore
     private String clave;
 
-    public PublicacionAdoptante(Persona autor,String descripcion) {
+    public PublicacionAdoptante(Persona autor, String descripcion) {
 
-        super(autor,descripcion);
+        super(autor, descripcion);
 
     }
 
