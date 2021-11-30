@@ -56,45 +56,63 @@
         },
         methods: {
             buscarPersona: function () {
-                idTipo = 5;//$('#idTipo').val($("#idTipo option:selected"));
+                if (validar($('#idTipo').val(), $('#nroDoc').val())) {
+                    $.ajax({
+                        url: "view/modaRegistrar/tablaBusquedaPersona.html",
+                        async: true,
+                        dataType: "html",
+                        type: "GET",
+                        complete: function () {
+                        },
+                        success: function (html) {
 
-                $.ajax({
-                    url: "view/modaRegistrar/tablaBusquedaPersona.html",
-                    async: true,
-                    dataType: "html",
-                    type: "GET",
-                    complete: function () {
-                    },
-                    success: function (html) {
-
-                        if (validar($('#idTipo').val(), $('#nroDoc').val())) {
                             $('#tablaBusquedaPersona').html("");
                             $('#tablaBusquedaPersona').html(html);
 
-                            traeTablaPersona();
-
+                            traeTablaPersona($('#idTipo').val(), $('#nroDoc').val());
                         }
 
-                    }
-                })
+                    })
+                }
             }
         }
     })
 
 
-    function traeTablaPersona() {
-
+    function traeTablaPersona(idTipoDoc, numero) {
+        /*var global en principal-nav*/
+        tipoDocumentoAlta = idTipoDoc;
+        nroDocumentoAlta = numero;
+        /*fin de var global en principal-nav*/
         var appTabla = new Vue({
             el: "#tablaBusquedaPersona",
             data: {
-                mascotas: []
+                personas: []
             },
             created() {
-                fetch('http://localhost:8080/mascota/all')
+                fetch('http://localhost:8080/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
                     .then(response => response.json())
                     .then(data => {
-                        this.mascotas = data
+                        this.personas = data
                     })
+            },
+            methods: {
+                irAltaPersona: function () {
+                    $.ajax({
+                        url: "view/modaRegistrar/alta-persona.html",
+                        async: true,
+                        dataType: "html",
+                        type: "GET",
+                        complete: function () {
+                        },
+                        success: function (html) {
+
+                            $('#navegacionAjax').html("");
+                            $('#navegacionAjax').html(html);
+
+                        }
+                    });
+                }
             }
         })
 
@@ -102,11 +120,11 @@
     }
 
     function validar(tipoDoc, nroDoc) {
-        if (tipoDoc == 0) {
+        if (tipoDoc == "") {
             alert("ingrese un tipo de documento")
             return false
         }
-        if (nroDoc = "") {
+        if (nroDoc == '') {
             alert("ingrese un nro de documento")
             return false
         }

@@ -1,8 +1,10 @@
 package com.disenio.services.personas.impl;
 
 import com.disenio.dao.persona.PersonaContactoDAO;
+import com.disenio.dto.persona.ContactosAltaDTO;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.PersonaContacto;
+import com.disenio.model.personas.PersonaDocumento;
 import com.disenio.services.personas.PersonaContactoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,16 @@ public class PersonaContactoServiceImpl implements PersonaContactoService {
 
     @Autowired
     private PersonaContactoDAO personaContactoDAO;
+    @Autowired
+    SeteosVariosUtilServiceImpl seteosVariosUtilService;
 
     @Transactional
     @Override
-    public void alta(List<PersonaContacto> personaContactos, Persona persona) {
+    public void alta(List<ContactosAltaDTO> listPersonaContactosDTO, Persona persona) {
+
+        List<PersonaContacto> personaContactos = seteosVariosUtilService.setContactos(listPersonaContactosDTO);
+
+
         personaContactos.forEach(personaContacto -> {
 
             personaContacto.setPersona(persona);

@@ -1,6 +1,8 @@
-
 function registrarAltaMascota(ss) {
-
+    /*inicializo variable global*/
+    tipoDocumentoAlta = "";
+    nroDocumentoAlta = "";
+    /*fin de inicializar variable global*/
     $.ajax({
         url: "view/modaRegistrar/registrar-mascota.html",
         async: true,
