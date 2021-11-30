@@ -138,14 +138,14 @@ function login() {
         }
     });
 }
-function publicacion() {
+function publicacionPerdida() {
     $.ajax({
-        url: "localhost:8080/view/publicacion/perdida",
+        url: "view/pubPerdidaPesada.html",
         async: true,
         dataType: "html",
         type: "GET",
         error: function () {
-            alert("Se a producido un error");
+            alert("Se ha producido un error");
         },
         complete: function () {
             $('#publicaciones').addClass("active");
@@ -156,6 +156,25 @@ function publicacion() {
         }
     });
 }
+function publicacionAdopcion(){
+    $.ajax({
+        url: "view/pubAdopcionPesada.html",
+        async: true,
+        dataType: "html",
+        type: "GET",
+        error: function () {
+            alert("Se ha producido un error");
+        },
+        complete: function () {
+            $('#publicaciones').addClass("active");
+        },
+        success: function (html) {
+            $('#navegacionAjax').html("");
+            $('#navegacionAjax').html(html);
+        }
+    });
+}
+
 
 
 
