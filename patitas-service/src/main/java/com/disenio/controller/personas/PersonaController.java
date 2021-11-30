@@ -33,7 +33,7 @@ public class PersonaController {
 
 
     //@PostMapping("")
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/alta", method = RequestMethod.POST)
     public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaAltaDTO) throws ParseException {
 
         PersonaAltaDTO rtaPersonasDTO = personaService.alta(personaAltaDTO);
