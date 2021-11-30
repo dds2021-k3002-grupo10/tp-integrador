@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class PersonaController {
 
     //@PostMapping("")
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaAltaDTO) {
+    public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaAltaDTO) throws ParseException {
 
         PersonaAltaDTO rtaPersonasDTO = personaService.alta(personaAltaDTO);
 

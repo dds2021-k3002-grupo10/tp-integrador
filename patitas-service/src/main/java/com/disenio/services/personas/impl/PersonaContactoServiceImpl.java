@@ -25,7 +25,7 @@ public class PersonaContactoServiceImpl implements PersonaContactoService {
     @Override
     public void alta(List<ContactosAltaDTO> listPersonaContactosDTO, Persona persona) {
 
-        List<PersonaContacto> personaContactos = seteosVariosUtilService.setContactos(listPersonaContactosDTO);
+        List<PersonaContacto> personaContactos = seteosVariosUtilService.setContactosAlta(listPersonaContactosDTO);
 
 
         personaContactos.forEach(personaContacto -> {

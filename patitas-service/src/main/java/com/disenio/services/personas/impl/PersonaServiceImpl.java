@@ -41,9 +41,14 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Transactional
     @Override
-    public Persona alta(PersonaAltaDTO personaAltaDTO) throws ParseException {
+    public PersonaAltaDTO alta(PersonaAltaDTO personaAltaDTO) throws ParseException {
         //AltaPersona
         Persona rtaPersona= personaDAO.save(seteosVariosUtilService.setPersonaAlta(personaAltaDTO));
+
+        PersonaAltaDTO personaAltaDTO1= new PersonaAltaDTO();
+        //datos para enviar a vista
+        personaAltaDTO1.setIdPersona(rtaPersona.getIdPersona());
+        personaAltaDTO1.setRespuesta("ok");
 
         //AltaPersonaDocumento
         personaDocumentoService.alta(personaAltaDTO.getDocumento(), rtaPersona);
@@ -56,7 +61,7 @@ public class PersonaServiceImpl implements PersonaService {
        // mascotasService.alta(persona.getMascotas(),rtaPersona);
 
 
-        return rtaPersona;
+        return personaAltaDTO1;
 
     }
 

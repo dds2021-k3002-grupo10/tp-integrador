@@ -6,7 +6,7 @@ import lombok.Data;
 public class ContactosAltaDTO {
     private String nombreContacto;
     private String apellidoContacto;
-    private String telefonoContacto;
+    private int telefonoContacto;
     private String emailContacto;
     private Integer idNotificacion;
 }

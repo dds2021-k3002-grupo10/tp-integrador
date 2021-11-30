@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface PersonaService {
 
-    Persona alta(PersonaAltaDTO personaAltaDTO) throws ParseException;
+    PersonaAltaDTO alta(PersonaAltaDTO personaAltaDTO) throws ParseException;
 
     List<PersonaDTO> getListaAllPersona();
 
