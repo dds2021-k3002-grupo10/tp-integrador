@@ -160,13 +160,6 @@
                         <span class="title">Inicio</span>
                     </a>
                 </li>
-                <li class="abierto" id="adopcion">
-                    <!--  <a href="http://localhost:8080/view/publicacion/adoptar" onclick="adopcion()"> -->
-                    <a href="#" onclick="adopcion()">
-                        <i class="fa-user-md"></i>
-                        <span class="title">Adopcion</span>
-                    </a>
-                </li>
                 <li class="abierto" id="registrar">
                     <a href="#" onclick="registrar()">
                         <i class="fa-user-md"></i>
@@ -176,8 +169,8 @@
 
                 <li class="abierto" id="usuario">
                     <a href="#" onclick="usuario()">
-                        <i class="fa-h-square"></i>
-                        <span class="title">Usuario</span>
+                        <i class="fa fa-paw"></i>
+                        <span class="title">Mis mascotas</span>
                     </a>
                 </li>
                 <li class="abierto" id="login">
@@ -196,13 +189,23 @@
 
                 <li class="opened abierto expanded has-sub" id="abm">
                     <a href="#">
-                        <i class="linecons-cog"></i>
-                        <span class="title">Mascotas perdidas</span>
+                        <i class="fa fa-newspaper-o"></i>
+                        <span class="title">Publicaciones</span>
                     </a>
                     <ul>
                         <li class="abierto" id="publicaciones">
+                            <a href="#" onclick="publicacionPerdida()">
+                                <span class="title">Mascotas perdidas</span>
+                            </a>
+                        </li>
+                        <li class="abierto">
+                            <a href="#" onclick="publicacionAdopcion()">
+                                <span class="title">Mascotas en adopcion</span>
+                            </a>
+                        </li>
+                        <li class="abierto">
                             <a href="#" onclick="publicacion()">
-                                <span class="title">Publicar mascota</span>
+                                <span class="title">Adoptantes</span>
                             </a>
                         </li>
                     </ul>
