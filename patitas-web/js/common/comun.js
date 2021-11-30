@@ -86,12 +86,12 @@ function adopcion() {
 
 function usuario() {
     $.ajax({
-        url: "view/usuario.html",
+        url: "view/misMascotas.html",
         async: true,
         dataType: "html",
         type: "GET",
         error: function () {
-            alert("Se a producido un error");
+            alert("Se ha producido un error");
         },
         complete: function () {
             $('#usuario').addClass("active");

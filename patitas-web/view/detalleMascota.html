@@ -24,10 +24,16 @@
         </div>
         <hr>
         <div class="col-sm-12">
-            <strong>Caracteristicas:</strong>
-            <p v-for="caracteristica in mascota.caracteristicaDetalles">
-                {{caracteristica.faq.descripcionFaq}}:
-            </p>
+            <ul>
+                <li v-for="caracteristica in mascota.caracteristicaDetalles">
+                    <ul>
+                        {{caracteristica.pregunta}}:
+                            <span v-for="respuesta in caracteristica.caracteristicaDetalleValors">
+                                {{ respuesta.descripcion }}
+                            </span>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <div class="row">
             <div class="col-sm-7"></div>
