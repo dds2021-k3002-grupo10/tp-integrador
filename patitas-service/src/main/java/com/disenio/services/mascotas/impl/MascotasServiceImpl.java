@@ -75,6 +75,7 @@ public class MascotasServiceImpl implements MascotasService {
             mascotaDTO= new MascotaDTO();
             mascotaDTO = modelMapper.map(mascotas.get(), MascotaDTO.class);
         }
+
         return mascotaDTO;
     }
 
