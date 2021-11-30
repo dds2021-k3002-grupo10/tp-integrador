@@ -48,7 +48,7 @@ public class PersonaServiceImpl implements PersonaService {
         PersonaAltaDTO personaAltaDTO1= new PersonaAltaDTO();
         //datos para enviar a vista
         personaAltaDTO1.setIdPersona(rtaPersona.getIdPersona());
-        personaAltaDTO1.setRespuesta("ok");
+        personaAltaDTO1.setRespuesta("OK");
 
         //AltaPersonaDocumento
         personaDocumentoService.alta(personaAltaDTO.getDocumento(), rtaPersona);
