@@ -50,7 +50,7 @@
                                 <ul>
                                     <li v-for="caracteristica in publicacion.mascota.caracteristicas">
                                         <ul>
-                                        {{caracteristica.pregunta}}:
+                                            <strong>{{caracteristica.pregunta}}:</strong>
                                             <span v-for="respuesta in caracteristica.respuestas">
                                                 {{ respuesta }}
                                             </span>
