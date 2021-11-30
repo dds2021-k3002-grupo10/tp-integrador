@@ -30,14 +30,6 @@ public class MascotaFoto implements java.io.Serializable {
     @Column(name = "ID_MASCOTA_FOTO", unique = true, nullable = false)
     private Integer idMascotaFoto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_MASCOTA")
-    private Mascota mascota;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_MASCOTA_RESCATADA")
-    private MascotaRescatada mascotaRescatada;
-
     @Column(name = "VALOR_FOTO", nullable = false)
     private String valorFoto;
 

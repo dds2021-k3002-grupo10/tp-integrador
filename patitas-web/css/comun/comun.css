@@ -123,3 +123,10 @@
     max-width: 50%;
     margin:0 auto ;
 }
+
+.disabled{
+    display: none;
+}
+.enabled{
+    display: block;
+}

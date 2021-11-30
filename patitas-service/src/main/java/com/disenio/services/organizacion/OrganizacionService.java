@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrganizacionService {
-
-    Optional<Organizacion> getOrganizacionById(Integer id);
+    void alta(Organizacion organizacion);
+   Organizacion getOrganizacionById(Integer id);
 
    List<OrganizacionDTO> getOrganizacionAll();
 }

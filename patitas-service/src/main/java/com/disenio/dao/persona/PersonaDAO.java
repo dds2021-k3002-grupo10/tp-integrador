@@ -10,7 +10,7 @@ import java.util.List;
 @Repository("PersonaDAO")
 public interface PersonaDAO extends JpaRepository<Persona,Integer> {
 
-    @Query("Select p FROM Persona p INNER JOIN PersonaDocumento pd  on pd.persona.idPersona= p.idPersona where pd.numero = :numero and pd.tipoDocumento.idTipoDoc= :idTipoDoc")
+    @Query("Select p FROM Persona p INNER JOIN PersonaDocumento  pd  on p.personaDocumentos=pd.idDocumento where pd.numero = :numero and pd.tipoDocumento.idTipoDoc= :idTipoDoc")
     List<Persona> findPersonasByCondicion(Integer idTipoDoc,Integer numero);
 
 

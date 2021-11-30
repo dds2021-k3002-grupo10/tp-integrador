@@ -22,6 +22,6 @@ public class PersonaDTO {
     private String apellido;
     private Calendar fechaNacimiento;
     private char estado;
-    private List<PersonaDocumentoDTO> personaDocumentos ;
-    private List<PersonaDireccionDTO> personaDireccions;
+    private PersonaDocumentoDTO personaDocumentos ;
+    private PersonaDireccionDTO personaDireccions;
 }

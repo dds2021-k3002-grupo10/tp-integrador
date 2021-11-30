@@ -5,7 +5,6 @@ import com.disenio.dto.mascota.DTOMascotaPerdida;
 import com.disenio.dto.mascota.DTOUbicacionMascota;
 import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionPerdida;
-import com.disenio.model.mascotas.MascotaHogarTransito;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.mascotas.UbicacionMascotaRescatada;
 import com.disenio.model.personas.Persona;
@@ -15,7 +14,6 @@ import com.disenio.services.mascotas.TamanioMascotaService;
 import com.disenio.services.mascotas.TipoMascotaService;
 import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,15 +49,13 @@ public class PublicacionPerdidasController {
         DTOUbicacionMascota ubicacionDTO = dtoMascota.getUbicacion();
 
         UbicacionMascotaRescatada ubicacion = new UbicacionMascotaRescatada(ubicacionDTO.getDireccion(), ubicacionDTO.getLatitud(), ubicacionDTO.getLongitud());
-        MascotaHogarTransito mht = new MascotaHogarTransito(dtoPublicacion.getIdHogar());
         Persona persona = personaService.getPersonasById(dtoPersona.getIdPersona()).orElse(null);
         MascotaRescatada mascotaPerdida = new MascotaRescatada(persona, dtoMascota.getTamanioMascota(), dtoMascota.getTipoMascota(), dtoPublicacion.getDescripcion());
 
-        mascotaPerdida.setMascotaHogarTransitos(mht);
         mascotaPerdida.setUbicacionMascotaRescatadas(ubicacion);
         //TODO: Aca se hace la verificacion de si puede la mascota ir o no a ese hogar
 
-        PublicacionPerdida publicacion = new PublicacionPerdida(persona, mascotaPerdida, mht);
+        PublicacionPerdida publicacion = new PublicacionPerdida(persona, mascotaPerdida);
 
 
         if (persona == null) {

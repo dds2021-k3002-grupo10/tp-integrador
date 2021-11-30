@@ -1,6 +1,5 @@
 package com.disenio.model.publicaciones;
 
-import com.disenio.model.mascotas.MascotaHogarTransito;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.personas.Persona;
 
@@ -13,7 +12,6 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
 
 
     private MascotaRescatada mascota;
-    private MascotaHogarTransito hogar;
     private Estado estado;
 
 
@@ -23,10 +21,9 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
         this.estado = Estado.PENDIENTE;
     }
 
-    public PublicacionPerdida(Persona autor, MascotaRescatada mascota, MascotaHogarTransito hogar) {
+    public PublicacionPerdida(Persona autor, MascotaRescatada mascota) {
         super(autor);
         this.mascota = mascota;
-        this.hogar = hogar;
     }
 
     public PublicacionPerdida() {
@@ -43,16 +40,6 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
 
     public void setMascota(MascotaRescatada mascota) {
         this.mascota = mascota;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "ID_HOGAR",nullable = true)
-    public MascotaHogarTransito getHogar() {
-        return hogar;
-    }
-
-    public void setHogar(MascotaHogarTransito hogar) {
-        this.hogar = hogar;
     }
 
     @Enumerated(value = EnumType.STRING)

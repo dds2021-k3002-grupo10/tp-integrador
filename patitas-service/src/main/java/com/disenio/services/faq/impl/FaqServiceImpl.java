@@ -52,7 +52,7 @@ public class FaqServiceImpl implements FaqService {
         /*Settings*/
         Optional<FaqComportamientoTipo> comportamientoTipo = faqComportamientoTipoService.getFaqComportamientoTipoById(faqAltaDTO.getIdComportamientoTipo());
         FaqPreguntaTipo faqPreguntaTipo = faqPreguntaTipoService.getById(faqAltaDTO.getIdPreguntaTipo());
-        Optional<Organizacion> organizacion = organizacionService.getOrganizacionById(faqAltaDTO.getIdOrganizacion());
+        Organizacion organizacion = organizacionService.getOrganizacionById(faqAltaDTO.getIdOrganizacion());
         Usuario usuario = usuarioService.getById(faqAltaDTO.getIdUsuario());
 
         /*Seting  FAQ*/
@@ -60,7 +60,7 @@ public class FaqServiceImpl implements FaqService {
         faq.setDescripcionFaq(faqAltaDTO.getDescripcionFaq().toUpperCase());
         faq.setFaqComportamientoTipo(comportamientoTipo.get());
         faq.setFaqPreguntaTipo(faqPreguntaTipo);
-        faq.setOrganizacion(organizacion.get());
+        faq.setOrganizacion(organizacion);
         faq.setEstado("A");
         faq.setUsuario(usuario);
         faq.setFechaAlta(date);

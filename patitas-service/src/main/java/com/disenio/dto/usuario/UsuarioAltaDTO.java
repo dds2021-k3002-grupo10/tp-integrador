@@ -1,14 +1,26 @@
-package com.disenio.dto.persona;
+package com.disenio.dto.usuario;
 
-public class UsuarioDTO {
+import com.disenio.model.usuarios.Rol;
+
+public class UsuarioAltaDTO {
     String usuario;
     String clave;
+    //String rol;
     String mensaje;
 
-    public UsuarioDTO(String usuario, String clave, String mensaje) {
+
+    public UsuarioAltaDTO(String usuario, String clave, String mensaje) {
         this.usuario = usuario;
         this.clave = clave;
         this.mensaje = mensaje;
+    }
+
+    public UsuarioAltaDTO(String usuario, String clave) {
+        this.usuario = usuario;
+        this.clave = clave;
+    }
+
+    public UsuarioAltaDTO() {
     }
 
     public String getUsuario() {
@@ -34,4 +46,13 @@ public class UsuarioDTO {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
+
+   /* public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+    */
 }

@@ -1,4 +1,4 @@
-package com.disenio.dao.usuario;
+/*package com.disenio.dao.usuario;
 
 import com.disenio.model.usuarios.UsuarioOrganizacion;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,3 +14,4 @@ public interface UsuarioOrganizacionDAO extends JpaRepository<UsuarioOrganizacio
 
 
 }
+*/

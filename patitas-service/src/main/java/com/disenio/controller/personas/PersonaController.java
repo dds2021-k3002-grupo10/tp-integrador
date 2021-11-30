@@ -3,13 +3,13 @@ package com.disenio.controller.personas;
 import com.disenio.dto.persona.PersonaAltaDTO;
 import com.disenio.dto.persona.PersonaBusquedaByDocDTO;
 import com.disenio.dto.persona.PersonaDTO;
-import com.disenio.model.personas.MedioNotificacion;
-import com.disenio.model.personas.Persona;
+import com.disenio.model.notificacion.MedioNotificacion;
 import com.disenio.model.personas.TipoDocumento;
+import com.disenio.model.usuarios.Usuario;
 import com.disenio.services.personas.*;
+import com.disenio.services.usuarios.UsuarioService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +27,8 @@ public class PersonaController {
     @Autowired
     private PersonaService personaService;
     @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
     private TipoDocumentoService tipoDocumentoService;
     @Autowired
     private MedioNotificacionService MedioNotificacionService;
@@ -34,9 +36,11 @@ public class PersonaController {
 
     //@PostMapping("")
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaAltaDTO) throws ParseException {
+    public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaAltaDTO, HttpServletRequest request) throws ParseException {
 
-        PersonaAltaDTO rtaPersonasDTO = personaService.alta(personaAltaDTO);
+        Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+
+        PersonaAltaDTO rtaPersonasDTO = personaService.alta(personaAltaDTO,usuario);
 
         if (rtaPersonasDTO != null) {
             return ResponseEntity.ok(rtaPersonasDTO);

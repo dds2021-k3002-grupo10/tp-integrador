@@ -18,7 +18,6 @@ public class TamanioMascota implements java.io.Serializable {
     private Integer idTamanio;
     private String descripcion;
     private char estado;
-    //private Set mascotaRescatadas = new HashSet(0);
 
     public TamanioMascota() {
     }

@@ -28,8 +28,8 @@ public class CuestionarioController {
         DTOResponse response = new DTOResponse();
         //TODO: Session!
         //Organizacion organizacion = request.getSession().getAttribute("organizacion");
-        Organizacion organizacion = organizacionService.getOrganizacionById(1).get();
-        Cuestionario cuestionario = organizacion.getCuestionarioByCuestionarioDeAdopcionIdCuestionario();
+        Organizacion organizacion = organizacionService.getOrganizacionById(1);
+        Cuestionario cuestionario = organizacion.getCuestionarioDeAdopcion();
 
         DTOCuestionario dtoCuestionario = new DTOCuestionario(cuestionario);
 
@@ -44,11 +44,10 @@ public class CuestionarioController {
         DTOResponse response = new DTOResponse();
         //TODO: Session!
         //Organizacion organizacion = request.getSession().getAttribute("organizacion");
-        Organizacion organizacion = organizacionService.getOrganizacionById(1).get();
-        Cuestionario cuestionario = organizacion.getCuestionarioByCuestionarioDeAdopcionIdCuestionario();
+        Organizacion organizacion = organizacionService.getOrganizacionById(1);
+        Cuestionario cuestionario = organizacion.getCuestionarioDeAdopcion();
 
         DTOCuestionario dtoCuestionario = new DTOCuestionario(cuestionario);
-
 
 
         response.setStatus(HttpStatus.OK);

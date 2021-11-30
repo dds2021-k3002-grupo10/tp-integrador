@@ -17,11 +17,11 @@ import java.util.Optional;
 @Service
 public class PersonaDocumentoServiceImpl implements PersonaDocumentoService {
     @Autowired
+    SeteosVariosUtilServiceImpl seteosVariosUtilService;
+    @Autowired
     private PersonaDocumentoDAO personaDocumentoDAO;
     @Autowired
     private TipoDocumentoService tipoDocumentoService;
-    @Autowired
-    SeteosVariosUtilServiceImpl seteosVariosUtilService;
 
     @Transactional
     @Override
@@ -32,7 +32,7 @@ public class PersonaDocumentoServiceImpl implements PersonaDocumentoService {
 
         personaDocumentos.forEach(personaDocumento -> {
 
-            personaDocumento.setPersona(persona);
+            persona.setPersonaDocumentos(personaDocumento);
             Integer idTipoDoc = personaDocumento.getTipoDocumento().getIdTipoDoc();
             Optional<TipoDocumento> tipoDocumento = tipoDocumentoService.getTipoDocuemntoById(idTipoDoc);
 
@@ -41,5 +41,10 @@ public class PersonaDocumentoServiceImpl implements PersonaDocumentoService {
             personaDocumentoDAO.save(personaDocumento);
 
         });
+    }
+
+
+    public void alta(DocumentoAltaDTO personaDocumentos, Persona persona) {
+
     }
 }

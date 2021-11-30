@@ -2,7 +2,6 @@ package com.disenio.services.mascotas.impl;
 
 import com.disenio.dao.mascotas.MascotaRescatadaDAO;
 import com.disenio.model.mascotas.MascotaRescatada;
-import com.disenio.services.mascotas.HogarTransitoService;
 import com.disenio.services.mascotas.MascotaRescatadaService;
 import com.disenio.services.mascotas.UbicacionMascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,7 @@ public class MascotaRescatadaImpl implements MascotaRescatadaService {
     private MascotaRescatadaDAO mascotaDAO;
     @Autowired
     private UbicacionMascotaService ubicacionMascotaService;
-    @Autowired
-    private HogarTransitoService hogarService;
+
 
     @Override
     public Optional<MascotaRescatada> getById(int id) {
@@ -30,7 +28,6 @@ public class MascotaRescatadaImpl implements MascotaRescatadaService {
     @Transactional
     @Override
     public void alta(MascotaRescatada mascotaRescatada) {
-        hogarService.alta(mascotaRescatada.getMascotaHogarTransitos());
         ubicacionMascotaService.alta(mascotaRescatada.getUbicacionMascotaRescatadas());
         mascotaDAO.save(mascotaRescatada);
     }

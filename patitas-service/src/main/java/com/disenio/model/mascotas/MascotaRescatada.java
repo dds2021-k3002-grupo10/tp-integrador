@@ -31,7 +31,6 @@ public class MascotaRescatada implements java.io.Serializable {
     private Date fechaUltimaModificacion;
     private Date fechaBaja;
     private char estado;
-    private MascotaHogarTransito mascotaHogarTransitos;
     private UbicacionMascotaRescatada ubicacionMascotaRescatadas;
     private List<MascotaFoto> mascotaFotos = new ArrayList<>();
 
@@ -49,7 +48,7 @@ public class MascotaRescatada implements java.io.Serializable {
         this.estado = 'A';
     }
 
-    public MascotaRescatada(Integer idMascotaRescatada, Persona persona, TamanioMascota tamanioMascota, TipoMascota tipoMascota, String descripcion, Date fechaAlta, Date fechaUltimaModificacion, Date fechaBaja, char estado, MascotaHogarTransito mascotaHogarTransitos, UbicacionMascotaRescatada ubicacionMascotaRescatadas, List<MascotaFoto> mascotaFotos) {
+    public MascotaRescatada(Integer idMascotaRescatada, Persona persona, TamanioMascota tamanioMascota, TipoMascota tipoMascota, String descripcion, Date fechaAlta, Date fechaUltimaModificacion, Date fechaBaja, char estado, UbicacionMascotaRescatada ubicacionMascotaRescatadas, List<MascotaFoto> mascotaFotos) {
         this.idMascotaRescatada = idMascotaRescatada;
         this.persona = persona;
         this.tamanioMascota = tamanioMascota;
@@ -59,7 +58,6 @@ public class MascotaRescatada implements java.io.Serializable {
         this.fechaUltimaModificacion = fechaUltimaModificacion;
         this.fechaBaja = fechaBaja;
         this.estado = estado;
-        this.mascotaHogarTransitos = mascotaHogarTransitos;
         this.ubicacionMascotaRescatadas = ubicacionMascotaRescatadas;
         this.mascotaFotos = new ArrayList<>();
     }
@@ -158,15 +156,6 @@ public class MascotaRescatada implements java.io.Serializable {
         this.estado = estado;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_MASCOTA_HOGAR", nullable = false)
-    public MascotaHogarTransito getMascotaHogarTransitos() {
-        return this.mascotaHogarTransitos;
-    }
-
-    public void setMascotaHogarTransitos(MascotaHogarTransito mascotaHogarTransitos) {
-        this.mascotaHogarTransitos = mascotaHogarTransitos;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_UBICACION", nullable = false)
@@ -178,7 +167,7 @@ public class MascotaRescatada implements java.io.Serializable {
         this.ubicacionMascotaRescatadas = ubicacionMascotaRescatadas;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mascotaRescatada")
+    @OneToMany(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
     public List<MascotaFoto> getMascotaFotos() {
         return this.mascotaFotos;
     }

@@ -2,18 +2,16 @@ package com.disenio.services.organizacion.impl;
 
 import com.disenio.dao.organizacion.OrganizacionDAO;
 import com.disenio.dto.organizacion.OrganizacionDTO;
-import com.disenio.model.faq.FaqPreguntaTipo;
 import com.disenio.model.organizacion.Organizacion;
 import com.disenio.services.organizacion.OrganizacionService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OrganizacionServiceImpl implements OrganizacionService {
@@ -22,11 +20,15 @@ public class OrganizacionServiceImpl implements OrganizacionService {
     OrganizacionDAO organizacionDAO;
 
     @Override
-    public Optional<Organizacion> getOrganizacionById(Integer id) {
-
-        return organizacionDAO.findById(id);
+    public void alta(Organizacion organizacion) {
+        this.organizacionDAO.save(organizacion);
     }
 
+    @Override
+    public Organizacion getOrganizacionById(Integer id) {
+
+        return organizacionDAO.getById(id);
+    }
 
 
     @Override
@@ -38,8 +40,8 @@ public class OrganizacionServiceImpl implements OrganizacionService {
         if (!organizacion.isEmpty()) {
             organizacionDTO = Arrays.asList(modelMapper.map(organizacion, OrganizacionDTO[].class));
         }
-        return organizacionDTO;
 
+        return organizacionDTO;
     }
 
 

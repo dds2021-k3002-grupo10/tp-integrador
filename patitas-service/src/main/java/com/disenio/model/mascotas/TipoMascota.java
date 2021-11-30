@@ -22,15 +22,6 @@ public class TipoMascota implements java.io.Serializable {
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
-/*
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoMascota")
-    private Set<MascotaRescatada> mascotaRescatadas = new HashSet(0);
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoMascota")
-    private Set<Mascota> mascotas = new HashSet(0);
-*/
 
 }
 

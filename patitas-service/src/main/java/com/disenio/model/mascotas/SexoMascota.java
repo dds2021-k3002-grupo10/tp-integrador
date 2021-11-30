@@ -23,11 +23,7 @@ public class SexoMascota implements java.io.Serializable {
 
     @Column(name = "DESCRIPCION", nullable = false, length = 10)
     private String descripcion;
-/*
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sexoMascota")
-    private List<Mascota> mascotas;
-*/
+
 }
 
 

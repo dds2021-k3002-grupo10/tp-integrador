@@ -27,9 +27,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario rtaUsuario = usuarioDAO.save(usuario);
 
         //getOrganizacion
-        Optional<Organizacion> rtaOrganizacion = organizacionService.getOrganizacionById(usuario.getUsuarioOrganizacions().get(0).getOrganizacion().getIdOrganizacion());
+        //Optional<Organizacion> rtaOrganizacion = organizacionService.getOrganizacionById(organizacion);
 
-        usuarioOrganizacionService.alta(rtaUsuario, rtaOrganizacion.get());
+       // usuarioOrganizacionService.alta(rtaUsuario, rtaOrganizacion.get());
 
     }
 

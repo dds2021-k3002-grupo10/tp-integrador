@@ -37,7 +37,7 @@ public class DTOPublicacionPerdida implements Serializable {
         this.fechaPublicacion = pp.getFecha();
         this.autor = new DTOPersona(pp.getAutor());
         this.mascota = new DTOMascotaPerdida(mr);
-        this.idHogar = pp.getHogar().getIdHogar();
+        this.idHogar = pp.getMascota().getUbicacionMascotaRescatadas().getIdHogar();
         this.descripcion = mr.getDescripcion();
     }
 

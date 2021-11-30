@@ -1,4 +1,4 @@
-package com.disenio.services.usuarios.impl;
+/*package com.disenio.services.usuarios.impl;
 
 import com.disenio.dao.usuario.UsuarioRolDAO;
 import com.disenio.model.organizacion.Organizacion;
@@ -8,7 +8,7 @@ import com.disenio.model.usuarios.UsuarioRol;
 import com.disenio.services.usuarios.UsuarioRolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+@Deprecated
 @Service
 public class UsuarioRolServiceImpl implements UsuarioRolService {
     @Autowired
@@ -22,3 +22,4 @@ public class UsuarioRolServiceImpl implements UsuarioRolService {
         usuarioRolDAO.save(usuarioRol);
     }
 }
+*/

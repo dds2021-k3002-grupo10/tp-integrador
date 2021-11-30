@@ -3,25 +3,15 @@ package com.disenio.model.organizacion;
 
 import com.disenio.model.cuestionario.Cuestionario;
 import com.disenio.model.faq.Faq;
-import com.disenio.model.usuarios.UsuarioOrganizacion;
+import com.disenio.model.personas.Persona;
+import com.disenio.model.usuarios.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import java.util.HashSet;
+import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * Organizacion grupo 10
@@ -39,36 +29,39 @@ public class Organizacion implements java.io.Serializable {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cuestionario_para_dar_adopcion_id_cuestionario")
-    private Cuestionario cuestionarioByCuestionarioParaDarAdopcionIdCuestionario;
+    @JoinColumn(name = "ID_CUESTIONARIO_DAR_ADOPTAR")
+    private Cuestionario cuestionarioParaDarAdopcion;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cuestionario_de_adopcion_id_cuestionario")
-    private Cuestionario cuestionarioByCuestionarioDeAdopcionIdCuestionario;
+    @JoinColumn(name = "ID_CUESTIONARIO_DE_ADOPCION")
+    private Cuestionario cuestionarioDeAdopcion;
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
     private String nombre;
 
-    @Column(name = "URL_NOMALIZADOR", nullable = false, length = 200)
-    private String urlNomalizador;
 
     @Column(name = "ESTADO", nullable = false, length = 1)
     private char estado;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organizacion")
-    private List<UsuarioOrganizacion> usuarioOrganizacions;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Usuario> usuarios;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organizacion")
     private List<Faq> faqs;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "organizacion")
-    private List<NormalizaImg> normalizaImgs;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private NormalizaImg normalizaImgs;
 
+    //Funcionalidad
+    public void addUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
+    }
 
-
+    public void removeUsuario(Usuario usuario) {
+        this.usuarios.remove(usuario);
+    }
 }
 
 

@@ -25,10 +25,10 @@ public class Mascota implements java.io.Serializable {
     @Column(name = "ID_MASCOTA", unique = true, nullable = false)
     private Integer idMascota;
 
-    @Column(name = "EDAD", unique = true, nullable = false)
+    @Column(name = "EDAD", nullable = false)
     private Integer edad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "ID_PERSONA", nullable = false)
     private Persona persona;
 
@@ -45,10 +45,6 @@ public class Mascota implements java.io.Serializable {
 
     @Column(name = "APODO", nullable = false, length = 50)
     private String apodo;
-
-    @Column(name = "FECHA_NACIMIENTO", nullable = false, length = 0)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT+8")
-    private Calendar fechaNacimiento;
 
     @Column(name = "DESCRIPCION_FISICA", nullable = false, length = 2000)
     private String descripcionFisica;
@@ -71,10 +67,13 @@ public class Mascota implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mascota")
     private List<CaracteristicaDetalle> caracteristicaDetalles;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mascota")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<MascotaFoto> mascotaFotos;
 
-
+    //Funcionalidad
+    public void addFoto(MascotaFoto mascotaFoto) {
+        this.mascotaFotos.add(mascotaFoto);
+    }
 }
 
 

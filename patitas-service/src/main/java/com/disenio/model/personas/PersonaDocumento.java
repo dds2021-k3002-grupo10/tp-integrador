@@ -31,10 +31,6 @@ public class PersonaDocumento implements java.io.Serializable {
     private Integer idDocumento;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_PERSONA", nullable = false)
-    private Persona persona;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_TIPO_DOC", nullable = false)
     private TipoDocumento tipoDocumento;
 

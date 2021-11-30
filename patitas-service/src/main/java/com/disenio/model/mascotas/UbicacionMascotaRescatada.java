@@ -19,13 +19,13 @@ public class UbicacionMascotaRescatada implements java.io.Serializable {
 
 
     private Integer idUbicacion;
-    // private MascotaRescatada mascotaRescatada;
     private String direccion;
     private Integer latitud;
     private Integer longitud;
     private Date fechaAlta;
     private Date fechaUltimaModificacion;
     private Date fechaBaja;
+    private Integer idHogar;
     private char estado;
 
     public UbicacionMascotaRescatada() {
@@ -37,7 +37,6 @@ public class UbicacionMascotaRescatada implements java.io.Serializable {
         this.longitud = longitud;
         this.fechaAlta = java.sql.Date.valueOf(LocalDate.now());
         this.fechaUltimaModificacion = java.sql.Date.valueOf(LocalDate.now());
-        //this.fechaBaja = fechaBaja;
         this.estado = 'A';
     }
 
@@ -48,15 +47,6 @@ public class UbicacionMascotaRescatada implements java.io.Serializable {
         this.estado = estado;
     }
 
-    public UbicacionMascotaRescatada(MascotaRescatada mascotaRescatada, String direccion, Integer latitud, Integer longitud, Date fechaAlta, Date fechaUltimaModificacion, Date fechaBaja, char estado) {
-        this.direccion = direccion;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.fechaAlta = fechaAlta;
-        this.fechaUltimaModificacion = fechaUltimaModificacion;
-        this.fechaBaja = fechaBaja;
-        this.estado = estado;
-    }
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -139,7 +129,14 @@ public class UbicacionMascotaRescatada implements java.io.Serializable {
         this.estado = estado;
     }
 
+    @Column(name = "ID_HOGAR", nullable = false, length = 1)
+    public Integer getIdHogar() {
+        return idHogar;
+    }
 
+    public void setIdHogar(Integer idHogar) {
+        this.idHogar = idHogar;
+    }
 }
 
 

@@ -60,7 +60,7 @@
                         .then(response => response.json())
                         .then(datos => {
                             localStorage.setItem("IDSESION", datos.idSesion) //guarda ID
-                            $('#navegacionAjax').html("");
+                            $(location).attr('href', 'principal-nav.html')
                             $('#navegacionAjax').html(html);
                         })
                 }

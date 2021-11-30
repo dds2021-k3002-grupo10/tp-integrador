@@ -24,7 +24,6 @@ public class PersonaDireccion implements java.io.Serializable {
 
 
     private Integer idDireccion;
-    private Persona persona;
     private String calle;
     private int numero;
     private Integer piso;
@@ -40,8 +39,7 @@ public class PersonaDireccion implements java.io.Serializable {
     }
 
 
-    public PersonaDireccion(Persona persona, String calle, int numero, Calendar fechaAlta, Calendar fechaUltimaModificacion, char estado) {
-        this.persona = persona;
+    public PersonaDireccion( String calle, int numero, Calendar fechaAlta, Calendar fechaUltimaModificacion, char estado) {
         this.calle = calle;
         this.numero = numero;
         this.fechaAlta = fechaAlta;
@@ -49,8 +47,7 @@ public class PersonaDireccion implements java.io.Serializable {
         this.estado = estado;
     }
 
-    public PersonaDireccion(Persona persona, String calle, int numero, Integer piso, String departamento, String observaciones, Integer codPostal, Calendar fechaAlta, Calendar fechaUltimaModificacion, Calendar fechaBaja, char estado) {
-        this.persona = persona;
+    public PersonaDireccion( String calle, int numero, Integer piso, String departamento, String observaciones, Integer codPostal, Calendar fechaAlta, Calendar fechaUltimaModificacion, Calendar fechaBaja, char estado) {
         this.calle = calle;
         this.numero = numero;
         this.piso = piso;
@@ -73,17 +70,6 @@ public class PersonaDireccion implements java.io.Serializable {
     public void setIdDireccion(Integer idDireccion) {
         this.idDireccion = idDireccion;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_PERSONA", nullable = false)
-    public Persona getPersona() {
-        return this.persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
 
     @Column(name = "CALLE", nullable = false, length = 200)
     public String getCalle() {

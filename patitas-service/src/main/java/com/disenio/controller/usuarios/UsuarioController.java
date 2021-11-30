@@ -1,14 +1,12 @@
 package com.disenio.controller.usuarios;
 
-import com.disenio.dto.persona.UsuarioDTO;
-import com.disenio.model.personas.Persona;
-import com.disenio.model.usuarios.Rol;
+import com.disenio.dto.usuario.UsuarioAltaDTO;
+import com.disenio.dto.usuario.UsuarioDTO;
+import com.disenio.model.organizacion.Organizacion;
 import com.disenio.model.usuarios.Usuario;
-import com.disenio.model.usuarios.UsuarioOrganizacion;
+import com.disenio.model.usuarios.rol.Estandar;
+import com.disenio.services.organizacion.OrganizacionService;
 import com.disenio.services.personas.PersonaService;
-import com.disenio.services.usuarios.RolService;
-import com.disenio.services.usuarios.UsuarioOrganizacionService;
-import com.disenio.services.usuarios.UsuarioRolService;
 import com.disenio.services.usuarios.UsuarioService;
 import com.disenio.services.validador.impl.CriterioClaveDebil;
 import com.disenio.services.validador.impl.CriterioRegex;
@@ -22,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -35,11 +32,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
     @Autowired
-    private UsuarioOrganizacionService usuarioOrganizacionService;
-    @Autowired
-    private RolService rolService;
-    @Autowired
-    private UsuarioRolService usuarioRolService;
+    private OrganizacionService organizacionService;
     @Autowired
     private CriterioClaveDebil criterioClaveDebil;
     @Autowired
@@ -47,21 +40,28 @@ public class UsuarioController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<String> altaUsuario(HttpServletRequest request, @RequestBody Usuario usuario) {
+    public ResponseEntity<String> altaUsuario(HttpServletRequest request, @RequestBody UsuarioAltaDTO usuario) {
         ResponseEntity response;
+
         try {
             // Validaciones de password
             ResponseEntity<String> isNotValid = validatePass(usuario.getClave());
             if (isNotValid != null) return isNotValid;
 
             //trae Persona
-            Optional<Persona> persona = personaService.getPersonasById(usuario.getPersona().getIdPersona());
+            Usuario usuarioReal = new Usuario();
+            usuarioReal.setNombre(usuario.getUsuario());
+            usuarioReal.setClave(usuario.getClave());
+            usuarioReal.setRol(usuarioReal.getRol());
 
+            Integer idOrganizacion = (Integer) request.getSession().getAttribute("organizacion");
+            Organizacion organizacion = organizacionService.getOrganizacionById(idOrganizacion);
 
+            request.setAttribute("usuario", usuarioReal);
             //alta usuario
-            usuario.setPersona(persona.get());
-
-            usuarioService.altaUsuario(usuario);
+            organizacion.addUsuario(usuarioReal);
+            usuarioService.altaUsuario(usuarioReal);
+            organizacionService.alta(organizacion);
 
             response = new ResponseEntity(HttpStatus.CREATED);
 
@@ -76,16 +76,16 @@ public class UsuarioController {
     @PostMapping(value = "/login")
     public ResponseEntity<String> login(HttpServletRequest request, @RequestBody UsuarioDTO usuario) {
         ResponseEntity response;
-        System.out.println("RECIBI:" + usuario.getUsuario() + usuario.getClave());
+
         Usuario rtaUsuario = usuarioService.getByNombre(usuario.getUsuario());
         System.out.println(rtaUsuario == null);
         if (rtaUsuario == null || !rtaUsuario.getClave().equals(usuario.getClave())) {
             response = ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body("{\"description\":\"El password no cumple los requisitos del TP \"}");
-            System.out.println("Se logueo fallo");
+
         } else {
-            System.out.println("Se logueo ok");
+
             request.getSession().setAttribute("usuario", rtaUsuario);
 
             response = new ResponseEntity("{" + "\"idSesion\"" + ":" + rtaUsuario.getPersona().getIdPersona() + "}", HttpStatus.OK);
@@ -94,12 +94,14 @@ public class UsuarioController {
         return response;
 
     }
-
+/*
+    @Deprecated
     @RequestMapping(value = "/rol", method = RequestMethod.POST)
     public ResponseEntity<String> altaUsuarioRol(HttpServletRequest request, @RequestBody UsuarioOrganizacion usuarioOrganizacion) {
         ResponseEntity response;
         try {
-
+            Integer idUsuario = usuarioOrganizacion.getUsuario().getIdUsuario();
+            Usuario usuario = usuarioService.getById(idUsuario);
             //trae UsuarioOrganizacion
             UsuarioOrganizacion rtaUsuarioOrganizacion = usuarioOrganizacionService.getByIdUsuarioAndIdOrganizacion(usuarioOrganizacion.getUsuario().getIdUsuario(), usuarioOrganizacion.getOrganizacion().getIdOrganizacion());
 
@@ -117,7 +119,7 @@ public class UsuarioController {
         }
         return response;
     }
-
+*/
 
     @Nullable
     private ResponseEntity<String> validatePass(@NotNull String clave) {

@@ -25,7 +25,7 @@ public class RolController {
     public ResponseEntity<List<Rol>> getRolAll() {
         ResponseEntity<List<Rol>> response;
 
-        List<Rol> rol = null;
+        List<Rol> rol = rolService.getAllRol();
         if (rol.isEmpty()) {
             response = ResponseEntity.noContent().build();
         } else {

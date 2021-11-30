@@ -15,11 +15,12 @@ public class MascotaFotoServiceImpl implements MascotaFotoService {
 
     @Autowired
     MascotaFotoDAO mascotaFotoDAO;
+
     @Transactional
     @Override
     public void alta(List<MascotaFoto> mascotaFotos, Mascota mascota) {
         mascotaFotos.forEach(mascotaFoto -> {
-            mascotaFoto.setMascota(mascota);
+            mascota.addFoto(mascotaFoto);
             //AltaMascotaFoto
             mascotaFotoDAO.save(mascotaFoto);
         });

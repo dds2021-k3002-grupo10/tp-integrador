@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PersonaDireccionServiceImpl implements PersonaDireccionService {
@@ -21,9 +20,10 @@ public class PersonaDireccionServiceImpl implements PersonaDireccionService {
     public void alta(List<PersonaDireccion> personaDireccions, Persona persona) {
 
         personaDireccions.forEach(personaDireccion -> {
-
-            personaDireccion.setPersona(persona);
+            //TODO CHEQUEAR
+            //personaDireccion.setPersona(persona);
             //AltaPersonasContacto
+            persona.setPersonaDireccions(personaDireccion);
             personaDireccionDAO.save(personaDireccion);
 
         });

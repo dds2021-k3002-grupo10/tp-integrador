@@ -1,32 +1,35 @@
 package com.disenio.services.usuarios.impl;
 
-import com.disenio.dao.usuario.UsuarioOrganizacionDAO;
 import com.disenio.model.organizacion.Organizacion;
 import com.disenio.model.usuarios.Usuario;
-import com.disenio.model.usuarios.UsuarioOrganizacion;
+import com.disenio.services.organizacion.OrganizacionService;
 import com.disenio.services.usuarios.UsuarioOrganizacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Deprecated
 @Service
 public class UsuarioOrganizacionServiceImpl implements UsuarioOrganizacionService {
-    @Autowired
+   /* @Autowired
     UsuarioOrganizacionDAO usuarioOrganizacionDAO;
+    */
+
+    @Autowired
+    OrganizacionService organizacionService;
 
 
     @Override
     public void alta(Usuario usuario, Organizacion organizacion) {
 
-        UsuarioOrganizacion usuarioOrganizacion = new UsuarioOrganizacion();
-        usuarioOrganizacion.setUsuario(usuario);
-        usuarioOrganizacion.setOrganizacion(organizacion);
-        usuarioOrganizacion.setEstado('A');
+        organizacion.addUsuario(usuario);
+        organizacionService.alta(organizacion);
 
-        usuarioOrganizacionDAO.save(usuarioOrganizacion);
     }
-
+/*
     @Override
     public UsuarioOrganizacion getByIdUsuarioAndIdOrganizacion(Integer idUsuario, Integer idOrganizacion) {
         return usuarioOrganizacionDAO.getByIdUsuarioAndIdOrganizacion(idUsuario,idOrganizacion);
     }
+    */
+
 }
