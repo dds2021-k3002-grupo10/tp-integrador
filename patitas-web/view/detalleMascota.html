@@ -16,7 +16,7 @@
                 <h4>Tipo: {{mascota.tipoMascota.nombre}}</h4>
                 <h4>Nombre: {{mascota.nombre}}</h4>
                 <h4>Apodo: {{mascota.apodo}}</h4>
-                <!--<h4>Edad: 4</h4> AGREGAMOS EDAD? -->
+                <h4 v-if="edad != null">Edad: {{mascota.edad}}</h4>
                 <h4>Sexo: {{mascota.sexoMascota.descripcion}}</h4>
                 <h4>Fecha de nacimiento: {{mascota.fechaNacimiento}}</h4>
                 <h4>Descripcion: {{mascota.descripcionFisica}}</h4>
@@ -25,17 +25,9 @@
         <hr>
         <div class="col-sm-12">
             <strong>Caracteristicas:</strong>
-            <hr>
-            <p>
-                Castrado? Si
+            <p v-for="caracteristica in mascota.caracteristicaDetalles">
+                {{caracteristica.faq.descripcionFaq}}:
             </p>
-            <p>
-                Colores? Negro, Marron, Blanco
-            </p>
-            <p>
-                Agresivo? No
-            </p>
-            <!-- aca irian los detalles de las características -->
         </div>
         <div class="row">
             <div class="col-sm-7"></div>
@@ -65,6 +57,4 @@
             })
         }
     })
-
-    var valorFoto = mascota.mascotaFotos[0].valorFoto
 </script>
