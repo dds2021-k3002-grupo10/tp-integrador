@@ -1,6 +1,7 @@
 package com.disenio.services.personas.impl;
 
 import com.disenio.dao.persona.PersonaDocumentoDAO;
+import com.disenio.dto.persona.DocumentoAltaDTO;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.PersonaDocumento;
 import com.disenio.model.personas.TipoDocumento;
@@ -17,13 +18,18 @@ import java.util.Optional;
 public class PersonaDocumentoServiceImpl implements PersonaDocumentoService {
     @Autowired
     private PersonaDocumentoDAO personaDocumentoDAO;
-
     @Autowired
     private TipoDocumentoService tipoDocumentoService;
+    @Autowired
+    SeteosVariosUtilServiceImpl seteosVariosUtilService;
 
     @Transactional
     @Override
-    public void alta(List<PersonaDocumento> personaDocumentos, Persona persona) {
+    public void alta(List<DocumentoAltaDTO> listDocumentoAltaDTOS, Persona persona) {
+
+
+        List<PersonaDocumento> personaDocumentos = seteosVariosUtilService.setDocumentos(listDocumentoAltaDTOS);
+
         personaDocumentos.forEach(personaDocumento -> {
 
             personaDocumento.setPersona(persona);

@@ -1,4 +1,3 @@
-
 function registrarAltaMascota(ss) {
 
     $.ajax({

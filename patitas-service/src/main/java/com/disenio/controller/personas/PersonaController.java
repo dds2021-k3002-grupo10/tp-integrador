@@ -1,5 +1,7 @@
 package com.disenio.controller.personas;
 
+import com.disenio.dto.persona.PersonaAltaDTO;
+import com.disenio.dto.persona.PersonaBusquedaByDocDTO;
 import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.personas.MedioNotificacion;
 import com.disenio.model.personas.Persona;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -31,18 +34,15 @@ public class PersonaController {
 
     //@PostMapping("")
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ResponseEntity<Persona> alta(HttpServletRequest request, @RequestBody Persona persona) {
-        ResponseEntity response;
-        try {
-            personaService.alta(persona);
+    public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaAltaDTO) throws ParseException {
 
-            //response= new ResponseEntity(rtaPersona, HttpStatus.CREATED);
-            response = new ResponseEntity(HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            response = new ResponseEntity(e, HttpStatus.BAD_REQUEST);
-            LOGGER.error("Ocurrio un error al dar de Alta", e);
+        PersonaAltaDTO rtaPersonasDTO = personaService.alta(personaAltaDTO);
+
+        if (rtaPersonasDTO != null) {
+            return ResponseEntity.ok(rtaPersonasDTO);
+        } else {
+            return ResponseEntity.noContent().build();
         }
-        return response;
     }
 
 
@@ -73,11 +73,11 @@ public class PersonaController {
 
     /*Buscar persona por tipo y nro de documento*/
     @RequestMapping(value = "/buscarByDoc", method = RequestMethod.GET)
-    public ResponseEntity<List<PersonaDTO>> getPersonasByCondicion(
+    public ResponseEntity<?> getPersonasByCondicion(
             @RequestParam(required = true) Integer idTipoDoc,
-            @RequestParam(required = true) Integer numero ) {
+            @RequestParam(required = true) Integer numero) {
 
-        List<PersonaDTO> personasDTO =  personaService.getPersonasByCondicion(idTipoDoc,numero);
+        List<PersonaBusquedaByDocDTO> personasDTO = personaService.getPersonasByCondicion(idTipoDoc, numero);
         if (!personasDTO.isEmpty()) {
             return ResponseEntity.ok(personasDTO);
         } else {
