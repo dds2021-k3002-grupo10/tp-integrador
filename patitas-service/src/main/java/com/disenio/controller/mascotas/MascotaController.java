@@ -1,6 +1,8 @@
 package com.disenio.controller.mascotas;
 
+import com.disenio.dto.mascota.AltaMascotaDTO;
 import com.disenio.dto.mascota.MascotaDTO;
+import com.disenio.dto.persona.PersonaAltaDTO;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
 import com.disenio.services.mascotas.MascotasService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +30,19 @@ public class MascotaController {
     SexoMascotaService sexoMascotaService;
     @Autowired
     MascotasService mascotasService;
+
+    @RequestMapping(value = "/alta", method = RequestMethod.POST)
+    public ResponseEntity<AltaMascotaDTO> alta(@RequestBody AltaMascotaDTO altaMascotaDTO) throws ParseException {
+
+        AltaMascotaDTO rtaAltaMascotaDTO = mascotasService.alta(altaMascotaDTO);
+
+        if (rtaAltaMascotaDTO != null) {
+            return ResponseEntity.ok(rtaAltaMascotaDTO);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
 
     @RequestMapping(value = "/tipo", method = RequestMethod.GET)
     public ResponseEntity<List<TipoMascota>> getTipoMascotaAll() {

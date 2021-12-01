@@ -1,7 +1,12 @@
 package com.disenio.services.mascotas.impl;
 
 import com.disenio.dao.mascotas.MascotaDAO;
+import com.disenio.dto.mascota.AltaMascotaDTO;
+import com.disenio.dto.mascota.CaracteristicaDetalleResumidoDTO;
+import com.disenio.dto.mascota.CaracteristicaDetalleValorResumidoDTO;
 import com.disenio.dto.mascota.MascotaDTO;
+import com.disenio.model.mascotas.CaracteristicaDetalle;
+import com.disenio.model.mascotas.CaracteristicaDetalleValor;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.personas.Persona;
 import com.disenio.services.mascotas.CaracteristicaDetalleService;
@@ -38,8 +43,10 @@ public class MascotasServiceImpl implements MascotasService {
 
     @Transactional
     @Override
-    public void alta(List<Mascota> mascotas, Persona persona) {
-        mascotas.forEach(mascota -> {
+    public AltaMascotaDTO alta(AltaMascotaDTO altaMascotaDTO) {
+
+        AltaMascotaDTO rtaAltaMascotaDTO = new AltaMascotaDTO();
+      /*  mascotas.forEach(mascota -> {
             mascota.setPersona(persona);
             //AltaMascota
             Mascota rtaMascota = mascotaDAO.save(mascota);
@@ -48,14 +55,15 @@ public class MascotasServiceImpl implements MascotasService {
 
             caracteristicaDetalleService.alta(mascota.getCaracteristicaDetalles(), rtaMascota);
 
-        });
 
+        });*/
+        return rtaAltaMascotaDTO;
     }
 
     @Override
     public List<MascotaDTO> getMascotasAll() {
 
-        List<Mascota> mascotas  =mascotaDAO.findAll();
+        List<Mascota> mascotas = mascotaDAO.findAll();
 
 
         List<MascotaDTO> mascotaDTO = new ArrayList<MascotaDTO>();
@@ -67,13 +75,43 @@ public class MascotasServiceImpl implements MascotasService {
 
     @Override
     public MascotaDTO getMascotaDTOById(Integer id) {
-        Optional<Mascota> mascotas  =mascotaDAO.findById(id);
+        Optional<Mascota> mascotas = mascotaDAO.findById(id);
 
 
         MascotaDTO mascotaDTO = null;
         if (mascotas.isPresent()) {
-            mascotaDTO= new MascotaDTO();
+            mascotaDTO = new MascotaDTO();
             mascotaDTO = modelMapper.map(mascotas.get(), MascotaDTO.class);
+
+            List<CaracteristicaDetalleResumidoDTO> caracteristicaDetalleValorResumidoDTO = new ArrayList<>();
+
+
+            /*aca seteamos las caracteristicas de la mascota mas resumido*/
+            for (CaracteristicaDetalle caracteristicaDetalle : mascotas.get().getCaracteristicaDetalles()) {
+
+                CaracteristicaDetalleResumidoDTO caracteristicaDetalleResumidoDTO = new CaracteristicaDetalleResumidoDTO();
+
+                caracteristicaDetalleResumidoDTO.setIdDetalle(caracteristicaDetalle.getIdDetalle());
+                caracteristicaDetalleResumidoDTO.setDescripcionFaq(caracteristicaDetalle.getFaq().getDescripcionFaq());
+                caracteristicaDetalleResumidoDTO.setIdFaq(caracteristicaDetalle.getFaq().getIdFaq());
+
+                List<CaracteristicaDetalleValorResumidoDTO> caracteristicaDetalleValorResumidoDTOList = new ArrayList<>();
+                for (CaracteristicaDetalleValor caracteristicaDetalleValor : caracteristicaDetalle.getCaracteristicaDetalleValors()) {
+                    CaracteristicaDetalleValorResumidoDTO caracteristicaDetalleValor1 = new CaracteristicaDetalleValorResumidoDTO();
+
+                    caracteristicaDetalleValor1.setIdDetalle(caracteristicaDetalleValor.getIdDetalleValor());
+                    caracteristicaDetalleValor1.setDescripcion(caracteristicaDetalleValor.getFaqRespuestaValor().getDescripcion());
+                    caracteristicaDetalleValor1.setIdRespuestaValor(caracteristicaDetalleValor.getFaqRespuestaValor().getIdRespuestaValor());
+                    caracteristicaDetalleValorResumidoDTOList.add(caracteristicaDetalleValor1);
+                }
+
+                caracteristicaDetalleResumidoDTO.setCracteristicaDetalleValorResumidoDTO(caracteristicaDetalleValorResumidoDTOList);
+
+                caracteristicaDetalleValorResumidoDTO.add(caracteristicaDetalleResumidoDTO);
+
+            }
+
+            mascotaDTO.setCaracteristicaDetalleValorResumidoDTO(caracteristicaDetalleValorResumidoDTO);
         }
 
         return mascotaDTO;
@@ -81,7 +119,7 @@ public class MascotasServiceImpl implements MascotasService {
 
     @Override
     public List<MascotaDTO> getMascotaByPersonasId(Integer idPersona) {
-        List<Mascota> mascotas  =mascotaDAO.MascotaByPersonasId(idPersona);
+        List<Mascota> mascotas = mascotaDAO.MascotaByPersonasId(idPersona);
 
         List<MascotaDTO> mascotaDTO = new ArrayList<MascotaDTO>();
         if (!mascotas.isEmpty()) {
@@ -92,7 +130,7 @@ public class MascotasServiceImpl implements MascotasService {
 
     @Override
     public List<Mascota> getAllMascotasByIdPersona(Integer idPersona) {
-        List<Mascota> mascotas  =mascotaDAO.MascotasSegunID(idPersona).get();
+        List<Mascota> mascotas = mascotaDAO.MascotasSegunID(idPersona).get();
         return mascotas;
     }
 
