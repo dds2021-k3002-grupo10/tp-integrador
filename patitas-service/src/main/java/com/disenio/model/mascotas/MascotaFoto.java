@@ -22,6 +22,7 @@ public class MascotaFoto implements java.io.Serializable {
     @Column(name = "ID_MASCOTA_FOTO", unique = true, nullable = false)
     private Integer idMascotaFoto;
 
+
     @Column(name = "VALOR_FOTO", nullable = false)
     private String valorFoto;
 

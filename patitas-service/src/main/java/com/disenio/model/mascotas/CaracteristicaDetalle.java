@@ -1,21 +1,15 @@
 package com.disenio.model.mascotas;
 
 import com.disenio.model.faq.Faq;
+import com.disenio.model.faq.FaqRespuestaValor;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+
 import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * CaracteristicaDetalle grupo 10
@@ -54,8 +48,8 @@ public class CaracteristicaDetalle  implements java.io.Serializable {
     @Column(name="ESTADO", nullable=false, length=1)
      private char estado;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="caracteristicaDetalle")
-     private List<CaracteristicaDetalleValor> caracteristicaDetalleValors;
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+     private List<FaqRespuestaValor> faqRespuestaValor;
 
 
 }

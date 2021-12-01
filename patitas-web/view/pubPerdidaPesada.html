@@ -1,4 +1,4 @@
-<div class="panel panel-default ">
+<div class="panel panel-default " xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div class="panel-heading ">
         <h1 class="text-center"> Mascotas perdidas</h1>
         <br>
@@ -9,13 +9,13 @@
         <ul class="highlights list-group" data-max-height="400"
             style="max-height: 600px; overflow-y: auto;overflow-x: hidden" id="datosPublicacion">
             <!-- 1ra fila -->
-            <li class="list-item publicacion-contenedor " v-for="publicacion in publicaciones.data"style="margin: 50px 2.5rem;">
+            <li class="list-item publicacion-contenedor " v-for="publicacion in publicaciones.data"
+                style="margin: 50px 2.5rem;">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 d-flex col-sm-12">
                         <div class="imagen-contenido text-center">
                             <h3 class="title p-1 ">{{publicacion.mascota.tipoMascota.nombre}} PERDIDO </h3>
-                            <!--<img src="{{{valorFoto}}}" class="img-responsive " alt=""/>
-                            {{/mascota.mascotaFotos}}-->
+                            <img v-bind:src="publicacion.mascota.foto[0]" class="img-responsive " alt=""/>
                         </div>
                     </div>
                     <p class="text-gray d-flex justify-end fecha-publicacion text-bold hidden-md">
@@ -30,18 +30,22 @@
 
 
                                     <p><span><i
-                                            class="fas fa-paw"></i>  Rescatista</span>: {{publicacion.mascota.rescatista.nombre}}
+                                            class="fas fa-paw"></i>  Rescatista</span>:
+                                        {{publicacion.mascota.rescatista.nombre}}
                                     </p>
                                     <p><span><i
-                                            class="fas fa-paw"></i>  Tamaño mascota</span>: {{publicacion.mascota.tamanioMascota.descripcion}}
+                                            class="fas fa-paw"></i>  Tamaño mascota</span>:
+                                        {{publicacion.mascota.tamanioMascota.descripcion}}
                                     </p>
                                     <p style="padding-right: 1rem"><span><i
                                             class="fas fa-paw"></i>  Tipo Mascota</span>:{{publicacion.mascota.tipoMascota.nombre}}
                                     </p>
                                     <p style="padding-right: 1rem"><span><i
-                                            class="fas fa-paw"></i>  Encontrada en</span>:{{publicacion.mascota.ubicacion.direccion}}</p>
+                                            class="fas fa-paw"></i>  Encontrada en</span>:{{publicacion.mascota.ubicacion.direccion}}
+                                    </p>
                                     <p style="padding-right: 1rem"><span><i
-                                            class="fas fa-paw"></i>  Hogar de transito</span>:{{publicacion.idHogar}}</p>
+                                            class="fas fa-paw"></i>  Hogar de transito</span>:{{publicacion.idHogar}}
+                                    </p>
                                     <p style="padding-right: 1rem"><span><i
                                             class="fas fa-paw"></i>  Descripcion</span>:{{publicacion.descripcion}}</p>
 
@@ -63,16 +67,16 @@
 
 <script>
     var pubPerdida = new Vue({
-    el:'#datosPublicacion',
-    data:{
-        publicaciones: 'test'
-    },
-    created(){
-        fetch('http://localhost:8080/publicaciones/perdidas/all')
-        .then(response => response.json())
-        .then(data =>{
-            this.publicaciones = data
-        })
-    }
-})
+        el: '#datosPublicacion',
+        data: {
+            publicaciones: 'test'
+        },
+        created() {
+            fetch('http://localhost:8080/publicaciones/perdidas/all')
+                .then(response => response.json())
+                .then(data => {
+                    this.publicaciones = data
+                })
+        }
+    })
 </script>

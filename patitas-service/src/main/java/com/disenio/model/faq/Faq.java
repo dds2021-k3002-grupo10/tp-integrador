@@ -1,29 +1,17 @@
 package com.disenio.model.faq;
 
 
-import com.disenio.model.cuestionario.EntradaCuestionario;
-import com.disenio.model.mascotas.CaracteristicaDetalle;
 import com.disenio.model.organizacion.Organizacion;
-import com.disenio.model.usuarios.Usuario;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * Faq generated grupo10
@@ -54,11 +42,6 @@ public class Faq implements java.io.Serializable {
     @JoinColumn(name = "ID_ORGANIZACION", nullable = false)
     private Organizacion organizacion;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_USUARIO", nullable = false)
-    private Usuario usuario;
-
     @Column(name = "DESCRIPCION_FAQ", nullable = false, length = 2000)
     private String descripcionFaq;
 
@@ -77,18 +60,14 @@ public class Faq implements java.io.Serializable {
     @Column(name = "FECHA_ULTIMA_MODIFICACION", nullable = false, length = 10)
     private Date fechaUltimaModificacion;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faq")
-    private List<CaracteristicaDetalle> caracteristicaDetalles;
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faq")
-    private List<EntradaCuestionario> entradaCuestionarios;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "faq")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<FaqRespuestaValor> faqRespuestaValors;
 
+    //Funcionalidad
+    public void addFaqRespuesta(FaqRespuestaValor faqRespuestaValor) {
+        this.faqRespuestaValors.add(faqRespuestaValor);
+    }
 }
 
 

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -53,6 +54,10 @@ public class Mascota implements java.io.Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaAlta;
 
+    @Column(name = "FECHA_NACIMIENTO", nullable = true, length = 0)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
+    private Calendar fechaNacimiento;
+
     @Column(name = "FECHA_ULTIMA_MODIFICACION", nullable = false, length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaUltimaModificacion;
@@ -67,8 +72,13 @@ public class Mascota implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mascota")
     private List<CaracteristicaDetalle> caracteristicaDetalles;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<MascotaFoto> mascotaFotos;
+
+    public Mascota() {
+        this.mascotaFotos = new ArrayList<>();
+        this.caracteristicaDetalles = new ArrayList<>();
+    }
 
     //Funcionalidad
     public void addFoto(MascotaFoto mascotaFoto) {

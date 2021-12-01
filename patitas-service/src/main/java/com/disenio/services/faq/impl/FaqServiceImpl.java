@@ -28,10 +28,6 @@ public class FaqServiceImpl implements FaqService {
 
 
     private static final ModelMapper modelMapper = new ModelMapper();
-
-    @Autowired
-    private FaqDAO faqDAO;
-
     @Autowired
     FaqRespuestaValorService faqRespuestaValorService;
     @Autowired
@@ -42,6 +38,8 @@ public class FaqServiceImpl implements FaqService {
     FaqComportamientoTipoService faqComportamientoTipoService;
     @Autowired
     OrganizacionService organizacionService;
+    @Autowired
+    private FaqDAO faqDAO;
 
     @Transactional
     @Override
@@ -62,7 +60,7 @@ public class FaqServiceImpl implements FaqService {
         faq.setFaqPreguntaTipo(faqPreguntaTipo);
         faq.setOrganizacion(organizacion);
         faq.setEstado("A");
-        faq.setUsuario(usuario);
+        //faq.setUsuario(usuario);
         faq.setFechaAlta(date);
         faq.setFechaUltimaModificacion(date);
 
@@ -75,7 +73,8 @@ public class FaqServiceImpl implements FaqService {
 
                 //seteo RespuestaVAlor
                 FaqRespuestaValor faqRespuestaValor = new FaqRespuestaValor();
-                faqRespuestaValor.setFaq(rtaFaq);
+                //faqRespuestaValor.setFaq(rtaFaq);
+                faq.addFaqRespuesta(faqRespuestaValor);
                 faqRespuestaValor.setDescripcion(faqRespuestaValorDTO.getDescripcion().toUpperCase());
 
                 //Alta a los valores de respuestas de cada pregunta

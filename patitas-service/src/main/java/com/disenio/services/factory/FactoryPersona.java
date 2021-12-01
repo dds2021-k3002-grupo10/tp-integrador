@@ -5,6 +5,7 @@ import com.disenio.model.notificacion.MedioNotificacion;
 import com.disenio.model.personas.*;
 import com.disenio.services.builder.impl.BuilderPersona;
 import com.disenio.services.personas.MedioNotificacionService;
+import com.disenio.services.personas.TipoDocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +17,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class FactoryPersona implements Factory<Persona, DTOPersona> {
+public class FactoryPersona implements Factory<Persona, PersonaAltaDTO> {
     private final SimpleDateFormat FORMATO = new SimpleDateFormat("dd/MM/yyyy");
     final private BuilderPersona builder = new BuilderPersona();
 
     @Autowired
     MedioNotificacionService medioNotificacionService;
 
+    @Autowired
+    TipoDocumentoService tipoDocumentoService;
 
-    public Persona createFromDTO(DTOPersona persona) {
+
+    public Persona createFromDTO(PersonaAltaDTO persona) {
 
         Calendar fechaNacimiento = null;
         try {
@@ -34,8 +38,8 @@ public class FactoryPersona implements Factory<Persona, DTOPersona> {
         }
         Calendar fechaActual = Calendar.getInstance();
         List<PersonaContacto> contactos;
-        PersonaDireccion personaDireccion = this.createPersonaDireccionFromDTO(persona.getPersonaDireccions());
-        PersonaDocumento personaDocumento = this.createPersonaDocumentoFromDTO(persona.getPersonaDocumentos());
+        //PersonaDireccion personaDireccion = this.createPersonaDireccionFromDTO(persona.get());
+        PersonaDocumento personaDocumento = this.createPersonaDocumentoFromDTO(persona.getDocumento().get(0));
 
         contactos = persona.getContactos()
                 .stream()
@@ -51,7 +55,7 @@ public class FactoryPersona implements Factory<Persona, DTOPersona> {
                 .setFechaBaja(null)
                 .setFechaUltimaModificacion(fechaActual)
                 .setPersonaContactos(contactos)
-                .setPersonaDireccions(personaDireccion)
+                //.setPersonaDireccions(personaDireccion)
                 .setPersonaDocumentos(personaDocumento)
                 .create();
     }
@@ -68,9 +72,9 @@ public class FactoryPersona implements Factory<Persona, DTOPersona> {
         return personaDireccion;
     }
 
-    public PersonaDocumento createPersonaDocumentoFromDTO(PersonaDocumentoDTO documentoDTO) {
+    public PersonaDocumento createPersonaDocumentoFromDTO(DocumentoAltaDTO documentoDTO) {
         PersonaDocumento personaDocumento = new PersonaDocumento();
-        TipoDocumento tipoDocumento = createTipoDocumentoFromDTO(documentoDTO.getTipoDocumento());
+        TipoDocumento tipoDocumento = tipoDocumentoService.getTipoDocuemntoById(documentoDTO.getIdTipoDoc()).get();
 
         personaDocumento.setTipoDocumento(tipoDocumento);
         personaDocumento.setNumero(documentoDTO.getNumero());

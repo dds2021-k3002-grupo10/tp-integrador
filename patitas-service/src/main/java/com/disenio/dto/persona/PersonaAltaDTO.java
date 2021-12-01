@@ -12,6 +12,6 @@ public class PersonaAltaDTO {
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
-    private DocumentoAltaDTO documento;
+    private List<DocumentoAltaDTO> documento;
     private Integer idNotificacion;
 }

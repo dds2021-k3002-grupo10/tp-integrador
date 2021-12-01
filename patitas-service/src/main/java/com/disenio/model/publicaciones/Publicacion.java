@@ -25,6 +25,7 @@ public abstract class Publicacion implements Serializable {
 
 
     public Publicacion() {
+        this.fecha = Date.from(Instant.now());
     }
 
     protected Publicacion(Persona autor) {
@@ -56,7 +57,7 @@ public abstract class Publicacion implements Serializable {
         this.fecha = fecha;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_autor", nullable = true)//TODO CAMBIAR
     public Persona getAutor() {
         return autor;

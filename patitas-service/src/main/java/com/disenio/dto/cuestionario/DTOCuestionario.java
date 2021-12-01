@@ -18,9 +18,24 @@ public class DTOCuestionario {
 
     public DTOCuestionario(Cuestionario cuestionario) {
         this.idCuestionario = cuestionario.getIdCuestionario();
-        System.out.println("------------------------->" + cuestionario.getPreguntas().size());
         this.entradaCuestionario = cuestionario.getPreguntas().stream()
                 .map(DTOEntradaCuestionario::new)
                 .collect(Collectors.toList());
+    }
+
+    public Integer getIdCuestionario() {
+        return idCuestionario;
+    }
+
+    public void setIdCuestionario(Integer idCuestionario) {
+        this.idCuestionario = idCuestionario;
+    }
+
+    public List<DTOEntradaCuestionario> getEntradaCuestionario() {
+        return entradaCuestionario;
+    }
+
+    public void setEntradaCuestionario(List<DTOEntradaCuestionario> entradaCuestionario) {
+        this.entradaCuestionario = entradaCuestionario;
     }
 }

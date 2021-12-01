@@ -102,7 +102,7 @@ public class PersonaServiceImpl implements PersonaService {
     public List<PersonaBusquedaByDocDTO> getPersonasByCondicion(Integer idTipoDoc, Integer numero) {
         List<Persona> listPersona = personaDAO.findPersonasByCondicion(idTipoDoc, numero);
 
-        PersonaBusquedaByDocDTO personasDTOList = new PersonaBusquedaByDocDTO();
+        List<PersonaBusquedaByDocDTO> personasDTOList = new ArrayList<>();
 
         for (Persona persona : listPersona) {
 
@@ -114,11 +114,11 @@ public class PersonaServiceImpl implements PersonaService {
             personaBusquedaByDocDTO.setNroDoc(persona.getPersonaDocumentos().getNumero());
             personaBusquedaByDocDTO.setCantidadMascota(persona.getMascotas().size());
             personaBusquedaByDocDTO.setEstado(persona.getEstado());
-
+            personasDTOList.add(personaBusquedaByDocDTO);
 
         }
 
-        return Arrays.asList(personasDTOList);//TODO: HARDCODE
+        return personasDTOList;
     }
 
 

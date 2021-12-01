@@ -1,9 +1,10 @@
 package com.disenio.dto.publicacion;
 
-import com.disenio.dto.cuestionario.DTOCuestionario;
 import com.disenio.dto.mascota.DTOMascotaCaracteristica;
-import com.disenio.model.mascotas.*;
-import com.disenio.model.publicaciones.PublicacionDarAdopcion;
+import com.disenio.model.mascotas.Mascota;
+import com.disenio.model.mascotas.MascotaFoto;
+import com.disenio.model.mascotas.SexoMascota;
+import com.disenio.model.mascotas.TipoMascota;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class DTOMascotaPublicacion {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TipoMascota tipoMascota;
     List<String> foto;
+    Integer edad;
     String nombre;
     String apodo;
     String descripcionFisica;
@@ -44,6 +46,7 @@ public class DTOMascotaPublicacion {
         this.descripcionFisica = mascota.getDescripcionFisica();
         this.caracteristicas = mascota.getCaracteristicaDetalles().stream().map(DTOMascotaCaracteristica::new).collect(Collectors.toList());
         this.foto = mascota.getMascotaFotos().stream().map(MascotaFoto::getValorFoto).collect(Collectors.toList());
+        this.edad = mascota.getEdad();
 
     }
 
@@ -117,5 +120,13 @@ public class DTOMascotaPublicacion {
 
     public void setCaracteristicas(List<DTOMascotaCaracteristica> caracteristicas) {
         this.caracteristicas = caracteristicas;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
     }
 }

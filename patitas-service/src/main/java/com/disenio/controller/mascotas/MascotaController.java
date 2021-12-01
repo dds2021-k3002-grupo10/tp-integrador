@@ -2,7 +2,6 @@ package com.disenio.controller.mascotas;
 
 import com.disenio.dto.mascota.AltaMascotaDTO;
 import com.disenio.dto.mascota.MascotaDTO;
-import com.disenio.dto.persona.PersonaAltaDTO;
 import com.disenio.model.mascotas.SexoMascota;
 import com.disenio.model.mascotas.TipoMascota;
 import com.disenio.services.mascotas.MascotasService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -110,12 +108,12 @@ public class MascotaController {
     }
 
     @RequestMapping(value = "/personas/buscarByDoc", method = RequestMethod.GET)
-    public ResponseEntity<?> getMascotaPersonasByCondicion(
+    public ResponseEntity<List<MascotaDTO>> getMascotaPersonasByCondicion(
             @RequestParam(required = true) Integer idTipoDoc,
             @RequestParam(required = true) Integer numero) {
 
         ResponseEntity<List<MascotaDTO>> response;
-        List<MascotaDTO> rtaMascotas = mascotasService.getMascotaByPersonasByCondicion(idTipoDoc,numero);
+        List<MascotaDTO> rtaMascotas = mascotasService.getMascotaByPersonasByCondicion(idTipoDoc, numero);
 
         if (rtaMascotas.isEmpty()) {
             response = ResponseEntity.noContent().build();

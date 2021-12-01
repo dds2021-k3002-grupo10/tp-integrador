@@ -1,6 +1,6 @@
 package com.disenio.controller.personas;
 
-import com.disenio.dto.persona.DTOPersona;
+import com.disenio.dto.persona.PersonaAltaDTO;
 import com.disenio.dto.persona.PersonaBusquedaByDocDTO;
 import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.notificacion.MedioNotificacion;
@@ -40,8 +40,8 @@ public class PersonaController {
     private FactoryPersona factoryPersona;
 
 
-    @PostMapping("")
-    public ResponseEntity<String> alta(@RequestBody DTOPersona personaDTO, HttpServletRequest request) throws ParseException {
+    @PostMapping("/alta")
+    public ResponseEntity<PersonaAltaDTO> alta(@RequestBody PersonaAltaDTO personaDTO, HttpServletRequest request) throws ParseException {
         Usuario usuario;
         Persona persona = null;
 
@@ -50,13 +50,15 @@ public class PersonaController {
             usuario = (Usuario) request.getSession().getAttribute("usuario");
             persona = factoryPersona.createFromDTO(personaDTO);
             personaService.alta(persona);
+            personaDTO.setIdPersona(persona.getIdPersona());
+            personaDTO.setRespuesta("OK");
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
 
         if (persona != null) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(personaDTO);
         } else {
             return ResponseEntity.noContent().build();
         }

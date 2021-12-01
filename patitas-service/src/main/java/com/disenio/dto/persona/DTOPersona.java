@@ -1,6 +1,7 @@
 package com.disenio.dto.persona;
 
 import com.disenio.model.personas.Persona;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ public class DTOPersona implements Serializable {
     private Integer idPersona;
     private String nombre;
     private String apellido;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private String fechaNacimiento;
     private char estado;
     private PersonaDocumentoDTO personaDocumentos;

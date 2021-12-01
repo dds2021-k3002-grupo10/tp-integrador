@@ -1,5 +1,7 @@
 package com.disenio.dto.mascota;
 
+import com.disenio.model.faq.Faq;
+import com.disenio.model.faq.FaqRespuestaValor;
 import com.disenio.model.mascotas.CaracteristicaDetalle;
 
 import java.util.ArrayList;
@@ -19,10 +21,11 @@ public class DTOMascotaCaracteristica {
     }
 
     public DTOMascotaCaracteristica(CaracteristicaDetalle caracteristicaDetalle) {
-        this.idPregunta = caracteristicaDetalle.getFaq().getIdFaq();
-        this.pregunta = caracteristicaDetalle.getFaq().getDescripcionFaq();
-        if (!caracteristicaDetalle.getCaracteristicaDetalleValors().isEmpty()) {
-            this.respuestas = caracteristicaDetalle.getCaracteristicaDetalleValors().stream().map(caracteristicaDetalleValor -> caracteristicaDetalleValor.getFaqRespuestaValor().getDescripcion()).collect(Collectors.toList());
+        Faq faq = caracteristicaDetalle.getFaq();
+        this.idPregunta = faq.getIdFaq();
+        this.pregunta = faq.getDescripcionFaq();
+        if (!caracteristicaDetalle.getFaqRespuestaValor().isEmpty()) {
+            this.respuestas = caracteristicaDetalle.getFaqRespuestaValor().stream().map(FaqRespuestaValor::getDescripcion).collect(Collectors.toList());
         } else {
             this.respuestas = new ArrayList<>();
         }

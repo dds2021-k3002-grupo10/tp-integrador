@@ -7,7 +7,6 @@ import com.disenio.model.faq.Faq;
 import com.disenio.model.mascotas.CaracteristicaDetalle;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.services.mascotas.CaracteristicaDetalleService;
-import com.disenio.services.mascotas.CaracteristicaDetalleValorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +23,7 @@ public class CaracteristicaDetalleServiceImpl implements CaracteristicaDetalleSe
     CaracteristicaDetalleDAO caracteristicaDetalleDAO;
     @Autowired
     FaqDAO faqDAO;
-    @Autowired
-    CaracteristicaDetalleValorService caracteristicaDetalleValorService;
+
 
     @Transactional
     @Override
@@ -47,7 +45,8 @@ public class CaracteristicaDetalleServiceImpl implements CaracteristicaDetalleSe
                 CaracteristicaDetalle rtaCaracteristicaDetalle = caracteristicaDetalleDAO.save(caracteristicaDetalle);
 
                 /*alta valores de respuesta de caracteristicas*/
-                caracteristicaDetalleValorService.alta(altaCaracteristicasMascotaDTO.getAltaValorMascotaDTOlist(), rtaCaracteristicaDetalle);
+                //TODO:VER ACA
+                //caracteristicaDetalleValorService.alta(altaCaracteristicasMascotaDTO.getAltaValorMascotaDTOlist(), rtaCaracteristicaDetalle);
 
             }
         }
