@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface MascotaFotoService {
 
-    void alta(List<MascotaFoto> mascotaFoto, Mascota mascota);
+    void alta(String valorFoto, Mascota mascota);
 }

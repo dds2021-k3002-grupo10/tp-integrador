@@ -12,7 +12,7 @@
                         <h3 class="panel-title">Alta Mascota</h3>
                     </div>
                     <div class="panel-body">
-
+                        <div id="msgAltaMascota"></div>
                         <!-- nivel 1 -->
                         <div class="row">
                             <div class="col-lg-6">
@@ -92,7 +92,8 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Descripción fisica de la mascota:</label>
-                                    <textarea name="descripcionFisica" class="form-control" id="descripcionFisica"></textarea>
+                                    <textarea name="descripcionFisica" class="form-control"
+                                              id="descripcionFisica"></textarea>
                                 </div>
                             </div>
 
@@ -148,6 +149,25 @@
 <br>
 <br>
 
+
+<div class="modal fade" id="modal-alta-mascota" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">El Alta se realizó con exito</h4>
+            </div>
+            <div class="modal-body">
+                Ahora vamos a dar de alta a una mascota
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" onclick="asdasd(10)">Alta Mascota</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     /*tipo mascota*/
     var app = new Vue({
@@ -191,7 +211,7 @@
             valorMascota: "altaValorMascotaDTOlist",
         },
         created() {
-            fetch('http://localhost:8080/faq/organizacion/pregunta-tipo?idOrganizacion=1&idPreguntaTipo=1')
+            fetch('http://localhost:8080/faq/organizacion/pregunta-tipo?idOrganizacion=' + localStorage.getItem("IDORGANIZACION") + '&idPreguntaTipo=1')
                 .then(response => response.json())
                 .then(data => {
                     this.listCaracteristicas = data
@@ -212,37 +232,37 @@
 
     })
 
-
+    var mensajeAltaOk = '<div class="alert alert-success"> EL alta se realizó con exito.</div>'
     /*alta altaMascota*/
     function altaMascota() {
-        if (confirm("Dar de alta una mascota")) {
+        if (validarAltaMascota()) {
+            if (confirm("Dar de alta una mascota")) {
 
-            // var file_data = $('#imagen')[0].file[0];
-            //  $('#valorFoto').val(file_data);
-            var json = form2object('formularioAltaMascota', '.', true);
-            alert(JSON.stringify(json));
-            $.ajax({
-                url: "http://localhost:8080/mascota/alta",
-                dataType: 'json',
-                contentType: "application/json",
-                type: "POST",
-                crossDomain: true,
-                data: JSON.stringify(json),
-                beforeSend: function () {
+                var json = form2object('formularioAltaMascota', '.', true);
+                $.ajax({
+                    url: "http://localhost:8080/mascota/alta",
+                    dataType: 'json',
+                    contentType: "application/json",
+                    type: "POST",
+                    crossDomain: true,
+                    data: JSON.stringify(json),
+                    beforeSend: function () {
 
-                },
-                success: function (data) {
-                    // if (data.respuesta == "OK") {
-                    alert("Se dio de alta la persona:");
-                    //  $('#divResultadoAlta').html("");
-                    //inputOcultos
+                    },
+                    success: function (data) {
+                        if (data.respuesta == "OK") {
+                            $('#msgAltaMascota').html(mensajeAltaOk);
+                            setTimeout(
+                                function () {
+                                    registrar();
+                                }, 1000);
 
-                    //  }
-                }
-            });
+                        }
+                    }
+                });
+            }
+
         }
-
-
     }
 
 
@@ -266,47 +286,46 @@
         }
     }
 
-    /*function validarAltaMascota() {
+    function validarAltaMascota() {
         if ($("#nombre").val() == "") {
             alert("El campo nombre no puede estar vacío.");
             $("#nombre").focus();
             return false;
         }
-        if ($("#apellido").val() == "") {
-            alert("El campo apellido no puede estar vacío.");
-            $("#apellido").focus();
+        if ($("#apodo").val() == "") {
+            alert("El campo apodo no puede estar vacío.");
+            $("#apodo").focus();
             return false;
         }
+        if(!$("input[name='idTipoMascota']").is(':checked')){
+            alert('Favor de seleccionar una opción tipo macota');
+            return false;
+        }
+
+
+
         if ($("#fechaNacimientoAlta").val() == "") {
             alert("El campo Fecha de nacimiento no puede estar vacío.");
             $("#fechaNacimientoAlta").focus();
             return false;
         }
-        if ($("#nombreContacto").val() == "") {
-            alert("El campo nombre de contacto no puede estar vacío.");
-            $("#nombreContacto").focus();
+        if ($("#idSexo").val() == "") {
+            alert("El campo idSexo no puede estar vacío.");
             return false;
         }
-        if ($("#apellidoContacto").val() == "") {
-            alert("El campo apellido de contacto no puede estar vacío.");
-            $("#apellidoContacto").focus();
-            return false;
-        }
-        if ($("#telefonoContacto").val() == "") {
-            alert("El campo telefono no puede estar vacío.");
-            $("#telefonoContacto").focus();
 
+        if ($("#valorFoto").val() == "") {
+            alert("Suba una imagen.");
             return false;
         }
-        emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        if ($("#descripcionFisica").val() == "") {
+            alert("El campo descripcion fisica no puede estar vacío.");
+            $("#descripcionFisica").focus();
 
-        if (!(emailRegex.test($("#emailContacto").val()))) {
-            alert("El campo email no puede estar vacío. o no cumple - USUARIO + @ + SERVIDOR + DOMINIO");
-            $("#emailContacto").focus();
             return false;
         }
         return true;
-    }*/
+    }
 </script>
 
 

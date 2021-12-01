@@ -6,4 +6,6 @@ import com.disenio.model.faq.FaqRespuestaValor;
 public interface FaqRespuestaValorService {
 
     FaqRespuestaValor alta(FaqRespuestaValor faqRespuestaValor);
+
+    FaqRespuestaValor getById(Integer id);
 }
