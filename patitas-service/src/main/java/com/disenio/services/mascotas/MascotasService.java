@@ -22,4 +22,6 @@ public interface MascotasService {
 
 
     List<Mascota> getAllMascotasByIdPersona(Integer idPersona);
+
+    List<MascotaDTO>  getMascotaByPersonasByCondicion(Integer idTipoDoc,Integer numero);
 }

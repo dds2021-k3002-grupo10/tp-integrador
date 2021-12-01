@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface SexoMascotaService {
     List<SexoMascota> getAllSexoMascota();
+
+    SexoMascota getById(Integer idSexo);
 }

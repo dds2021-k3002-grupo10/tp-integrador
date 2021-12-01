@@ -15,6 +15,8 @@ public class AltaMascotaDTO {
     private Integer idTipoMascota;
     private Integer idPersona;
     private String valorFoto;
+    private String url;
+    private String respuesta;
     private List<AltaCaracteristicasMascotaDTO> caracteristicas;
 
 }

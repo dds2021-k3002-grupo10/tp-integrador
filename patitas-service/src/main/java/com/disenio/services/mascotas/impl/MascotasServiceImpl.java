@@ -5,22 +5,18 @@ import com.disenio.dto.mascota.AltaMascotaDTO;
 import com.disenio.dto.mascota.CaracteristicaDetalleResumidoDTO;
 import com.disenio.dto.mascota.CaracteristicaDetalleValorResumidoDTO;
 import com.disenio.dto.mascota.MascotaDTO;
-import com.disenio.model.mascotas.CaracteristicaDetalle;
-import com.disenio.model.mascotas.CaracteristicaDetalleValor;
-import com.disenio.model.mascotas.Mascota;
+import com.disenio.model.mascotas.*;
 import com.disenio.model.personas.Persona;
-import com.disenio.services.mascotas.CaracteristicaDetalleService;
-import com.disenio.services.mascotas.MascotaFotoService;
-import com.disenio.services.mascotas.MascotasService;
+import com.disenio.services.mascotas.*;
+import com.disenio.services.personas.PersonaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @Service
@@ -33,6 +29,12 @@ public class MascotasServiceImpl implements MascotasService {
     private CaracteristicaDetalleService caracteristicaDetalleService;
     @Autowired
     private MascotaFotoService mascotaFotoService;
+    @Autowired
+    private PersonaService personaService;
+    @Autowired
+    SexoMascotaService sexoMascotaService;
+    @Autowired
+    TipoMascotaService tipoMascotaService;
 
     @Override
     public Optional<Mascota> getById(int id) {
@@ -45,18 +47,30 @@ public class MascotasServiceImpl implements MascotasService {
     @Override
     public AltaMascotaDTO alta(AltaMascotaDTO altaMascotaDTO) {
 
+        Mascota mascota = null;
+        try {
+            mascota = setMascota(altaMascotaDTO);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        //AltaMascota
+        Mascota rtaMascota = mascotaDAO.save(mascota);
+
+        //AltaFotos
+        mascotaFotoService.alta(altaMascotaDTO.getValorFoto(), rtaMascota);
+
+        //AltaCaracteristicas de la mascota
+        caracteristicaDetalleService.alta(altaMascotaDTO.getCaracteristicas(), rtaMascota);
+
+        /*set datos a devolver*/
         AltaMascotaDTO rtaAltaMascotaDTO = new AltaMascotaDTO();
-      /*  mascotas.forEach(mascota -> {
-            mascota.setPersona(persona);
-            //AltaMascota
-            Mascota rtaMascota = mascotaDAO.save(mascota);
-
-            mascotaFotoService.alta(mascota.getMascotaFotos(), rtaMascota);
-
-            caracteristicaDetalleService.alta(mascota.getCaracteristicaDetalles(), rtaMascota);
-
-
-        });*/
+        rtaAltaMascotaDTO.setIdMascota(mascota.getIdMascota());
+        rtaAltaMascotaDTO.setNombre(mascota.getNombre());
+        rtaAltaMascotaDTO.setApodo(mascota.getApodo());
+        rtaAltaMascotaDTO.setUrl("https://patitas/mascota-perdida.html");
+        rtaAltaMascotaDTO.setRespuesta("OK");
         return rtaAltaMascotaDTO;
     }
 
@@ -132,6 +146,61 @@ public class MascotasServiceImpl implements MascotasService {
     public List<Mascota> getAllMascotasByIdPersona(Integer idPersona) {
         List<Mascota> mascotas = mascotaDAO.MascotasSegunID(idPersona).get();
         return mascotas;
+    }
+
+    private Mascota setMascota(AltaMascotaDTO altaMascotaDTO) throws ParseException {
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        /*fecha Nacimiento a DAte*/
+        Date fechaNacimiento = formato.parse(altaMascotaDTO.getFechaNacimiento());
+        Calendar fechaNacimientoCal = Calendar.getInstance();
+        fechaNacimientoCal.setTime(fechaNacimiento);
+        /*fechaActual*/
+        Calendar fechaActualCalendar = Calendar.getInstance();
+        Integer edad = 0;
+        /*edad*/
+        int año = fechaActualCalendar.get(Calendar.YEAR) - fechaNacimientoCal.get(Calendar.YEAR);
+        int mes = fechaActualCalendar.get(Calendar.MONTH) - fechaNacimientoCal.get(Calendar.MONTH);
+        int dia = fechaActualCalendar.get(Calendar.DATE) - fechaNacimientoCal.get(Calendar.DATE);
+        //Se ajusta el año dependiendo el mes y el día
+        if (mes < 0 || (mes == 0 && dia < 0)) {
+            año--;
+        }
+        edad = año;
+
+        Mascota mascota = new Mascota();
+        mascota.setApodo(altaMascotaDTO.getApodo());
+        mascota.setNombre(altaMascotaDTO.getNombre());
+        mascota.setDescripcionFisica(altaMascotaDTO.getDescripcionFisica());
+        mascota.setFechaNacimiento(fechaNacimientoCal);
+        mascota.setEdad(edad);
+        mascota.setFechaAlta(fechaActualCalendar);
+        mascota.setFechaUltimaModificacion(fechaActualCalendar);
+        mascota.setEstado('A');
+
+        Optional<Persona> persona = personaService.getPersonasById(altaMascotaDTO.getIdPersona());
+        mascota.setPersona(persona.get());
+
+        SexoMascota sexoMascota = sexoMascotaService.getById(altaMascotaDTO.getIdSexo());
+        mascota.setSexoMascota(sexoMascota);
+
+        TipoMascota tipoMascota = tipoMascotaService.getById(altaMascotaDTO.getIdTipoMascota());
+        mascota.setTipoMascota(tipoMascota);
+
+
+        return mascota;
+    }
+
+
+    @Override
+    public List<MascotaDTO> getMascotaByPersonasByCondicion(Integer idTipoDoc, Integer numero) {
+        List<Mascota> mascotas = mascotaDAO.getMascotaByPersonasByCondicion(idTipoDoc,numero);
+
+        List<MascotaDTO> mascotaDTO = new ArrayList<MascotaDTO>();
+        if (!mascotas.isEmpty()) {
+            mascotaDTO = Arrays.asList(modelMapper.map(mascotas, MascotaDTO[].class));
+        }
+        return mascotaDTO;
     }
 
 }

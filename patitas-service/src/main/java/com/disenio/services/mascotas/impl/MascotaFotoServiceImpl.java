@@ -18,6 +18,7 @@ public class MascotaFotoServiceImpl implements MascotaFotoService {
 
     @Transactional
     @Override
+    //TODO: CHEQUEAR DONDE ROMPE
     public void alta(List<MascotaFoto> mascotaFotos, Mascota mascota) {
         mascotaFotos.forEach(mascotaFoto -> {
             mascota.addFoto(mascotaFoto);

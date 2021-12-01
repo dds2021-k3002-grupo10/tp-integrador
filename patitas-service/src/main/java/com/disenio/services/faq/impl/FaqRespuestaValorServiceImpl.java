@@ -19,4 +19,9 @@ public class FaqRespuestaValorServiceImpl implements FaqRespuestaValorService {
 
         return rtaFaqRespuestaValor;
     }
+
+    @Override
+    public FaqRespuestaValor getById(Integer id) {
+        return faqRespuestaValorDAO.getById(id);
+    }
 }
