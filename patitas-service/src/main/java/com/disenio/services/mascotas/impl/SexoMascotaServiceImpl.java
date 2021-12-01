@@ -16,4 +16,9 @@ public class SexoMascotaServiceImpl implements SexoMascotaService {
     public List<SexoMascota> getAllSexoMascota() {
         return sexoMascotaDAO.findAll();
     }
+
+    @Override
+    public SexoMascota getById(Integer idSexo) {
+        return sexoMascotaDAO.getById(idSexo);
+    }
 }

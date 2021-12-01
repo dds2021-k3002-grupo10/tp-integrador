@@ -11,6 +11,7 @@
                         <h3 class="panel-title">Alta Persona</h3>
                     </div>
                     <div class="panel-body">
+                        <div id="listaPersona"></div>
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="form-group">
@@ -133,7 +134,12 @@
     </div>
 </form>
 
+
 <script>
+
+    var mensajeAltaOk = '<div class="alert alert-success"> EL alta se realizó con exito.</div>'
+
+
     var app = new Vue({
         el: "#registarPersonaAlta",
         data: {
@@ -154,29 +160,33 @@
 
     /*alta persona*/
     function altaPersona() {
-        if (validarAltaPersona()) {
-            if (confirm("Dar de alta a persona")) {
-                var json = form2object('formularioAltaPersona', '.', true);
-               // alert(JSON.stringify(json));
-                $.ajax({
-                    url: "http://localhost:8080/personas/alta",
-                    dataType: 'json',
-                    contentType: "application/json",
-                    type: "POST",
-                    crossDomain: true,
-                    data: JSON.stringify(json),
-                    beforeSend: function () {
 
-                    },
-                    success: function (data) {
-                        if (data.respuesta == "OK") {
-                            alert("Se dio de alta la persona:" + data.idPersona);
-                            $('#divResultadoAlta').html("");
-                        }
-                    }
-                });
-            }
-        }
+         if (validarAltaPersona()) {
+              if (confirm("Dar de alta a persona")) {
+                  var json = form2object('formularioAltaPersona', '.', true);
+                  $.ajax({
+                      url: "http://localhost:8080/personas/alta",
+                      dataType: 'json',
+                      contentType: "application/json",
+                      type: "POST",
+                      crossDomain: true,
+                      data: JSON.stringify(json),
+                      beforeSend: function () {
+
+                      },
+                      success: function (data) {
+                          if (data.respuesta == "OK") {
+                              $('#listaPersona').html(mensajeAltaOk);
+                              setTimeout(
+                                  function () {
+                                      irAltaMasotaOnclick(data.idPersona);
+                                  }, 1000);
+
+                          }
+                      }
+                  });
+              }
+          }
 
 
     }
@@ -221,6 +231,29 @@
             return false;
         }
         return true; // Si todo está correcto
+    }
+
+
+    function irAltaMasotaOnclick(idPersona) {
+
+
+        $.ajax({
+            url: "view/modaRegistrar/alta-mascota.html",
+            async: true,
+            dataType: "html",
+            type: "GET",
+            complete: function () {
+            },
+            success: function (html) {
+
+                $('#navegacionAjax').html("");
+                $('#navegacionAjax').html(html);
+                $('#idPersona').val(idPersona);
+
+            }
+        });
+
+
     }
 </script>
 

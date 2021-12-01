@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -15,13 +16,21 @@ public class MascotaFotoServiceImpl implements MascotaFotoService {
 
     @Autowired
     MascotaFotoDAO mascotaFotoDAO;
+
     @Transactional
     @Override
-    public void alta(List<MascotaFoto> mascotaFotos, Mascota mascota) {
-        mascotaFotos.forEach(mascotaFoto -> {
-            mascotaFoto.setMascota(mascota);
-            //AltaMascotaFoto
-            mascotaFotoDAO.save(mascotaFoto);
-        });
+    public void alta(String valorFoto, Mascota mascota) {
+        /*fechaActual*/
+        Calendar fechaActualCalendar = Calendar.getInstance();
+
+        MascotaFoto mascotaFoto = new MascotaFoto();
+        mascotaFoto.setMascota(mascota);
+        mascotaFoto.setValorFoto(valorFoto);
+        mascotaFoto.setFechaAlta(fechaActualCalendar);
+        mascotaFoto.setFechaUltimaModificacion(fechaActualCalendar);
+        mascotaFoto.setEstado('A');
+        //AltaMascotaFoto
+        mascotaFotoDAO.save(mascotaFoto);
+
     }
 }
