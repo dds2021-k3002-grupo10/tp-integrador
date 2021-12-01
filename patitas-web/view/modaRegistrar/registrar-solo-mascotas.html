@@ -86,34 +86,18 @@
         var appTabla = new Vue({
             el: "#tablaBusquedaPersona",
             data: {
-                personas: []
+                mascotas: []
             },
             created() {
-                fetch('http://localhost:8080/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
+                fetch('http://localhost:8080/mascota/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
                     .then(response => response.json())
                     .then(data => {
-                        this.personas = data
+                        this.mascotas = data
                     })
             },
             methods: {
-                irAltaPersona: function () {
-                    $.ajax({
-                        url: "view/modaRegistrar/alta-persona.html",
-                        async: true,
-                        dataType: "html",
-                        type: "GET",
-                        complete: function () {
-                        },
-                        success: function (html) {
-
-                            $('#navegacionAjax').html("");
-                            $('#navegacionAjax').html(html);
-
-                        }
-                    });
-                },
-                irAltaMascota: function (idPersona) {
-                    $.ajax({
+                irAltaSoloMascota: function (idPersona) {
+                   $.ajax({
                         url: "view/modaRegistrar/alta-mascota.html",
                         async: true,
                         dataType: "html",
