@@ -27,7 +27,7 @@
                 <td>{{persona.nroDoc}}</td>
                 <td>{{persona.cantidadMascota}}</td>
                 <td>{{persona.estado}}</td>
-                <td><button><a :href="'mascotaDetalle.html?id=' + persona.idPersona">Alta mascota</a></button></td>
+                <td><button type="button" @click="irAltaMascota(persona.idPersona)" class="btn btn-default">Alta mascota</button></td>
             </tr>
             </tbody>
         </table>
