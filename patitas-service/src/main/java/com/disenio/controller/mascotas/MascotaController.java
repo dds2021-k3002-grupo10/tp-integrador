@@ -108,4 +108,21 @@ public class MascotaController {
         return response;
 
     }
+
+    @RequestMapping(value = "/personas/buscarByDoc", method = RequestMethod.GET)
+    public ResponseEntity<?> getMascotaPersonasByCondicion(
+            @RequestParam(required = true) Integer idTipoDoc,
+            @RequestParam(required = true) Integer numero) {
+
+        ResponseEntity<List<MascotaDTO>> response;
+        List<MascotaDTO> rtaMascotas = mascotasService.getMascotaByPersonasByCondicion(idTipoDoc,numero);
+
+        if (rtaMascotas.isEmpty()) {
+            response = ResponseEntity.noContent().build();
+        } else {
+            response = ResponseEntity.ok(rtaMascotas);
+        }
+        return response;
+
+    }
 }

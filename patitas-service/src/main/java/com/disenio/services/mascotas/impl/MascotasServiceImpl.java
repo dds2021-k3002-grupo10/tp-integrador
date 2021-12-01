@@ -191,4 +191,16 @@ public class MascotasServiceImpl implements MascotasService {
         return mascota;
     }
 
+
+    @Override
+    public List<MascotaDTO> getMascotaByPersonasByCondicion(Integer idTipoDoc, Integer numero) {
+        List<Mascota> mascotas = mascotaDAO.getMascotaByPersonasByCondicion(idTipoDoc,numero);
+
+        List<MascotaDTO> mascotaDTO = new ArrayList<MascotaDTO>();
+        if (!mascotas.isEmpty()) {
+            mascotaDTO = Arrays.asList(modelMapper.map(mascotas, MascotaDTO[].class));
+        }
+        return mascotaDTO;
+    }
+
 }

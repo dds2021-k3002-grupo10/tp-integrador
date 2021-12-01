@@ -1,0 +1,150 @@
+<h3><strong>Registar</strong></h3>
+
+<!-- 1ra fila -->
+<div class="row" id="registarSoloMascota">
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filtro busqueda</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label>Tipo Doc:</label>
+
+                        <select class="form-control" id="idTipo">
+                            <option v-for="tipo in tipoDoc" :value="tipo.idTipoDoc"
+                                    :selected="tipo.idTipoDoc == 1">
+                                {{tipo.descripcionCorta }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nro Documento:</label>
+                        <input type="number" class="form-control" id="nroDoc"  placeholder="nro doc" >
+                    </div>
+                    <div class="form-group">
+                        <button type="button" @click="buscarSoloMascotas()" class="btn btn-info btn-single pull-right">Buscar Mascotas
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-9" id="tablaBusquedaPersona">
+
+
+    </div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#registarSoloMascota",
+        data: {
+            tipoDoc: []
+        },
+        created() {
+            fetch('http://localhost:8080/personas/tipo-documento')
+                .then(response => response.json())
+                .then(data => {
+                    this.tipoDoc = data
+
+                })
+        },
+        methods: {
+            buscarSoloMascotas: function () {
+                if (validar($('#idTipo').val(), $('#nroDoc').val())) {
+                    $.ajax({
+                        url: "view/modaRegistrar/tablaBusquedaMascotas.html",
+                        async: true,
+                        dataType: "html",
+                        type: "GET",
+                        complete: function () {
+                        },
+                        success: function (html) {
+
+                            $('#tablaBusquedaPersona').html("");
+                            $('#tablaBusquedaPersona').html(html);
+
+                            traeTablaPersona($('#idTipo').val(), $('#nroDoc').val());
+                        }
+
+                    })
+                }
+            }
+        }
+    })
+
+
+    function traeTablaPersona(idTipoDoc, numero) {
+        /*var global en principal-nav*/
+        tipoDocumentoAlta = idTipoDoc;
+        nroDocumentoAlta = numero;
+        /*fin de var global en principal-nav*/
+        var appTabla = new Vue({
+            el: "#tablaBusquedaPersona",
+            data: {
+                personas: []
+            },
+            created() {
+                fetch('http://localhost:8080/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.personas = data
+                    })
+            },
+            methods: {
+                irAltaPersona: function () {
+                    $.ajax({
+                        url: "view/modaRegistrar/alta-persona.html",
+                        async: true,
+                        dataType: "html",
+                        type: "GET",
+                        complete: function () {
+                        },
+                        success: function (html) {
+
+                            $('#navegacionAjax').html("");
+                            $('#navegacionAjax').html(html);
+
+                        }
+                    });
+                },
+                irAltaMascota: function (idPersona) {
+                    $.ajax({
+                        url: "view/modaRegistrar/alta-mascota.html",
+                        async: true,
+                        dataType: "html",
+                        type: "GET",
+                        complete: function () {
+                        },
+                        success: function (html) {
+
+                            $('#navegacionAjax').html("");
+                            $('#navegacionAjax').html(html);
+                            $('#idPersona').val(idPersona);
+
+                        }
+                    });
+                }
+            }
+        })
+
+
+    }
+
+    function validar(tipoDoc, nroDoc) {
+        if (tipoDoc == "") {
+            alert("ingrese un tipo de documento")
+            return false
+        }
+        if (nroDoc == '') {
+            alert("ingrese un nro de documento")
+            return false
+        }
+        return true;
+
+    }
+</script>
