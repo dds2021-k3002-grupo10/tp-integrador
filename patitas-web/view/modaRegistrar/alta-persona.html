@@ -157,7 +157,7 @@
         if (validarAltaPersona()) {
             if (confirm("Dar de alta a persona")) {
                 var json = form2object('formularioAltaPersona', '.', true);
-                alert(JSON.stringify(json));
+               // alert(JSON.stringify(json));
                 $.ajax({
                     url: "http://localhost:8080/personas/alta",
                     dataType: 'json',

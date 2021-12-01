@@ -113,7 +113,7 @@
                         }
                     });
                 },
-                irAltaMascota: function (id) {
+                irAltaMascota: function (idPersona) {
                     $.ajax({
                         url: "view/modaRegistrar/alta-mascota.html",
                         async: true,
@@ -125,6 +125,7 @@
 
                             $('#navegacionAjax').html("");
                             $('#navegacionAjax').html(html);
+                            $('#idPersona').val(idPersona);
 
                         }
                     });

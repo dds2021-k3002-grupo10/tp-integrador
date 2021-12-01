@@ -1,5 +1,6 @@
 package com.disenio.services.mascotas;
 
+import com.disenio.dto.mascota.AltaMascotaDTO;
 import com.disenio.dto.mascota.MascotaDTO;
 import com.disenio.model.mascotas.Mascota;
 import com.disenio.model.personas.Persona;
@@ -11,7 +12,7 @@ public interface MascotasService {
 
     Optional<Mascota> getById(int id);
 
-    void alta(List<Mascota> mascotas, Persona persona);
+    AltaMascotaDTO alta(AltaMascotaDTO altaMascotaDTO);
 
     List<MascotaDTO> getMascotasAll();
 

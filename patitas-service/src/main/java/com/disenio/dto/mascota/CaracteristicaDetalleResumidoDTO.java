@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class CaracteristicaDetalleResumidoDTO {
-    private Integer idDetalleValor;
+    private Integer idDetalle;
     private Integer idFaq;
     private String descripcionFaq;
     private List<CaracteristicaDetalleValorResumidoDTO> cracteristicaDetalleValorResumidoDTO;
