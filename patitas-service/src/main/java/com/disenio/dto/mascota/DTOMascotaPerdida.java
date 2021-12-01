@@ -1,6 +1,7 @@
 package com.disenio.dto.mascota;
 
-import com.disenio.dto.persona.DTOPersona;
+import com.disenio.dto.publicacion.DTOPersonaPublicacion;
+import com.disenio.model.mascotas.MascotaFoto;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.mascotas.TamanioMascota;
 import com.disenio.model.mascotas.TipoMascota;
@@ -8,22 +9,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class DTOMascotaPerdida implements Serializable {
     Integer idMascota;
-    DTOPersona rescatista;
+    DTOPersonaPublicacion rescatista;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TipoMascota tipoMascota;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     TamanioMascota tamanioMascota;
     String descripcionFisica;
     DTOUbicacionMascota ubicacion;
+    List<String> foto;//TODO: ---> Lista de Fotos!
 
     //Constructors
 
 
-    public DTOMascotaPerdida(Integer idMascota, DTOPersona rescatista, TipoMascota tipoMascota, TamanioMascota tamanioMascota, String descripcionFisica, DTOUbicacionMascota ubicacion) {
+    public DTOMascotaPerdida(Integer idMascota, DTOPersonaPublicacion rescatista, TipoMascota tipoMascota, TamanioMascota tamanioMascota, String descripcionFisica, DTOUbicacionMascota ubicacion) {
         this.idMascota = idMascota;
         this.rescatista = rescatista;
         this.tipoMascota = tipoMascota;
@@ -34,11 +38,12 @@ public class DTOMascotaPerdida implements Serializable {
 
     public DTOMascotaPerdida(MascotaRescatada mr) {
         this.idMascota = mr.getIdMascotaRescatada();
-        this.rescatista = new DTOPersona(mr.getPersona());
+        this.rescatista = new DTOPersonaPublicacion(mr.getPersona());
         this.tipoMascota = mr.getTipoMascota();
         this.tamanioMascota = mr.getTamanioMascota();
         this.descripcionFisica = mr.getDescripcion();
         this.ubicacion = new DTOUbicacionMascota(mr.getUbicacionMascotaRescatadas());
+        this.foto = mr.getMascotaFotos().stream().map(MascotaFoto::getValorFoto).collect(Collectors.toList());
     }
 
     //getters and setters
@@ -51,11 +56,11 @@ public class DTOMascotaPerdida implements Serializable {
         this.idMascota = idMascota;
     }
 
-    public DTOPersona getRescatista() {
+    public DTOPersonaPublicacion getRescatista() {
         return rescatista;
     }
 
-    public void setRescatista(DTOPersona rescatista) {
+    public void setRescatista(DTOPersonaPublicacion rescatista) {
         this.rescatista = rescatista;
     }
 
@@ -89,5 +94,13 @@ public class DTOMascotaPerdida implements Serializable {
 
     public void setUbicacion(DTOUbicacionMascota ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public List<String> getFoto() {
+        return foto;
+    }
+
+    public void setFoto(List<String> foto) {
+        this.foto = foto;
     }
 }

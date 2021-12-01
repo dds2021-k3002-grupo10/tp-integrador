@@ -38,12 +38,12 @@ public class Persona implements java.io.Serializable {
     private Calendar fechaNacimiento;
 
 
-    @Column(name = "FECHA_ALTA", nullable = false, length = 0)
+    @Column(name = "FECHA_ALTA",  length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaAlta;
 
 
-    @Column(name = "FECHA_ULTIMA_MODIFICACION", nullable = false, length = 0)
+    @Column(name = "FECHA_ULTIMA_MODIFICACION",  length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaUltimaModificacion;
 
@@ -61,20 +61,13 @@ public class Persona implements java.io.Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PersonaContacto> personaContactos;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private PersonaDireccion personaDireccions;
 
     @OneToMany(targetEntity = Mascota.class, mappedBy = "persona",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Mascota> mascotas;
 
-
-    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
-    private List<Usuario> usuarios;
-*/
-   /* @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona")
-    private List<MascotaRescatada> mascotaRescatadas;
-*/
     //Constructors
     public Persona() {
         this.nombre = "";
@@ -102,6 +95,19 @@ public class Persona implements java.io.Serializable {
         this.mascotas = mascotas;
     }
 
+    public Persona(String nombre, String apellido, Calendar fechaNacimiento, Calendar fechaAlta, Calendar fechaUltimaModificacion, Calendar fechaBaja, char estado, PersonaDocumento personaDocumentos, List<PersonaContacto> personaContactos, PersonaDireccion personaDireccions, List<Mascota> mascotas) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaAlta = fechaAlta;
+        this.fechaUltimaModificacion = fechaUltimaModificacion;
+        this.fechaBaja = fechaBaja;
+        this.estado = estado;
+        this.personaDocumentos = personaDocumentos;
+        this.personaContactos = personaContactos;
+        this.personaDireccions = personaDireccions;
+        this.mascotas = mascotas;
+    }
 
     //Getters And Setters
     public Integer getIdPersona() {

@@ -20,7 +20,8 @@ public class PersonaDTO {
     private Integer idPersona;
     private String nombre;
     private String apellido;
-    private Calendar fechaNacimiento;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
+    private String fechaNacimiento;
     private char estado;
     private PersonaDocumentoDTO personaDocumentos ;
     private PersonaDireccionDTO personaDireccions;

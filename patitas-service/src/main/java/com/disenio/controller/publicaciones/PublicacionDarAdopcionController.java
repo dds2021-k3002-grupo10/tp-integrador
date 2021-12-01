@@ -1,16 +1,12 @@
 package com.disenio.controller.publicaciones;
 
 import com.disenio.dto.DTOResponse;
-import com.disenio.dto.mascota.DTOMascota;
-import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
-import com.disenio.model.mascotas.Mascota;
-import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
+import com.disenio.services.factory.Factory;
 import com.disenio.services.mascotas.MascotasService;
 import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,26 +31,32 @@ public class PublicacionDarAdopcionController {
     @Autowired
     private PersonaService personaService;
 
+    @Autowired
+    private Factory<PublicacionDarAdopcion, DTOPublicacionDarAdopcion> factory;
+
     @PostMapping(path = "/guardar")
+
     public ResponseEntity<DTOResponse> guardar(HttpServletRequest request, @RequestBody DTOPublicacionDarAdopcion dtoPublicacion) {
-        DTOPersona dtoPersona = dtoPublicacion.getAutor();
-        DTOMascota dtoMascota = dtoPublicacion.getMascota();
+
         DTOResponse dtoResponse = new DTOResponse();
+        ResponseEntity<DTOResponse> response;
+        PublicacionDarAdopcion publicacion;
 
-        Persona persona = personaService.getPersonasById(dtoPersona.getIdPersona()).orElse(null);
-        Mascota mascota = mascotasService.getById(dtoMascota.getIdMascota()).orElse(null);
+        try {
+            publicacion = factory.createFromDTO(dtoPublicacion);
 
-        PublicacionDarAdopcion publicacion = new PublicacionDarAdopcion(persona, mascota, dtoPublicacion.getDescripcion());
-
-        if (mascota == null || persona == null) {
-            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
+            publicacionService.alta(publicacion);
+            //TODO Agregar en la organizacion!
+            dtoResponse.setStatus(HttpStatus.CREATED);
+            dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
+            response = new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
             dtoResponse.setMsg("No se pudo crear la publicacion");
-            return new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
+            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
+            response = new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
         }
-        publicacionService.alta(publicacion);
-        dtoResponse.setStatus(HttpStatus.CREATED);
-        dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
-        return new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        return response;
     }
 
 

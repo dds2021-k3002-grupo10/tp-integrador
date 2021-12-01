@@ -3,6 +3,7 @@ package com.disenio.services.personas.impl;
 import com.disenio.dto.persona.ContactosAltaDTO;
 import com.disenio.dto.persona.DocumentoAltaDTO;
 import com.disenio.dto.persona.PersonaAltaDTO;
+import com.disenio.dto.persona.PersonaDTO;
 import com.disenio.model.notificacion.MedioNotificacion;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.personas.PersonaContacto;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,7 @@ public class SeteosVariosUtilServiceImpl {
     MedioNotificacionService medioNotificacionService;
     @Autowired
     PersonaContactoService personaContactoService;
+
 
     /*Set PErsona Alta*/
     public Persona setPersonaAlta(PersonaAltaDTO personaAltaDTO) throws ParseException {
@@ -51,8 +54,8 @@ public class SeteosVariosUtilServiceImpl {
             personaContacto.setNombre(contactosAltaDTO.getNombreContacto());
             personaContacto.setTelefono(contactosAltaDTO.getTelefonoContacto());
             personaContacto.setEmail(contactosAltaDTO.getEmailContacto());
-           // MedioNotificacion medioNotificacion = medioNotificacionService.getMedioNotificacionByID(contactosAltaDTO.getIdNotificacion());
-            //personaContacto.setMedioNotificacion(medioNotificacion);
+            MedioNotificacion medioNotificacion = medioNotificacionService.getMedioNotificacionByID(contactosAltaDTO.getIdNotificacion());
+            personaContacto.setMedioNotificacion(medioNotificacion);
             personaContactos.add(personaContacto);
         });
 
@@ -61,9 +64,9 @@ public class SeteosVariosUtilServiceImpl {
         personaContacto.setNombre(personaAltaDTO.getNombre());
         personaContacto.setTelefono(personaContacto.getTelefono());
         personaContacto.setEmail(personaContacto.getEmail());
-       // Integer idNotificacion =personaAltaDTO.getIdNotificacion();
-        //MedioNotificacion medioNotificacion = medioNotificacionService.getMedioNotificacionByID(idNotificacion);
-        //personaContacto.setMedioNotificacion(medioNotificacion);
+        Integer idNotificacion =personaAltaDTO.getIdNotificacion();
+        MedioNotificacion medioNotificacion = medioNotificacionService.getMedioNotificacionByID(idNotificacion);
+        personaContacto.setMedioNotificacion(medioNotificacion);
         personaContactos.add(personaContacto);
 
 

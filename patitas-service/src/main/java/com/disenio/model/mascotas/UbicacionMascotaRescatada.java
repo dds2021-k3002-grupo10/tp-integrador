@@ -25,7 +25,7 @@ public class UbicacionMascotaRescatada implements java.io.Serializable {
     private Date fechaAlta;
     private Date fechaUltimaModificacion;
     private Date fechaBaja;
-    private Integer idHogar;
+    private Integer idHogar;//TODO: Potencial cambio a hogares!
     private char estado;
 
     public UbicacionMascotaRescatada() {

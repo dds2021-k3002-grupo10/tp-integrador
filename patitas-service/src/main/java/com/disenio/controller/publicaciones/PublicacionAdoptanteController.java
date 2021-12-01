@@ -1,13 +1,10 @@
 package com.disenio.controller.publicaciones;
 
 import com.disenio.dto.DTOResponse;
-import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionAdoptante;
-import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
-import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.model.usuarios.Usuario;
-import com.disenio.services.personas.PersonaService;
+import com.disenio.services.factory.Factory;
 import com.disenio.services.publicaciones.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,37 +23,31 @@ public class PublicacionAdoptanteController {
 
     @Autowired
     private PublicacionService publicacionService;
+
     @Autowired
-    private PersonaService personaService;
+    private Factory<PublicacionAdoptante, DTOPublicacionAdoptante> factory;
 
     @PostMapping(path = "/guardar")
-    public ResponseEntity<DTOResponse> guardar(HttpServletRequest request, @RequestBody DTOPublicacionDarAdopcion dtoPublicacion) {
-        DTOPersona dtoPersona = dtoPublicacion.getAutor();
+    public ResponseEntity<DTOResponse> guardar(HttpServletRequest request, @RequestBody DTOPublicacionAdoptante dtoPublicacion) {
         DTOResponse dtoResponse = new DTOResponse();
-
-        Persona persona = personaService.getPersonasById(dtoPersona.getIdPersona()).orElse(null);
-
-        PublicacionAdoptante publicacion = new PublicacionAdoptante(persona, dtoPublicacion.getDescripcion());
-
-        if (persona == null) {
+        ResponseEntity<DTOResponse> response;
+        PublicacionAdoptante publicacion;
+        try {
+            publicacion = factory.createFromDTO(dtoPublicacion);
+            publicacionService.alta(publicacion);
+            //TODO Agregar en la organizacion!
+            dtoResponse.setStatus(HttpStatus.CREATED);
+            dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
+            response = new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            dtoResponse.setMsg("No se pudo crear la publicacion");
             dtoResponse.setStatus(HttpStatus.NO_CONTENT);
-            dtoResponse.setMsg("No existe persona");
-            return new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
+            response = new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
         }
-        publicacionService.alta(publicacion);
 
-        dtoResponse.setStatus(HttpStatus.CREATED);
-        dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
-        return new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        return response;
     }
-
-    /* TODO :Terminar eliminar
-    @DeleteMapping(path = "/borrar")
-    public ResponseEntity<PublicacionPerdida> guardar(HttpServletRequest request, @RequestBody PublicacionPerdida publicacion) {
-        return new ResponseEntity(publicacionService.alta(publicacion), HttpStatus.CREATED);
-    }
-    */
-
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<DTOResponse> getPublicacionAdptanteID(@PathVariable("id") Integer id, HttpServletRequest request) {
@@ -64,21 +55,7 @@ public class PublicacionAdoptanteController {
 
         PublicacionAdoptante publicacion = (PublicacionAdoptante) publicacionService.getById(id).orElseGet(null);
         DTOPublicacionAdoptante dtoPublicacion = new DTOPublicacionAdoptante(publicacion);
-
-        Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-
-        if (usuario != null) {
-            System.out.println("El nombre del usuario es:"+usuario.getNombre());
-        } else {
-            System.out.println("No hay session");
-        }
-
-
-        if (dtoPublicacion.getAutor() == null) {
-            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
-            dtoResponse.setMsg("No existen publicacion.");
-            return ResponseEntity.ok(dtoResponse);
-        }
+        //TODO: Se debe hacer la verificacion de la organizacion!
         dtoResponse.setStatus(HttpStatus.OK);
         dtoResponse.setData(dtoPublicacion);
         return ResponseEntity.ok(dtoResponse);

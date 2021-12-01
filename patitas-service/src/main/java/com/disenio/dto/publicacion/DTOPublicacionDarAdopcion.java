@@ -1,7 +1,7 @@
 package com.disenio.dto.publicacion;
 
+import com.disenio.dto.cuestionario.DTOCuestionario;
 import com.disenio.dto.mascota.DTOMascota;
-import com.disenio.dto.persona.DTOPersona;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
 import lombok.Data;
 
@@ -13,13 +13,14 @@ public class DTOPublicacionDarAdopcion implements Serializable {
 
     Integer idPublicacion;
     Date fechaPublicacion;
-    DTOPersona autor;
-    DTOMascota mascota;
+    DTOPersonaPublicacion autor;
+    DTOCuestionario cuestionario;
+    DTOMascotaPublicacion mascota;
     String descripcion;
 
     //Constructors
 
-    public DTOPublicacionDarAdopcion(Integer idPublicacion, Date fechaPublicacion, DTOPersona autor, DTOMascota mascota, String descripcion) {
+    public DTOPublicacionDarAdopcion(Integer idPublicacion, Date fechaPublicacion, DTOPersonaPublicacion autor, DTOMascotaPublicacion mascota, String descripcion) {
         this.idPublicacion = idPublicacion;
         this.fechaPublicacion = fechaPublicacion;
         this.autor = autor;
@@ -30,9 +31,10 @@ public class DTOPublicacionDarAdopcion implements Serializable {
     public DTOPublicacionDarAdopcion(PublicacionDarAdopcion publicacion) {
         this.idPublicacion = publicacion.getIdPublicacion();
         this.fechaPublicacion = publicacion.getFecha();
-        this.autor = new DTOPersona(publicacion.getAutor());
-        this.mascota = new DTOMascota(publicacion.getMascotaOfrecida());
+        this.autor = new DTOPersonaPublicacion(publicacion.getAutor());
+        this.mascota = new DTOMascotaPublicacion(publicacion.getMascotaOfrecida());
         this.descripcion = publicacion.getDescripcion();
+        this.cuestionario = new DTOCuestionario(publicacion.getCuestionario());
     }
 
     //Getters and setters
@@ -53,19 +55,35 @@ public class DTOPublicacionDarAdopcion implements Serializable {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public DTOPersona getAutor() {
+    public DTOPersonaPublicacion getAutor() {
         return autor;
     }
 
-    public void setAutor(DTOPersona autor) {
+    public void setAutor(DTOPersonaPublicacion autor) {
         this.autor = autor;
     }
 
-    public DTOMascota getMascota() {
+    public DTOMascotaPublicacion getMascota() {
         return mascota;
     }
 
-    public void setMascota(DTOMascota mascota) {
+    public void setMascota(DTOMascotaPublicacion mascota) {
         this.mascota = mascota;
+    }
+
+    public DTOCuestionario getCuestionario() {
+        return cuestionario;
+    }
+
+    public void setCuestionario(DTOCuestionario cuestionario) {
+        this.cuestionario = cuestionario;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

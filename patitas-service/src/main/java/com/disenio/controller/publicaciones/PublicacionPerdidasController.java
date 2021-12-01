@@ -1,14 +1,10 @@
 package com.disenio.controller.publicaciones;
 
 import com.disenio.dto.DTOResponse;
-import com.disenio.dto.mascota.DTOMascotaPerdida;
-import com.disenio.dto.mascota.DTOUbicacionMascota;
-import com.disenio.dto.persona.DTOPersona;
 import com.disenio.dto.publicacion.DTOPublicacionPerdida;
-import com.disenio.model.mascotas.MascotaRescatada;
-import com.disenio.model.mascotas.UbicacionMascotaRescatada;
-import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.PublicacionPerdida;
+import com.disenio.services.factory.Factory;
+import com.disenio.services.mascotas.MascotaFotoService;
 import com.disenio.services.mascotas.MascotaRescatadaService;
 import com.disenio.services.mascotas.TamanioMascotaService;
 import com.disenio.services.mascotas.TipoMascotaService;
@@ -38,47 +34,41 @@ public class PublicacionPerdidasController {
     private TipoMascotaService tipoMascotaService;
     @Autowired
     private MascotaRescatadaService mascotaService;
+    @Autowired
+    private MascotaFotoService mascotaFotoService;
+
+    @Autowired
+    private Factory<PublicacionPerdida, DTOPublicacionPerdida> factory;
 
 
     @PostMapping(path = "/guardar")
     public ResponseEntity<DTOResponse> guardar(HttpServletRequest request, @RequestBody DTOPublicacionPerdida dtoPublicacion) {
-
-        DTOPersona dtoPersona = dtoPublicacion.getAutor();
-        DTOMascotaPerdida dtoMascota = dtoPublicacion.getMascota();
         DTOResponse dtoResponse = new DTOResponse();
-        DTOUbicacionMascota ubicacionDTO = dtoMascota.getUbicacion();
+        ResponseEntity<DTOResponse> response;
+        PublicacionPerdida publicacion;
+        /* TODO:
+            Las publicaciones de perdida se generan apartir de un cuestionario de la vista!
 
-        UbicacionMascotaRescatada ubicacion = new UbicacionMascotaRescatada(ubicacionDTO.getDireccion(), ubicacionDTO.getLatitud(), ubicacionDTO.getLongitud());
-        Persona persona = personaService.getPersonasById(dtoPersona.getIdPersona()).orElse(null);
-        MascotaRescatada mascotaPerdida = new MascotaRescatada(persona, dtoMascota.getTamanioMascota(), dtoMascota.getTipoMascota(), dtoPublicacion.getDescripcion());
-
-        mascotaPerdida.setUbicacionMascotaRescatadas(ubicacion);
-        //TODO: Aca se hace la verificacion de si puede la mascota ir o no a ese hogar
-
-        PublicacionPerdida publicacion = new PublicacionPerdida(persona, mascotaPerdida);
-
-
-        if (persona == null) {
-            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
+          */
+        //Cuestionario cuestionario = request.getSession().getAttribute("cuestionario")
+        try {
+            publicacion = factory.createFromDTO(dtoPublicacion);
+            mascotaService.alta(publicacion.getMascota());
+            publicacionService.alta(publicacion);
+            //TODO Agregar en la organizacion!
+            dtoResponse.setStatus(HttpStatus.CREATED);
+            dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
+            response = new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
             dtoResponse.setMsg("No se pudo crear la publicacion");
-            return new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
+            dtoResponse.setStatus(HttpStatus.NO_CONTENT);
+            response = new ResponseEntity(dtoResponse, HttpStatus.NO_CONTENT);
         }
 
-        mascotaService.alta(mascotaPerdida);
-        publicacionService.alta(publicacion);
-
-
-        dtoResponse.setStatus(HttpStatus.CREATED);
-        dtoResponse.setMsg("Se creo la publicacion satisfactoriamente");
-        return new ResponseEntity(dtoResponse, HttpStatus.CREATED);
+        return response;
 
     }
-    /* TODO :Terminar eliminar
-    @DeleteMapping(path = "/borrar")
-    public ResponseEntity<PublicacionPerdida> guardar(HttpServletRequest request, @RequestBody PublicacionPerdida publicacion) {
-        return new ResponseEntity(publicacionService.alta(publicacion), HttpStatus.CREATED);
-    }
-    */
 
 
     @GetMapping(path = "/{id}")

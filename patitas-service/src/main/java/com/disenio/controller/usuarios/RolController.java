@@ -5,10 +5,7 @@ import com.disenio.services.usuarios.RolService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +32,18 @@ public class RolController {
 
     }
 
+    @RequestMapping(value = "/{íd}", method = RequestMethod.GET)
+    public ResponseEntity<Rol> getRolByID(@PathVariable("id") Integer id) {
+        ResponseEntity<Rol> response;
+        Rol rol;
+
+        rol = rolService.getById(id);
+
+        if (rol == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(rol);
+    }
 
 
 }

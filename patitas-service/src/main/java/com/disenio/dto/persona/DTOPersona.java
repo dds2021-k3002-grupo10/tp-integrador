@@ -4,13 +4,19 @@ import com.disenio.model.personas.Persona;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 public class DTOPersona implements Serializable {
 
-    Integer idPersona;
-    String nombre;
-    String apellido;
+    List<ContactosAltaDTO> contactos;
+    private Integer idPersona;
+    private String nombre;
+    private String apellido;
+    private String fechaNacimiento;
+    private char estado;
+    private PersonaDocumentoDTO personaDocumentos;
+    private PersonaDireccionDTO personaDireccions;
 
     //Constructor Persona
     public DTOPersona(Integer idPersona, String nombre, String apellido) {
@@ -48,5 +54,45 @@ public class DTOPersona implements Serializable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public List<ContactosAltaDTO> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(List<ContactosAltaDTO> contactos) {
+        this.contactos = contactos;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public char getEstado() {
+        return estado;
+    }
+
+    public void setEstado(char estado) {
+        this.estado = estado;
+    }
+
+    public PersonaDocumentoDTO getPersonaDocumentos() {
+        return personaDocumentos;
+    }
+
+    public void setPersonaDocumentos(PersonaDocumentoDTO personaDocumentos) {
+        this.personaDocumentos = personaDocumentos;
+    }
+
+    public PersonaDireccionDTO getPersonaDireccions() {
+        return personaDireccions;
+    }
+
+    public void setPersonaDireccions(PersonaDireccionDTO personaDireccions) {
+        this.personaDireccions = personaDireccions;
     }
 }

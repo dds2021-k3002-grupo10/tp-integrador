@@ -32,7 +32,7 @@ public class PublicacionPerdida extends Publicacion implements Serializable {
 
     //Accessors
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_MASCOTA_RESCATADA",nullable = true)
     public MascotaRescatada getMascota() {
         return mascota;

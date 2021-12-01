@@ -24,6 +24,7 @@ public class PersonaContacto implements java.io.Serializable {
     private Integer idPersonaContacto;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "ID_MEDIO_NOTIFICACION")
     private MedioNotificacion medioNotificacion;
 
     @Column(name = "NOMBRE", nullable = false, length = 50)
@@ -39,11 +40,11 @@ public class PersonaContacto implements java.io.Serializable {
     private Integer telefono;
 
 
-    @Column(name = "FECHA_ALTA", nullable = false, length = 0)
+    @Column(name = "FECHA_ALTA",  length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaAlta;
 
-    @Column(name = "FECHA_ULTIMA_MODIFICACION", nullable = false, length = 0)
+    @Column(name = "FECHA_ULTIMA_MODIFICACION", length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaUltimaModificacion;
 

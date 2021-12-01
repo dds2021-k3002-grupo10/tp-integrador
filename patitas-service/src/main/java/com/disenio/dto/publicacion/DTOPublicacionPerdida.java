@@ -1,7 +1,6 @@
 package com.disenio.dto.publicacion;
 
 import com.disenio.dto.mascota.DTOMascotaPerdida;
-import com.disenio.dto.persona.DTOPersona;
 import com.disenio.model.mascotas.MascotaRescatada;
 import com.disenio.model.publicaciones.PublicacionPerdida;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.util.Date;
 public class DTOPublicacionPerdida implements Serializable {
     Integer idPublicacion;
     Date fechaPublicacion;
-    DTOPersona autor;
+    DTOPersonaPublicacion autor;
     DTOMascotaPerdida mascota;
     Integer idHogar;
     String descripcion;
@@ -22,7 +21,7 @@ public class DTOPublicacionPerdida implements Serializable {
     //Constructores
 
 
-    public DTOPublicacionPerdida(Integer idPublicacion, Date fechaPublicacion, DTOPersona autor, DTOMascotaPerdida mascota, Integer idHogar, String descripcion) {
+    public DTOPublicacionPerdida(Integer idPublicacion, Date fechaPublicacion, DTOPersonaPublicacion autor, DTOMascotaPerdida mascota, Integer idHogar, String descripcion) {
         this.idPublicacion = idPublicacion;
         this.fechaPublicacion = fechaPublicacion;
         this.autor = autor;
@@ -35,7 +34,7 @@ public class DTOPublicacionPerdida implements Serializable {
         MascotaRescatada mr = pp.getMascota();
         this.idPublicacion = pp.getIdPublicacion();
         this.fechaPublicacion = pp.getFecha();
-        this.autor = new DTOPersona(pp.getAutor());
+        this.autor = new DTOPersonaPublicacion(pp.getAutor());
         this.mascota = new DTOMascotaPerdida(mr);
         this.idHogar = pp.getMascota().getUbicacionMascotaRescatadas().getIdHogar();
         this.descripcion = mr.getDescripcion();
@@ -59,11 +58,11 @@ public class DTOPublicacionPerdida implements Serializable {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public DTOPersona getAutor() {
+    public DTOPersonaPublicacion getAutor() {
         return autor;
     }
 
-    public void setAutor(DTOPersona autor) {
+    public void setAutor(DTOPersonaPublicacion autor) {
         this.autor = autor;
     }
 

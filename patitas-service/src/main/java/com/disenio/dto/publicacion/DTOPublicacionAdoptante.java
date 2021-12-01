@@ -1,6 +1,6 @@
 package com.disenio.dto.publicacion;
 
-import com.disenio.dto.persona.DTOPersona;
+import com.disenio.dto.cuestionario.DTOCuestionario;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import lombok.Data;
 
@@ -11,12 +11,13 @@ import java.util.Date;
 public class DTOPublicacionAdoptante implements Serializable {
     Integer idPublicacion;
     Date fechaPublicacion;
-    DTOPersona autor;
+    DTOPersonaPublicacion autor;
+    DTOCuestionario cuestionario;
     String descripcion;
 
     //Constructors
 
-    public DTOPublicacionAdoptante(Integer idPublicacion, Date fechaPublicacion, DTOPersona autor, String descripcion) {
+    public DTOPublicacionAdoptante(Integer idPublicacion, Date fechaPublicacion, DTOPersonaPublicacion autor, String descripcion) {
         this.idPublicacion = idPublicacion;
         this.fechaPublicacion = fechaPublicacion;
         this.autor = autor;
@@ -26,8 +27,9 @@ public class DTOPublicacionAdoptante implements Serializable {
     public DTOPublicacionAdoptante(PublicacionAdoptante pa) {
         this.idPublicacion = pa.getIdPublicacion();
         this.fechaPublicacion = pa.getFecha();
-        this.autor = new DTOPersona(pa.getAutor());
+        this.autor = new DTOPersonaPublicacion(pa.getAutor());
         this.descripcion = pa.getDescripcion();
+        this.cuestionario = new DTOCuestionario(pa.getCuestionario());
     }
 
     //GETTERS AND SETTERS
@@ -47,11 +49,11 @@ public class DTOPublicacionAdoptante implements Serializable {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public DTOPersona getAutor() {
+    public DTOPersonaPublicacion getAutor() {
         return autor;
     }
 
-    public void setAutor(DTOPersona autor) {
+    public void setAutor(DTOPersonaPublicacion autor) {
         this.autor = autor;
     }
 
@@ -61,5 +63,13 @@ public class DTOPublicacionAdoptante implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public DTOCuestionario getCuestionario() {
+        return cuestionario;
+    }
+
+    public void setCuestionario(DTOCuestionario cuestionario) {
+        this.cuestionario = cuestionario;
     }
 }

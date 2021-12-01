@@ -1,7 +1,6 @@
-package com.disenio.services.validador.impl;
+package com.disenio.services.validador.criterios.impl;
 
-import com.disenio.services.validador.ValidacionClaveService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.disenio.services.validador.criterios.CriterioValidacionClave;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CriterioClaveDebil implements ValidacionClaveService {
+public class CriterioClaveDebil implements CriterioValidacionClave {
     List<String> clavesInvalidas = new ArrayList<String>();
 
     public void levantarContrasenasDebiles(){

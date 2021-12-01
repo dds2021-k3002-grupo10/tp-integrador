@@ -2,6 +2,8 @@ package com.disenio.model.mascotas;
 // Generated 01/09/2021 19:13:39 by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -17,6 +19,7 @@ public class TamanioMascota implements java.io.Serializable {
 
     private Integer idTamanio;
     private String descripcion;
+    @JsonIgnore
     private char estado;
 
     public TamanioMascota() {
