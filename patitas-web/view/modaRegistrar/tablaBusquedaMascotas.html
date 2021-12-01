@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="mascota in mascotas">
-                    <td><img v-bind:src="mascota.mascotaFotos.valorFoto" style="width:40%;" alt=""></td>
+                    <td><img v-bind:src="mascota.mascotaFotos[0].valorFoto" style="width:40%;" alt=""></td>
                     <td>{{mascota.persona.idPersona}}</td>
                     <td>{{mascota.idMascota}}</td>
                     <td>{{mascota.nombre}}</td>
@@ -43,8 +43,9 @@
                 <div class="col-lg-4 col-lg-offset-4">
                     <div v-for="(mascota, key) in mascotas">
                         <span v-if="key == 0">
-                            <button type="button" @click="irAltaSoloMascota(mascota.persona.idPersona)" class="btn btn-info btn-single pull-right">
-                        ir alta persona
+                            <button type="button" @click="irAltaSoloMascota(mascota.persona.idPersona)"
+                                    class="btn btn-info btn-single pull-right">
+                        Ir alta mascota
                     </button>
                           </span>
                     </div>
