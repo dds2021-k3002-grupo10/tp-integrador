@@ -24,16 +24,24 @@
         </div>
         <hr>
         <div class="col-sm-12">
-            <strong>Caracteristicas:</strong>
-            <p v-for="caracteristica in mascota.caracteristicaDetalles">
-                {{caracteristica.faq.descripcionFaq}}:
-            </p>
+            <ul>
+                <li v-for="caracteristica in mascota.caracteristicaDetalleValorResumidoDTO">
+                    <ul>
+                        <strong>{{caracteristica.descripcionFaq}}:</strong>
+                        <span v-for="respuesta in caracteristica.cracteristicaDetalleValorResumidoDTO">
+                            {{ respuesta.descripcion }}
+                        </span>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <div class="row">
-            <div class="col-sm-7"></div>
+            <div class="col-sm-7">
+                <button>Volver</button>
+            </div>
             <div class="col-sm-5">
-                <button>Dar de baja</button>
-                <button>Dar en adopción</button>
+                <button class="btn btn-icon btn-red"> Dar de baja </button>
+                <button class="btn btn-icon btn-red"> Dar en adopcion </button>
             </div>
         </div>
     </section>

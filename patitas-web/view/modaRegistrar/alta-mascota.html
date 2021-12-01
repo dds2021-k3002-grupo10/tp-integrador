@@ -1,7 +1,8 @@
 <h3><strong>Registar</strong></h3>
 
 
-<form role="form" id="formularioAltaPersona">
+<form role="form" id="formularioAltaMascota" enctype="multipart/form-data">
+    <input type="hidden" value="" name="idPersona" id="idPersona">
     <div id="registarMascotaAlta">
         <!-- 1ra fila -->
         <div class="row" id="registarMascota">
@@ -34,15 +35,15 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <div class="form-group">
+                                        <div class="form-group" id="tipoMascota">
                                             <label>Tipo de mascota:</label>
                                             <p>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="radio-2" checked=""> Perro
+                                                <label class="radio-inline" v-for="tipoMacota in tipoMacotasList">
+                                                    <input type="radio" name="idTipoMascota"
+                                                           :value="tipoMacota.idTipoMascota" id="idTipoMascota">
+                                                    {{ tipoMacota.nombre }}
                                                 </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="radio-2">Gato
-                                                </label>
+
                                             </p>
                                         </div>
                                     </div>
@@ -51,15 +52,15 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>Edad:</label>
-                                            <input type="number" name="edad" class="form-control" id="edad"
-                                                   placeholder="Edad">
+                                            <label for="fechaNacimientoAlta">Fecha de nacimiento:</label>
+                                            <input type="text" name="fechaNacimiento" id="fechaNacimientoAlta"
+                                                   class="form-control datepicker" data-end-date="+1d">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group" id="sexoMascota">
                                             <label>Sexo Mascota:</label>
-                                            <select class="form-control" id="idSexo">
+                                            <select class="form-control" id="idSexo" name="idSexo">
                                                 <option v-for="sexo in Sexos" :value="sexo.idSexo"
                                                         :selected="sexo.idSexo == 1">
                                                     {{sexo.descripcion }}
@@ -71,9 +72,16 @@
                             </div>
                             <!-- sube img -->
                             <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-6 col-lg-offset-3">
+                                        <img src="" id="srcImg" style="width: 30%" alt=""/>
+                                    </div>
+                                </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="field-4">Imagen Mascota</label>
-                                    <input type="file" name="foto" class="form-control" id="field-4">
+                                    <input type="hidden" name="valorFoto" id="valorFoto" value="">
+                                    <label class="control-label" for="fileLoader">Imagen Mascota</label>
+                                    <input type="file" name="file" class="form-control" id="fileLoader"
+                                           onchange="loadImageFileAsURL()">
                                 </div>
                             </div>
 
@@ -84,29 +92,45 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Descripción fisica de la mascota:</label>
-                                    <textarea class="form-control" id="field-5"></textarea>
+                                    <textarea name="descripcionFisica" class="form-control" id="descripcionFisica"></textarea>
                                 </div>
                             </div>
 
                         </div>
 
-                        <hr style="border-top: 2px solid blue"/>
+                        <hr style="border-top: 2px solid #2C3E50"/>
                         <br>
                         <!-- nivel3 caracteristicaMascota-->
                         <div class="row" id="caracteristicaMascota">
-                            <div class="col-lg-12">
-                                <div class="form-group" v-for="(valor,key) in listCaracteristicas" :key="key" >
+                            <div class="col-lg-3">
+                                <label>Caracteristicas:</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group" v-for="(valor,key) in listCaracteristicas" :key="key">
                                     <strong><label>{{valor.descripcionFaq}}:</label></strong>
-                                    <p>
+                                    <input type="hidden" :name="radioName+abre+key+cierra+idFaq" :value="valor.idFaq">
 
-                                        <label class="radio-inline" v-for="respuestas in valor.faqRespuestaValors">
-                                            <input  :type="valor.faqComportamientoTipo.descripcion" :name="radioName+key"
+                                    <p>
+                                        <label class="radio-inline"
+                                               v-for="(respuestas,key1) in valor.faqRespuestaValors">
+                                            <input :id="radioName+key1"
+                                                   @click="insertInput(radioName+key,key,valor.faqComportamientoTipo.descripcion)"
+                                                   :type="valor.faqComportamientoTipo.descripcion"
+                                                   :name="radioName+key"
                                                    :value="respuestas.idRespuestaValor">
                                             {{ respuestas.descripcion }}
                                         </label>
-
                                     </p>
                                 </div>
+                                <div id="inputOcultos"></div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button type="button" onclick="altaMascota()"
+                                        class="btn btn-info btn-single pull-right">
+                                    Alta Mascota
+                                </button>
                             </div>
 
                         </div>
@@ -117,15 +141,28 @@
         </div>
 
 
-        <div class="form-group">
-            <button type="button" onclick="altaMascota()" class="btn btn-info btn-single pull-right">
-                AltaPersona
-            </button>
-        </div>
     </div>
 </form>
 
+<br>
+<br>
+<br>
+
 <script>
+    /*tipo mascota*/
+    var app = new Vue({
+        el: "#tipoMascota",
+        data: {
+            tipoMacotasList: []
+        },
+        created() {
+            fetch('http://localhost:8080/mascota/tipo')
+                .then(response => response.json())
+                .then(data => {
+                    this.tipoMacotasList = data
+                })
+        }
+    })
     /*Sex mascota*/
     var app = new Vue({
         el: "#sexoMascota",
@@ -147,7 +184,11 @@
         el: "#caracteristicaMascota",
         data: {
             listCaracteristicas: [],
-            radioName: "respuesta"
+            radioName: "caracteristicas",
+            abre: "[",
+            cierra: "]",
+            idFaq: ".idFaq",
+            valorMascota: "altaValorMascotaDTOlist",
         },
         created() {
             fetch('http://localhost:8080/faq/organizacion/pregunta-tipo?idOrganizacion=1&idPreguntaTipo=1')
@@ -155,40 +196,77 @@
                 .then(data => {
                     this.listCaracteristicas = data
                 })
-        }
-    })
-
-
-    /*alta altaMascota*/
-    function altaMascota() {
-        if (validarAltaPersona()) {
-            if (confirm("Dar de alta a persona")) {
-                var json = form2object('formularioAltaPersona', '.', true);
-                alert(JSON.stringify(json));
-                $.ajax({
-                    url: "http://localhost:8080/personas/alta",
-                    dataType: 'json',
-                    contentType: "application/json",
-                    type: "POST",
-                    crossDomain: true,
-                    data: JSON.stringify(json),
-                    beforeSend: function () {
-
-                    },
-                    success: function (data) {
-                        if (data.respuesta == "OK") {
-                            alert("Se dio de alta la persona:" + data.idPersona);
-                            $('#divResultadoAlta').html("");
-                        }
+        },
+        methods: {
+            insertInput: function (name, id1, type) {
+                var cont = 0;
+                $(".class" + id1).remove();
+                $("input[name=" + name + "]").each(function (index) {
+                    if ($(this).is(':checked')) {
+                        $('#inputOcultos').append("<input type='hidden' name='caracteristicas[" + id1 + "].altaValorMascotaDTOlist[" + cont + "].idRespuesta'  class='class" + id1 + "' value='" + $(this).val() + "' />");
+                        cont++;
                     }
                 });
             }
         }
 
+    })
+
+
+    /*alta altaMascota*/
+    function altaMascota() {
+        if (confirm("Dar de alta una mascota")) {
+
+            // var file_data = $('#imagen')[0].file[0];
+            //  $('#valorFoto').val(file_data);
+            var json = form2object('formularioAltaMascota', '.', true);
+            alert(JSON.stringify(json));
+            $.ajax({
+                url: "http://localhost:8080/mascota/alta",
+                dataType: 'json',
+                contentType: "application/json",
+                type: "POST",
+                crossDomain: true,
+                data: JSON.stringify(json),
+                beforeSend: function () {
+
+                },
+                success: function (data) {
+                    // if (data.respuesta == "OK") {
+                    alert("Se dio de alta la persona:");
+                    //  $('#divResultadoAlta').html("");
+                    //inputOcultos
+
+                    //  }
+                }
+            });
+        }
+
 
     }
 
-    function validarAltaMascota() {
+
+    function loadImageFileAsURL() {
+        var filesSelected = document.getElementById("fileLoader").files;
+        if (filesSelected.length > 0) {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent) {
+
+                // var ImagenBase64 = document.getElementById("valorFoto");
+                //var Imagen = Im.replace('data:image/jpeg;base64,', '')
+                $("#valorFoto").val(fileLoadedEvent.target.result);
+                $("#srcImg").attr("src", fileLoadedEvent.target.result);
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+
+        }
+    }
+
+    /*function validarAltaMascota() {
         if ($("#nombre").val() == "") {
             alert("El campo nombre no puede estar vacío.");
             $("#nombre").focus();
@@ -227,8 +305,8 @@
             $("#emailContacto").focus();
             return false;
         }
-        return true; // Si todo está correcto
-    }
+        return true;
+    }*/
 </script>
 
 
