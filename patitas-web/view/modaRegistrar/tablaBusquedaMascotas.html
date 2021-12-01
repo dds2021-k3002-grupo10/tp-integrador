@@ -1,19 +1,12 @@
-<div class="panel panel-default">
+<div class="panel panel-default" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div class="panel-heading">
         <h3 class="panel-title">Resultado de busqueda</h3>
     </div>
     <div class="panel-body">
 
-        <span v-if="!personas.length">
+        <span v-if="!mascotas.length">
             <div class="alert alert-info">
-                <strong>Vacio!</strong> No hay resultados para mostrar.
-            </div>
-            <div class="row" id="irAltaPersona">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <button type="button" @click="irAltaPersona()" class="btn btn-info btn-single pull-right">
-                        ir alta persona
-                    </button>
-                </div>
+                <strong>Vacio!</strong> No hay resultados  de mascotas para mostrar.
             </div>
         </span>
         <span v-else>
@@ -21,30 +14,43 @@
             <table class="table table-bordered table-striped table-condensed table-hover">
                 <thead>
                 <tr>
+                    <th>foto</th>
                     <th>idPersona</th>
-                    <th>Name</th>
-                    <th>Apellido</th>
-                    <th>TipoDoc</th>
-                    <th>NroDoc</th>
-                    <th>Cant Masc.</th>
-                    <th>Estado</th>
-                    <th>#</th>
+                    <th>idMascota</th>
+                    <th>nombre</th>
+                    <th>apodo</th>
+                    <th>FecNacimiento</th>
+                    <th>sexo</th>
+                    <th>tipo</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="persona in personas">
-                    <td>{{persona.idPersona}}</td>
-                    <td>{{persona.nombre}}</td>
-                    <td>{{persona.apellido}}</td>
-                    <td>{{persona.tipoDoc}}</td>
-                    <td>{{persona.nroDoc}}</td>
-                    <td>{{persona.cantidadMascota}}</td>
-                    <td>{{persona.estado}}</td>
-                    <td><button type="button" @click="irAltaMascota(persona.idPersona)"
-                                class="btn btn-default">Alta mascota</button></td>
+                <tr v-for="mascota in mascotas">
+                    <td><img v-bind:src="mascota.mascotaFotos.valorFoto" style="width:40%;" alt=""></td>
+                    <td>{{mascota.persona.idPersona}}</td>
+                    <td>{{mascota.idMascota}}</td>
+                    <td>{{mascota.nombre}}</td>
+                    <td>{{mascota.apodo}}</td>
+                    <td>{{mascota.fechaNacimiento}}</td>
+                    <td>{{mascota.sexoMascota.descripcion}}</td>
+                    <td>{{mascota.tipoMascota.nombre}}</td>
                 </tr>
                 </tbody>
             </table>
+
+            <div class="row" id="irAltaPersona">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <div v-for="(mascota, key) in mascotas">
+                        <span v-if="key == 0">
+                            <button type="button" @click="irAltaSoloMascota(mascota.persona.idPersona)" class="btn btn-info btn-single pull-right">
+                        ir alta persona
+                    </button>
+                          </span>
+                    </div>
+
+                </div>
+            </div>
         </span>
     </div>
 </div>

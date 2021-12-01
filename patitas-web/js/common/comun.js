@@ -15,9 +15,9 @@ function home() {
         complete: function () {
             $('#home').addClass("active");
             $('#navegacionAjax').addClass("colorBordeLeft");
-           /* var d = new Date();
-            var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-            $('.anio').html(strDate);*/
+            /* var d = new Date();
+             var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+             $('.anio').html(strDate);*/
         },
         success: function (html) {
 
@@ -35,7 +35,8 @@ function home() {
 
 
 function registrar() {
-
+    tipoDocumentoAlta = "";
+    nroDocumentoAlta = "";
     $.ajax({
         url: "view/registrar.html",
         async: true,
@@ -111,6 +112,7 @@ function usuario() {
         }
     });
 }
+
 function login() {
     $.ajax({
         url: "view/login.html",
@@ -138,6 +140,7 @@ function login() {
         }
     });
 }
+
 function publicacionPerdida() {
     $.ajax({
         url: "view/pubPerdidaPesada.html",
@@ -156,7 +159,8 @@ function publicacionPerdida() {
         }
     });
 }
-function publicacionAdopcion(){
+
+function publicacionAdopcion() {
     $.ajax({
         url: "view/pubAdopcionPesada.html",
         async: true,
@@ -176,8 +180,6 @@ function publicacionAdopcion(){
 }
 
 
-
-
 function mapa() {
     jQuery('#modal-mapa .modal-content').html("");
     // $('#modal-estetica .modal-content').append('<span class = "fa fa-spin fa-circle-o-notch" >< /span>');
@@ -185,13 +187,11 @@ function mapa() {
 
     jQuery.ajax({
         url: "view/mapa.html",
-        success: function (response)
-        {
+        success: function (response) {
 
             jQuery('#modal-mapa .modal-content').html(response);
         }
     });
-
 
 
 }
