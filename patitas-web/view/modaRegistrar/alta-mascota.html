@@ -187,7 +187,7 @@
             tipoMacotasList: []
         },
         created() {
-            fetch('http://localhost:8080/mascota/tipo')
+            fetch('https://backendpatitas.herokuapp.com/mascota/tipo')
                 .then(response => response.json())
                 .then(data => {
                     this.tipoMacotasList = data
@@ -201,7 +201,7 @@
             Sexos: []
         },
         created() {
-            fetch('http://localhost:8080/mascota/sexo')
+            fetch('https://backendpatitas.herokuapp.com/mascota/sexo')
                 .then(response => response.json())
                 .then(data => {
                     this.Sexos = data
@@ -222,7 +222,7 @@
             valorMascota: "altaValorMascotaDTOlist",
         },
         created() {
-            fetch('http://localhost:8080/faq/organizacion/pregunta-tipo?idOrganizacion=' + localStorage.getItem("IDORGANIZACION") + '&idPreguntaTipo=1')
+            fetch('https://backendpatitas.herokuapp.com/faq/organizacion/pregunta-tipo?idOrganizacion=' + localStorage.getItem("IDORGANIZACION") + '&idPreguntaTipo=1')
                 .then(response => response.json())
                 .then(data => {
                     this.listCaracteristicas = data
@@ -243,7 +243,7 @@
 
     })
 
-    var mensajeAltaOk = '<div class="alert alert-success"> EL alta se realizó con exito.</div>'
+    var mensajeAltaOk = '<div class="alert alert-success"> El alta se realizó con exito.</div>'
 
     /*alta altaMascota*/
     function altaMascota() {
@@ -251,15 +251,15 @@
          if (validarAltaMascota()) {
               if (confirm("Dar de alta una mascota")) {
 
-                  var json = form2object('formularioAltaMascota', '.', true);
-                  $.ajax({
-                      url: "http://localhost:8080/mascota/alta",
-                      dataType: 'json',
-                      contentType: "application/json",
-                      type: "POST",
-                      crossDomain: true,
-                      data: JSON.stringify(json),
-                      beforeSend: function () {
+                var json = form2object('formularioAltaMascota', '.', true);
+                $.ajax({
+                    url: "https://backendpatitas.herokuapp.com/mascota/alta",
+                    dataType: 'json',
+                    contentType: "application/json",
+                    type: "POST",
+                    crossDomain: true,
+                    data: JSON.stringify(json),
+                    beforeSend: function () {
 
                       },
                       success: function (data) {

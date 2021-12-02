@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <p class="text-gray d-flex justify-end fecha-publicacion text-bold hidden-md">
-                        <small>{{publicacion.f}}</small></p><!-- revisar tema fecha -->
+                        <!--<small>{{publicacion.f}}</small></p> revisar tema fecha -->
                     <div class="col-md-6 col-lg-8  col-sm-12 ">
 
 
@@ -72,7 +72,7 @@
             publicaciones: 'test'
         },
         created() {
-            fetch('http://localhost:8080/publicaciones/perdidas/all')
+            fetch('https://backendpatitas.herokuapp.com/publicaciones/perdidas/all')
                 .then(response => response.json())
                 .then(data => {
                     this.publicaciones = data

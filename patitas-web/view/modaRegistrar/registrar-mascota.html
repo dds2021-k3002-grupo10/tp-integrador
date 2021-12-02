@@ -47,7 +47,7 @@
             tipoDoc: []
         },
         created() {
-            fetch('http://localhost:8080/personas/tipo-documento')
+            fetch('https://backendpatitas.herokuapp.com/personas/tipo-documento')
                 .then(response => response.json())
                 .then(data => {
                     this.tipoDoc = data
@@ -90,7 +90,7 @@
                 personas: []
             },
             created() {
-                fetch('http://localhost:8080/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
+                fetch('https://backendpatitas.herokuapp.com/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
                     .then(response => response.json())
                     .then(data => {
                         this.personas = data

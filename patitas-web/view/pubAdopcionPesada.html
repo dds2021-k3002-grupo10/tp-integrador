@@ -79,7 +79,7 @@
         publicaciones: 'test'
     },
     created(){
-        fetch('http://localhost:8080/publicaciones/adopciones/dar/all')
+        fetch('https://backendpatitas.herokuapp.com/publicaciones/adopciones/dar/all')
         .then(response => response.json())
         .then(data =>{
             this.publicaciones = data

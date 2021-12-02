@@ -59,7 +59,7 @@ function registrar() {
         }
     });
 }
-
+/*
 function adopcion() {
     $.ajax({
         url: "view/adopcion.html",
@@ -83,7 +83,7 @@ function adopcion() {
         }
     });
 }
-
+*/
 
 function usuario() {
     $.ajax({
