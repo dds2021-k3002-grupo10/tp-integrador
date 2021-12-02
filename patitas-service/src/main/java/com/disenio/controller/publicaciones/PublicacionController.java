@@ -3,6 +3,7 @@ package com.disenio.controller.publicaciones;
 import com.disenio.dto.DTOResponse;
 import com.disenio.model.personas.Persona;
 import com.disenio.model.publicaciones.Publicacion;
+import com.disenio.model.publicaciones.PublicacionPerdida;
 import com.disenio.model.usuarios.Usuario;
 import com.disenio.services.publicaciones.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -25,8 +25,8 @@ public class PublicacionController {
         DTOResponse dtoResponse = new DTOResponse();
         ResponseEntity<DTOResponse> response;
         try {
-            Optional<Publicacion> publicacion = publicacionService.getById(id);
-            if (!publicacion.isPresent()) {
+            Publicacion publicacion = publicacionService.getById(id).orElseGet(null);
+            if (publicacion != null && publicacion instanceof PublicacionPerdida) {
                 dtoResponse.setMsg("No existe la publicacion");
             }
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
@@ -34,7 +34,7 @@ public class PublicacionController {
                 dtoResponse.setMsg("Debe estar logueado");
             }
             Persona persona = usuario.getPersona();
-            Persona autor = publicacion.get().getAutor();
+            Persona autor = publicacion.getAutor();
             if (persona == null) {
                 dtoResponse.setMsg("Este usuario no tiene persona!");
             }

@@ -50,7 +50,8 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-evenly publicacion-botonera ">
-                                    <button class="btn btn-secondary btn-icon"><i class="fas fa-search"></i>
+                                    <button class="btn btn-secondary btn-icon" onclick="notificar({{idPublicacion}})"><i
+                                            class="fas fa-search"></i>
                                         <span>Es mi mascota!</span></button>
                                 </div>
                             </div>
@@ -63,4 +64,13 @@
         </ul>
     </div>
 </div>
+<script>
+    function notificar(id) {
+        fetch('/publicaciones/perdidas/notificar/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+    }
 
+</script>

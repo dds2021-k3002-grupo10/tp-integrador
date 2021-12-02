@@ -17,7 +17,7 @@
                             <div class="imagen-contenido margenEC text-center" style="margin: 0 auto;">
                                 <h3 class="title p-1 ">{{autor.nombre}} {{autor.apellido}} </h3>
                                 <img src="https://cdn.pixabay.com/photo/2020/12/28/01/01/man-5865608_960_720.jpg"
-                                     class="thumb img-responsive img-cirlce" alt="" width="250 height=" 250"/>
+                                     class="thumb img-responsive img-cirlce" alt="" width="250" height=" 250"/>
 
                             </div>
                         </div>
@@ -61,7 +61,8 @@
                                     </div>
                                 </div>
                                 <div class="d-flex justify-evenly publicacion-botonera ">
-                                    <button class="btn btn-terciary btn-icon"><i class="fa-solid fa-phone"></i>
+                                    <button class="btn btn-terciary btn-icon"><i class="fa-solid fa-phone"
+                                                                                 onclick="notificar({{idPublicacion}})"></i>
                                         <span>Contactar!</span></button>
                                 </div>
                             </div>
@@ -74,4 +75,17 @@
         </ul>
     </div>
 </div>
+<script>
+
+
+    function notificar(id) {
+        fetch('/publicaciones/adopciones/adoptar/notificar/' + id)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+    }
+
+
+</script>
 

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -105,23 +104,24 @@ public class PublicacionDarAdopcionController {
         DTOResponse dtoResponse = new DTOResponse();
         ResponseEntity<DTOResponse> response;
         try {
-            Optional<Publicacion> publicacionS = publicacionService.getById(id);
-            if (!publicacionS.isPresent() && publicacionS.get() instanceof PublicacionDarAdopcion) {
+            Publicacion publicacionS = publicacionService.getById(id).orElseGet(null);
+            if (publicacionS != null && publicacionS instanceof PublicacionDarAdopcion) {
                 dtoResponse.setMsg("No existe la publicacion");
             }
-            PublicacionDarAdopcion publicacion = (PublicacionDarAdopcion) publicacionS.get();
+            PublicacionDarAdopcion publicacion = (PublicacionDarAdopcion) publicacionS;
             Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
             if (usuario == null) {
                 dtoResponse.setMsg("Debe estar logueado");
+                Persona persona = usuario.getPersona();
+                Persona autor = publicacion.getAutor();
+                if (persona == null) {
+                    dtoResponse.setMsg("Este usuario no tiene persona!");
+                }
+                dtoResponse.setMsg("Se notifica!");
+                List<PersonaContacto> personas = persona.getPersonaContactos();
+                autor.notificar("Te contamos que " + persona.getNombre() + " te quiere contactar para adoptar a tu mascota " + publicacion.getMascotaOfrecida().getNombre() + ". Llamar a " + personas.get(0).getTelefono() + "(" + persona.getNombre() + ")");
             }
-            Persona persona = usuario.getPersona();
-            Persona autor = publicacion.getAutor();
-            if (persona == null) {
-                dtoResponse.setMsg("Este usuario no tiene persona!");
-            }
-            dtoResponse.setMsg("Se notifica!");
-            List<PersonaContacto> personas = persona.getPersonaContactos();
-            autor.notificar("Te contamos que " + persona.getNombre() + " te quiere contactar para adoptar a tu mascota " + publicacion.getMascotaOfrecida().getNombre() + ". Llamar a " + personas.get(0).getTelefono() + "(" + persona.getNombre() + ")");
+
         } catch (Exception e) {
             e.printStackTrace();
             dtoResponse.setData(HttpStatus.FORBIDDEN);
