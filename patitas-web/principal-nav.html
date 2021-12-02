@@ -179,18 +179,10 @@
                         <span class="title">Login</span>
                     </a>
                 </li>
-                <li class="abierto" id="publicacion">
-                    <a href="#" onclick="publicacion()">
-                        <i class="fa-bus"></i>
-                        <span class="title">Publicar mascota</span>
-                    </a>
-
-                </li>
-
-                <li class="opened abierto expanded has-sub" id="abm">
+                <li class="abierto has-sub" id="abm">
                     <a href="#">
                         <i class="fa fa-newspaper-o"></i>
-                        <span class="title">Publicaciones</span>
+                        <span class="title">Publicaciones (CP)</span>
                     </a>
                     <ul>
                         <li class="abierto" id="publicaciones">
@@ -203,8 +195,26 @@
                                 <span class="title">Mascotas en adopcion</span>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="abierto has-sub" id="abm">
+                    <a href="#">
+                        <i class="fa fa-newspaper-o"></i>
+                        <span class="title">Publicaciones (CL)</span>
+                    </a>
+                    <ul>
                         <li class="abierto">
-                            <a href="#" onclick="publicacion()">
+                            <a href="https://backendpatitas.herokuapp.com/view/publicacion/perdida">
+                                <span class="title">Mascotas perdidas</span>
+                            </a>
+                        </li>
+                        <li class="abierto">
+                            <a href="https://backendpatitas.herokuapp.com/view/publicacion/adoptar">
+                                <span class="title">Mascotas en adopcion</span>
+                            </a>
+                        </li>
+                        <li class="abierto">
+                            <a href="https://backendpatitas.herokuapp.com/view/publicacion/adoptante">
                                 <span class="title">Adoptantes</span>
                             </a>
                         </li>
