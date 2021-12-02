@@ -49,7 +49,7 @@
             mascotas: []
         },
         created () {
-            fetch('https://backendpatitas.herokuapp.com/mascota/persona/'+localStorage.getItem("IDSESION"))
+            fetch('https://grupo10patitas.herokuapp.com/mascota/persona/'+localStorage.getItem("IDSESION"))
                 .then(response => response.json())
                 .then(data => {
                     this.mascotas = data
@@ -81,7 +81,7 @@
         persona: 'hola'
     },
     created(){
-        fetch('https://backendpatitas.herokuapp.com/personas/'+localStorage.getItem("IDSESION"))
+        fetch('https://grupo10patitas.herokuapp.com/personas/'+localStorage.getItem("IDSESION"))
         .then(response => response.json())
         .then(data =>{
             this.persona = data

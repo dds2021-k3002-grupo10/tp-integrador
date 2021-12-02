@@ -46,7 +46,7 @@
             tipoDoc: []
         },
         created() {
-            fetch('https://backendpatitas.herokuapp.com/personas/tipo-documento')
+            fetch('https://grupo10patitas.herokuapp.com/personas/tipo-documento')
                 .then(response => response.json())
                 .then(data => {
                     this.tipoDoc = data
@@ -89,7 +89,7 @@
                 mascotas: []
             },
             created() {
-                fetch('https://backendpatitas.herokuapp.com/mascota/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
+                fetch('https://grupo10patitas.herokuapp.com/mascota/personas/buscarByDoc?idTipoDoc=' + idTipoDoc + '&numero=' + numero)
                     .then(response => response.json())
                     .then(data => {
                         this.mascotas = data

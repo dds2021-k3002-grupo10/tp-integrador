@@ -5,7 +5,7 @@ const app = new Vue({
         nombre:'alex'
     },
     created(){
-        fetch('https://backendpatitas.herokuapp.com/organizacion/all')
+        fetch('https://grupo10patitas.herokuapp.com/organizacion/all')
             .then(response => response.json())
             .then(data =>{
                 this.organizaciones = data

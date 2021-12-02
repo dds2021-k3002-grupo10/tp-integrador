@@ -2,6 +2,10 @@ package com.disenio.controller.publicaciones;
 
 import com.disenio.dto.DTOResponse;
 import com.disenio.dto.publicacion.DTOPublicacionAdoptante;
+import com.disenio.model.personas.Persona;
+import com.disenio.model.personas.PersonaContacto;
+import com.disenio.model.publicaciones.Publicacion;
+import com.disenio.model.publicaciones.PublicacionAdopcion;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.model.usuarios.Usuario;
 import com.disenio.services.factory.Factory;
@@ -77,6 +81,38 @@ public class PublicacionAdoptanteController {
 
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(path = "/notificar/{id}")
+    public ResponseEntity<DTOResponse> getPublicacionesPerdidasByID(@PathVariable("id") Integer id, HttpServletRequest request) {
+
+        DTOResponse dtoResponse = new DTOResponse();
+        ResponseEntity<DTOResponse> response;
+        try {
+            Publicacion publicacionS = publicacionService.getById(id).orElseGet(null);
+            if (publicacionS != null && publicacionS instanceof PublicacionAdoptante) {
+                dtoResponse.setMsg("No existe la publicacion");
+                PublicacionAdoptante publicacion = (PublicacionAdoptante) ((PublicacionAdopcion) publicacionS);
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+                if (usuario == null) {
+                    dtoResponse.setMsg("Debe estar logueado");
+                }
+                Persona persona = usuario.getPersona();
+                Persona autor = publicacion.getAutor();
+                if (persona == null) {
+                    dtoResponse.setMsg("Este usuario no tiene persona!");
+                }
+                dtoResponse.setMsg("Se notifica!");
+                List<PersonaContacto> personas = persona.getPersonaContactos();
+                autor.notificar("Te contamos que " + persona.getNombre() + " te quiere contactar para ofrecerte una mascota acorde a tus necesidades. Llamar a " + personas.get(0).getTelefono() + "(" + persona.getNombre() + ")");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            dtoResponse.setData(HttpStatus.FORBIDDEN);
+        }
+
+        return ResponseEntity.ok(dtoResponse);
     }
 }
 

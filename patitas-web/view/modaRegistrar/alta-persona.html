@@ -148,7 +148,7 @@
             nroDocumentoHeredado: nroDocumentoAlta
         },
         created() {
-            fetch('https://backendpatitas.herokuapp.com/personas/medio-notificacion')
+            fetch('https://grupo10patitas.herokuapp.com/personas/medio-notificacion')
                 .then(response => response.json())
                 .then(data => {
                     this.notificaciones = data
@@ -165,7 +165,7 @@
               if (confirm("Dar de alta a persona")) {
                   var json = form2object('formularioAltaPersona', '.', true);
                   $.ajax({
-                      url: "http://localhost:8080/personas/alta",
+                      url: "https://grupo10patitas.herokuapp.com/personas/alta",
                       dataType: 'json',
                       contentType: "application/json",
                       type: "POST",

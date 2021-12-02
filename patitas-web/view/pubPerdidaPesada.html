@@ -72,7 +72,7 @@
             publicaciones: 'test'
         },
         created() {
-            fetch('https://backendpatitas.herokuapp.com/publicaciones/perdidas/all')
+            fetch('https://grupo10patitas.herokuapp.com/publicaciones/perdidas/all')
                 .then(response => response.json())
                 .then(data => {
                     this.publicaciones = data

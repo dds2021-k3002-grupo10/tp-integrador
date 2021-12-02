@@ -68,7 +68,7 @@
         mascota:'test'
     },
     created(){
-        fetch('https://backendpatitas.herokuapp.com/mascota/' + idMascota)
+        fetch('https://grupo10patitas.herokuapp.com/mascota/' + idMascota)
             .then(response => response.json())
             .then(data =>{
                 this.mascota = data

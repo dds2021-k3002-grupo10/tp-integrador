@@ -187,7 +187,7 @@
             tipoMacotasList: []
         },
         created() {
-            fetch('https://backendpatitas.herokuapp.com/mascota/tipo')
+            fetch('https://grupo10patitas.herokuapp.com/mascota/tipo')
                 .then(response => response.json())
                 .then(data => {
                     this.tipoMacotasList = data
@@ -201,7 +201,7 @@
             Sexos: []
         },
         created() {
-            fetch('https://backendpatitas.herokuapp.com/mascota/sexo')
+            fetch('https://grupo10patitas.herokuapp.com/mascota/sexo')
                 .then(response => response.json())
                 .then(data => {
                     this.Sexos = data
@@ -222,7 +222,7 @@
             valorMascota: "altaValorMascotaDTOlist",
         },
         created() {
-            fetch('https://backendpatitas.herokuapp.com/faq/organizacion/pregunta-tipo?idOrganizacion=' + localStorage.getItem("IDORGANIZACION") + '&idPreguntaTipo=1')
+            fetch('https://grupo10patitas.herokuapp.com/faq/organizacion/pregunta-tipo?idOrganizacion=' + localStorage.getItem("IDORGANIZACION") + '&idPreguntaTipo=1')
                 .then(response => response.json())
                 .then(data => {
                     this.listCaracteristicas = data
@@ -253,7 +253,7 @@
 
                 var json = form2object('formularioAltaMascota', '.', true);
                 $.ajax({
-                    url: "https://backendpatitas.herokuapp.com/mascota/alta",
+                    url: "https://grupo10patitas.herokuapp.com/mascota/alta",
                     dataType: 'json',
                     contentType: "application/json",
                     type: "POST",

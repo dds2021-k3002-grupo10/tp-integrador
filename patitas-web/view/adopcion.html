@@ -61,7 +61,7 @@
         mascota:''
     },
     created(){
-        fetch('http://localhost:8080/mascota/all')
+        fetch('https://grupo10patitas.herokuapp.com/mascota/all')
             .then(response => response.json())
             .then(data =>{
                 this.organizaciones = data
