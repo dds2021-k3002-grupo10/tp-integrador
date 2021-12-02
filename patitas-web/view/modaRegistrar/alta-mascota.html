@@ -12,7 +12,7 @@
                         <h3 class="panel-title">Alta Mascota</h3>
                     </div>
                     <div class="panel-body">
-                        <div id="msgAltaMascota"></div>
+
                         <!-- nivel 1 -->
                         <div class="row">
                             <div class="col-lg-6">
@@ -54,7 +54,7 @@
                                         <div class="form-group">
                                             <label for="fechaNacimientoAlta">Fecha de nacimiento:</label>
                                             <input type="text" name="fechaNacimiento" id="fechaNacimientoAlta"
-                                                   class="form-control datepicker" data-end-date="+1d">
+                                                   class="form-control datepicker" data-end-date="-1d">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -82,6 +82,17 @@
                                     <label class="control-label" for="fileLoader">Imagen Mascota</label>
                                     <input type="file" name="file" class="form-control" id="fileLoader"
                                            onchange="loadImageFileAsURL()">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-lg-offset-3" id="msgAltaMascota">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-lg-offset-3" id="qr" style="text-align: center; border-bottom: 1px solid #2C3E50 ">
+
+                                    </div>
                                 </div>
                             </div>
 
@@ -233,36 +244,44 @@
     })
 
     var mensajeAltaOk = '<div class="alert alert-success"> EL alta se realizó con exito.</div>'
+
     /*alta altaMascota*/
     function altaMascota() {
-        if (validarAltaMascota()) {
-            if (confirm("Dar de alta una mascota")) {
 
-                var json = form2object('formularioAltaMascota', '.', true);
-                $.ajax({
-                    url: "http://localhost:8080/mascota/alta",
-                    dataType: 'json',
-                    contentType: "application/json",
-                    type: "POST",
-                    crossDomain: true,
-                    data: JSON.stringify(json),
-                    beforeSend: function () {
+         if (validarAltaMascota()) {
+              if (confirm("Dar de alta una mascota")) {
 
-                    },
-                    success: function (data) {
-                        if (data.respuesta == "OK") {
+                  var json = form2object('formularioAltaMascota', '.', true);
+                  $.ajax({
+                      url: "http://localhost:8080/mascota/alta",
+                      dataType: 'json',
+                      contentType: "application/json",
+                      type: "POST",
+                      crossDomain: true,
+                      data: JSON.stringify(json),
+                      beforeSend: function () {
+
+                      },
+                      success: function (data) {
+                          if (data.respuesta == "OK") {
+                              $("#qr").qrcode({
+                                  size: 80,
+                                  color: '#3a3',
+                                  color:'#3a3',
+                                  text:'URL:'+data.url
+                              });
                             $('#msgAltaMascota').html(mensajeAltaOk);
-                            setTimeout(
-                                function () {
-                                    registrar();
-                                }, 1000);
+                              setTimeout(
+                                  function () {
+                                      registrar();
+                                  }, 2000);
 
-                        }
-                    }
-                });
-            }
+                          }
+                      }
+                  });
+              }
 
-        }
+          }
     }
 
 
@@ -297,11 +316,10 @@
             $("#apodo").focus();
             return false;
         }
-        if(!$("input[name='idTipoMascota']").is(':checked')){
+        if (!$("input[name='idTipoMascota']").is(':checked')) {
             alert('Favor de seleccionar una opción tipo macota');
             return false;
         }
-
 
 
         if ($("#fechaNacimientoAlta").val() == "") {
@@ -328,7 +346,6 @@
     }
 </script>
 
-
 <!-- Imported styles on this page -->
 <link rel="stylesheet" href="assets/js/daterangepicker/daterangepicker-bs3.css">
 
@@ -345,6 +362,11 @@
 <!-- JavaScripts initializations and stuff -->
 <script src="assets/js/xenon-custom.js"></script>
 
+<script src="js/vendor/jquery.qrcode-0.12.0.min.js"></script>
 
 <script src="plugins/jquery.toObject.js"></script>
 <script src="plugins/js2form.js"></script>
+
+
+
+
