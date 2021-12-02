@@ -18,7 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Data
-@Table(name = "faq", catalog = "patitas"
+@Table(name = "faq"//, catalog = "patitas"
 )
 public class Faq implements java.io.Serializable {
 

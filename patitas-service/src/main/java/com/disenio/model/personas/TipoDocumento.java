@@ -16,7 +16,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Data
-@Table(name = "tipo_documento", catalog = "patitas")
+@Table(name = "tipo_documento"//, catalog = "patitas"
+)
 public class TipoDocumento implements java.io.Serializable {
 
     @Id

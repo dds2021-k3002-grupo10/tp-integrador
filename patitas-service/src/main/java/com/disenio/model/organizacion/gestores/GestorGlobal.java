@@ -7,7 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "gestor_global" , catalog = "patitas")
+@Table(name = "gestor_global" //, catalog = "patitas"
+)
 public class GestorGlobal {
 
     private static GestorGlobal instancia = null;

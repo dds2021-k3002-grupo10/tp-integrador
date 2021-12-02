@@ -16,14 +16,14 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-4 d-flex col-sm-12 ">
                             <div class="imagen-contenido text-center">
-                                <h3 class="title p-1 ">{{mascotaOfrecida.apodo}}</h3>
-                                {{#mascotaOfrecida.mascotaFotos}}
-                                    <img src="{{{valorFoto}}}" class="img-responsive " alt=""/>
-                                {{/mascotaOfrecida.mascotaFotos}}
+                                <h3 class="title p-1 ">{{mascota.apodo}}</h3>
+                                {{#mascota.foto}}
+                                    <img src="{{.}}" class="img-responsive " alt=""/>
+                                {{/mascota.foto}}
                             </div>
                         </div>
                         <p class="text-gray d-flex justify-end fecha-publicacion text-bold hidden-md">
-                            <small>{{fecha}}</small></p>
+                            <small>{{fechaPublicacion}}</small></p>
                         <div class="col-md-6 col-lg-8  col-sm-12 ">
 
 
@@ -35,16 +35,16 @@
 
                                         <div class="d-flex justify-between align-item-center ">
                                             <p><span><i
-                                                    class="fas fa-paw"></i>  Nombre</span>: {{mascotaOfrecida.nombre}}
+                                                    class="fas fa-paw"></i>  Nombre</span>: {{mascota.nombre}}
                                             </p>
                                             <p><span><i
-                                                    class="fas fa-paw"></i>  Edad</span>: {{mascotaOfrecida.edad}}
+                                                    class="fas fa-paw"></i>  Edad</span>: {{mascota.edad}}
                                             </p>
                                             <p style="padding-right: 1rem"><span><i
-                                                    class="fas fa-paw"></i>  Apodo</span>:{{mascotaOfrecida.apodo}}</p>
+                                                    class="fas fa-paw"></i>  Apodo</span>:{{mascota.apodo}}</p>
                                         </div>
                                         <p><span><i
-                                                class="fas fa-paw"></i>  Descripcion fisica</span>: {{mascotaOfrecida.descripcionFisica}}
+                                                class="fas fa-paw"></i>  Descripcion fisica</span>: {{mascota.descripcionFisica}}
                                         </p>
                                         <p><span><i
                                                 class="fas fa-paw"></i>  Observacion del dueño</span>: {{descripcion}}
@@ -52,12 +52,13 @@
                                     </div>
                                     <h4 class="text-underline">Caracteristicas</h4>
                                     <div class="publicacion-info">
-                                        {{#mascotaOfrecida.caracteristicaDetalles}}
+                                        {{#mascota.caracteristicas}}
                                         <p><i class="fas fa-info"></i> <span
-                                                class="text-capitalize">{{faq.descripcionFaq}}:
-                                            {{#faq.faqRespuestaValors}}
-                                                {{#caracteristicaDetalleValors}} {{descripcion}}{{/caracteristicaDetalleValors}} {{/faq.faqRespuestaValors}}
-                                        {{/mascotaOfrecida.caracteristicaDetalles}}</span></p>
+                                                class="text-capitalize">{{pregunta}}:
+                                            {{#respuestas}}
+                                                {{.}}
+                                            {{/respuestas}}
+                                        {{/mascota.caracteristicas}}</span></p>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-evenly publicacion-botonera ">

@@ -13,7 +13,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Data
-@Table(name = "sexo_mascota", catalog = "patitas")
+@Table(name = "sexo_mascota"//, catalog = "patitas"
+ )
 public class SexoMascota implements java.io.Serializable {
 
     @Id

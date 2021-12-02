@@ -11,7 +11,7 @@ import java.util.Date;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "publicacion", catalog = "patitas"
+@Table(name = "publicacion"//, catalog = "patitas"
 )
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_publicacion")

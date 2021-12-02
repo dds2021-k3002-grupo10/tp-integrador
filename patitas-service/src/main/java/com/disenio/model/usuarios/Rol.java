@@ -8,7 +8,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Data
-@Table(name = "rol", catalog = "patitas")
+@Table(name = "rol"//, catalog = "patitas"
+ )
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_rol")
 public abstract class Rol implements java.io.Serializable {

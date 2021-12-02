@@ -12,7 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "cuestionario"
-        , catalog = "patitas"
+        //, catalog = "patitas"
 )
 public class Cuestionario implements Cloneable {
 

@@ -12,7 +12,7 @@ import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "entrada_cuestionario", catalog = "patitas"
+@Table(name = "entrada_cuestionario"//, catalog = "patitas"
 )
 public class EntradaCuestionario implements Cloneable {
     private Integer idEntradaCuestionario;

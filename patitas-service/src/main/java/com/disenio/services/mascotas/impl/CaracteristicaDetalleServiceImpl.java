@@ -41,7 +41,7 @@ public class CaracteristicaDetalleServiceImpl implements CaracteristicaDetalleSe
 
                 Optional<Faq> faq = faqDAO.findById(altaCaracteristicasMascotaDTO.getIdFaq());
                 caracteristicaDetalle.setFaq(faq.get());
-
+                mascota.addCaracteristica(caracteristicaDetalle);
                 CaracteristicaDetalle rtaCaracteristicaDetalle = caracteristicaDetalleDAO.save(caracteristicaDetalle);
 
                 /*alta valores de respuesta de caracteristicas*/

@@ -1,20 +1,18 @@
 package com.disenio.controller.view;
 
-import com.disenio.model.personas.Persona;
+import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
 import com.disenio.model.publicaciones.PublicacionAdoptante;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
 import com.disenio.model.publicaciones.PublicacionPerdida;
 import com.disenio.services.personas.PersonaService;
 import com.disenio.services.publicaciones.PublicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -35,7 +33,8 @@ public class ViewPublicaciones {
 
     @GetMapping("/adoptar")
     public ModelAndView viewPublicacionAdoptar(Map<String, Object> model) {
-        List<PublicacionDarAdopcion> publicaciones = publicacionService.listarDarAdopcion();
+        List<PublicacionDarAdopcion> publicacionesModelo = publicacionService.listarDarAdopcion();
+        List<DTOPublicacionDarAdopcion> publicaciones = publicacionesModelo.stream().map(DTOPublicacionDarAdopcion::new).collect(Collectors.toList());
         model.put("publicacion", publicaciones);
         model.put("esPublicacionAdoptar", true);
 
@@ -48,6 +47,12 @@ public class ViewPublicaciones {
         model.put("publicacion", publicaciones);
         model.put("esPublicacionAdoptante", true);
 
+        return new ModelAndView("principal", model);
+    }
+
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ModelAndView index(Map<String, Object> model) {
         return new ModelAndView("principal", model);
     }
 

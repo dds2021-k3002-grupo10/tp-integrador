@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Entity
 @Data
-@Table(name = "persona", catalog = "patitas")
+@Table(name = "persona")//, catalog = "patitas")
 public class Persona implements java.io.Serializable {
 
     @Id

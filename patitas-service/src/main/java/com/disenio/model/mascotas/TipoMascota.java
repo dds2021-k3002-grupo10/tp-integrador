@@ -12,7 +12,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Data
-@Table(name = "tipo_mascota", catalog = "patitas")
+@Table(name = "tipo_mascota"//, catalog = "patitas"
+)
 public class TipoMascota implements java.io.Serializable {
 
     @Id

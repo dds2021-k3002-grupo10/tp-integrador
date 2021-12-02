@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Table(name="faq_comportamiento_tipo"
-    ,catalog="patitas"
+    //,catalog="patitas"
 )
 public class FaqComportamientoTipo  implements java.io.Serializable {
 

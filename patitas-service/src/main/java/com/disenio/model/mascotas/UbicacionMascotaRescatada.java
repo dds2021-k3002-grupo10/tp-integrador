@@ -13,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "ubicacion_mascota_rescatada"
-        , catalog = "patitas"
+        //, catalog = "patitas"
 )
 public class UbicacionMascotaRescatada implements java.io.Serializable {
 

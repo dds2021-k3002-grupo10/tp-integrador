@@ -15,23 +15,19 @@
                 <thead>
                 <tr>
                     <th>foto</th>
-                    <th>idPersona</th>
-                    <th>idMascota</th>
                     <th>nombre</th>
                     <th>apodo</th>
-                    <th>FecNacimiento</th>
+                    <th>Edad</th>
                     <th>sexo</th>
                     <th>tipo</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="mascota in mascotas">
-                    <td><img v-bind:src="mascota.mascotaFotos[0].valorFoto" style="width:40%;" alt=""></td>
-                    <td>{{mascota.persona.idPersona}}</td>
-                    <td>{{mascota.idMascota}}</td>
+                    <td style="width:20%;"><img v-bind:src="mascota.mascotaFotos[0].valorFoto" style="width:100%;"></td>
                     <td>{{mascota.nombre}}</td>
                     <td>{{mascota.apodo}}</td>
-                    <td>{{mascota.fechaNacimiento}}</td>
+                    <td>{{mascota.edad}}</td>
                     <td>{{mascota.sexoMascota.descripcion}}</td>
                     <td>{{mascota.tipoMascota.nombre}}</td>
                 </tr>

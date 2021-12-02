@@ -13,7 +13,8 @@ import java.util.Calendar;
  */
 @Entity
 @Data
-@Table(name = "usuario", catalog = "patitas")
+@Table(name = "usuario"//, catalog = "patitas"
+)
 public class Usuario implements java.io.Serializable {
 
     @Id

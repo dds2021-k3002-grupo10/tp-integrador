@@ -14,7 +14,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Data
-@Table(name = "medio_notificacion", catalog = "patitas")
+@Table(name = "medio_notificacion"//, catalog = "patitas"
+)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_notificacion")
 public abstract class MedioNotificacion {
