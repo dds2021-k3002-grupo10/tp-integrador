@@ -38,12 +38,12 @@ public class Persona implements java.io.Serializable {
     private Calendar fechaNacimiento;
 
 
-    @Column(name = "FECHA_ALTA",  length = 0)
+    @Column(name = "FECHA_ALTA", length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaAlta;
 
 
-    @Column(name = "FECHA_ULTIMA_MODIFICACION",  length = 0)
+    @Column(name = "FECHA_ULTIMA_MODIFICACION", length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaUltimaModificacion;
 
@@ -58,7 +58,7 @@ public class Persona implements java.io.Serializable {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private PersonaDocumento personaDocumentos;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<PersonaContacto> personaContactos;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -213,7 +213,7 @@ public class Persona implements java.io.Serializable {
     }
 
     public void notificar(String mensaje) {
-        /*TODO magia notificacion*/
+        this.personaContactos.forEach(personaContacto -> personaContacto.notificar(mensaje));
     }
 
     public int edad() {

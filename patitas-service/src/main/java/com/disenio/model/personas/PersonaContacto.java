@@ -41,7 +41,7 @@ public class PersonaContacto implements java.io.Serializable {
     private Integer telefono;
 
 
-    @Column(name = "FECHA_ALTA",  length = 0)
+    @Column(name = "FECHA_ALTA", length = 0)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm", timezone = "GMT+8")
     private Calendar fechaAlta;
 
@@ -61,6 +61,10 @@ public class PersonaContacto implements java.io.Serializable {
         this.fechaUltimaModificacion = Calendar.getInstance();
         this.estado = 'A';
         this.medioNotificacion = new NotificacionPorEmail();
+    }
+
+    public void notificar(String msg) {
+        this.medioNotificacion.notificar(this, msg);
     }
 }
 

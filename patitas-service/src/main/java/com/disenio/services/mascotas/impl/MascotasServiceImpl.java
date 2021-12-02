@@ -65,6 +65,7 @@ public class MascotasServiceImpl implements MascotasService {
             //AltaCaracteristicas de la mascota
             caracteristicaDetalleService.alta(altaMascotaDTO.getCaracteristicas(), mascota);
 
+            mascotaDAO.save(mascota);
 
             //set datos a devolver//
 

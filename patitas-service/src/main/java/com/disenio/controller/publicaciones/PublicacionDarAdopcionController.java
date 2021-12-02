@@ -2,7 +2,11 @@ package com.disenio.controller.publicaciones;
 
 import com.disenio.dto.DTOResponse;
 import com.disenio.dto.publicacion.DTOPublicacionDarAdopcion;
+import com.disenio.model.personas.Persona;
+import com.disenio.model.personas.PersonaContacto;
+import com.disenio.model.publicaciones.Publicacion;
 import com.disenio.model.publicaciones.PublicacionDarAdopcion;
+import com.disenio.model.usuarios.Usuario;
 import com.disenio.services.factory.Factory;
 import com.disenio.services.mascotas.MascotasService;
 import com.disenio.services.personas.PersonaService;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -92,5 +97,36 @@ public class PublicacionDarAdopcionController {
 
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(path = "/notificar/{id}")
+    public ResponseEntity<DTOResponse> getPublicacionesPerdidasByID(@PathVariable("id") Integer id, HttpServletRequest request) {
+
+        DTOResponse dtoResponse = new DTOResponse();
+        ResponseEntity<DTOResponse> response;
+        try {
+            Optional<Publicacion> publicacionS = publicacionService.getById(id);
+            if (!publicacionS.isPresent() && publicacionS.get() instanceof PublicacionDarAdopcion) {
+                dtoResponse.setMsg("No existe la publicacion");
+            }
+            PublicacionDarAdopcion publicacion = (PublicacionDarAdopcion) publicacionS.get();
+            Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+            if (usuario == null) {
+                dtoResponse.setMsg("Debe estar logueado");
+            }
+            Persona persona = usuario.getPersona();
+            Persona autor = publicacion.getAutor();
+            if (persona == null) {
+                dtoResponse.setMsg("Este usuario no tiene persona!");
+            }
+            dtoResponse.setMsg("Se notifica!");
+            List<PersonaContacto> personas = persona.getPersonaContactos();
+            autor.notificar("Te contamos que " + persona.getNombre() + " te quiere contactar para adoptar a tu mascota " + publicacion.getMascotaOfrecida().getNombre() + ". Llamar a " + personas.get(0).getTelefono() + "(" + persona.getNombre() + ")");
+        } catch (Exception e) {
+            e.printStackTrace();
+            dtoResponse.setData(HttpStatus.FORBIDDEN);
+        }
+
+        return ResponseEntity.ok(dtoResponse);
     }
 }

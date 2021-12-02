@@ -70,10 +70,10 @@ public class Mascota implements java.io.Serializable {
     @Column(name = "ESTADO", nullable = false, length = 1)
     private char estado;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mascota")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CaracteristicaDetalle> caracteristicaDetalles;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MascotaFoto> mascotaFotos;
 
     public Mascota() {

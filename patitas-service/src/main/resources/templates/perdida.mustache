@@ -15,9 +15,7 @@
                         <div class="col-md-6 col-lg-4 d-flex col-sm-12 ">
                             <div class="imagen-contenido text-center">
                                 <h3 class="title p-1 ">{{mascota.tipoMascota.nombre}} PERDIDO </h3>
-                                {{#mascota.mascotaFotos}}
-                                    <img src="{{{valorFoto}}}" class="img-responsive " alt=""/>
-                                {{/mascota.mascotaFotos}}
+                                <img src="{{{mascota.mascotaFotos.0.valorFoto}}}" class="img-responsive " alt=""/>
                             </div>
                         </div>
                         <p class="text-gray d-flex justify-end fecha-publicacion text-bold hidden-md">
@@ -41,9 +39,11 @@
                                                 class="fas fa-paw"></i>  Tipo Mascota</span>:{{mascota.tipoMascota.nombre}}
                                         </p>
                                         <p style="padding-right: 1rem"><span><i
-                                                class="fas fa-paw"></i>  Encontrada en</span>:{{mascota.ubicacionMascotaRescatadas.direccion}}</p>
+                                                class="fas fa-paw"></i>  Encontrada en</span>:{{mascota.ubicacionMascotaRescatadas.direccion}}
+                                        </p>
                                         <p style="padding-right: 1rem"><span><i
-                                                class="fas fa-paw"></i>  Hogar de transito</span>:{{mascota.ubicacionMascotaRescatadas.idHogar}}</p>
+                                                class="fas fa-paw"></i>  Hogar de transito</span>:{{mascota.ubicacionMascotaRescatadas.idHogar}}
+                                        </p>
                                         <p style="padding-right: 1rem"><span><i
                                                 class="fas fa-paw"></i>  Descripcion</span>:{{mascota.descripcion}}</p>
 
